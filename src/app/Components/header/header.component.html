@@ -1,33 +1,30 @@
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark" aria-label="Fourth navbar example">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#"><i class="fa-brands fa-amazon fs-4"></i></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+<header class="p-3 bg-dark text-white">
+  <div class="container">
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+      <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+        <i class="fa-brands fa-amazon fs-2"></i>
+      </a>
 
-      <div class="collapse navbar-collapse" id="navbarsExample04">
-        <ul class="navbar-nav me-auto mb-2 mb-md-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled">Disabled</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-          </li>
+      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+        <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
+        <li><a href="#" class="nav-link px-2 text-white">Features</a></li>
+        <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li>
+        <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
+        <li><a href="#" class="nav-link px-2 text-white">About</a></li>
+      </ul>
+
+      <div class="input-group mx-2 w-50">
+        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">All</button>
+        <ul class="dropdown-menu" id="dropdown">
+          <li *ngFor="let item of SubCategoryList"><a class="dropdown-item" href="#">{{item.name}}</a></li>
         </ul>
-        <form role="search">
-          <input class="form-control" type="search" placeholder="Search" aria-label="Search" [(ngModel)]="prodname"[ngModelOptions]="{standalone: true}">
-        </form>
+        <input type="text" class="form-control" [(ngModel)]="prodname" aria-label="Text input with dropdown button">
+        <button class="btn btn-outline-secondary" type="button" id="button-addon1"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </div>
+      <div class="text-end">
+        <button type="button" class="btn btn-outline-light me-2">Login</button>
+        <button type="button" class="btn btn-warning">Sign-up</button>
       </div>
     </div>
-  </nav>
+  </div>
+</header>
