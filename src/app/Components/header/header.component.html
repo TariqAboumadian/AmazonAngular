@@ -1,30 +1,39 @@
-<header class="p-3 bg-dark text-white">
-  <div class="container">
-    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-      <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-        <i class="fa-brands fa-amazon fs-2"></i>
-      </a>
 
-      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-        <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
-        <li><a href="#" class="nav-link px-2 text-white">Features</a></li>
-        <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li>
-        <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
-        <li><a href="#" class="nav-link px-2 text-white">About</a></li>
-      </ul>
+  <header class="bg-dark text-white p-2">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-2 col-sm-12 text-sm-start d-flex align-items-center
+        justify-content-around">
+          <a href="/" class=" mb-2 mb-lg-0 text-white text-decoration-none">
+            <i class="fa-brands fa-amazon fs-2"></i>
+          </a>
+          <button class="btn btn-info border-0 mx-2">Language</button>
+        </div>
 
-      <div class="input-group mx-2 w-50">
-        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">All</button>
-        <ul class="dropdown-menu" id="dropdown">
-          <li *ngFor="let item of SubCategoryList"><a class="dropdown-item" href="#">{{item.name}}</a></li>
-        </ul>
-        <input type="text" class="form-control" [(ngModel)]="prodname" aria-label="Text input with dropdown button">
-        <button class="btn btn-outline-secondary" type="button" id="button-addon1"><i class="fa-solid fa-magnifying-glass"></i></button>
+
+        <div class="col-md-5 col-sm-12 text-md-center">
+          <div class="input-group mx-md-2  text-sm-start">
+            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="true">All</button>
+            <ul class="dropdown-menu" id="dropdown">
+              <li *ngFor="let item of SubCategoryList"><a class="dropdown-item" href="#">{{item.name}}</a></li>
+            </ul>
+            <!-- <select class="form-select-lg" >
+              <option *ngFor="let item of SubCategoryList">{{item.name}}</option>
+            </select> -->
+            <input type="text" class="form-control" [(ngModel)]="prodname" aria-label="Text input with dropdown button">
+            <button class="btn btn-outline-secondary" type="button" id="button-addon1"><i class="fa-solid fa-magnifying-glass"></i></button>
+          </div>
+        </div>
+
+      <div class="col-md-5 col-sm-12 text-sm-start">
+        <div class="text-md-center text-sm-start">
+          <button type="button" class="btn btn-outline-light me-2">Login</button>
+          <button type="button" class="btn btn-warning">Sign-up</button>
+          <button type="button" class="btn btn-outline-light mx-2 border-0">Order</button>
+          <button type="button" class="btn btn-outline-light mx-1 border-0"><i class="fa-solid fa-cart-shopping fs-3"></i> Cart</button>
+        </div>
       </div>
-      <div class="text-end">
-        <button type="button" class="btn btn-outline-light me-2">Login</button>
-        <button type="button" class="btn btn-warning">Sign-up</button>
+
       </div>
     </div>
-  </div>
 </header>

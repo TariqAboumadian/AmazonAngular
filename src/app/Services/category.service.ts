@@ -20,7 +20,7 @@ export class CategoryService  {
 }
 
 GetAllCategories():Observable<ICategory[]>{
-  return this.httpclient.get<ICategory[]>(`http://localhost:26983/api/Category/Categories`);
+  return this.httpclient.get<ICategory[]>(`${environment.BaseApiUrl}/Category/Categories`);
 }
 GetSubCategoryesByCategoryId(id:number):Observable<ISubCategory[]>{
   return this.httpclient.get<ISubCategory[]>(`${environment.BaseApiUrl}/Category/SubCategories?id=${id}`);
