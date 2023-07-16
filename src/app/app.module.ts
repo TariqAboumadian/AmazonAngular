@@ -10,6 +10,9 @@ import { FooterComponent } from './Components/footer/footer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './Components/login/login.component';
 import { RegistrationComponent } from './Components/registration/registration.component';
+import { ParentComponentComponent } from './Components/parent-component/parent-component.component';
+import { ProductsComponent } from './Components/products/products.component';
+import { ProductsDetailsComponent } from './Components/products-details/products-details.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,10 @@ import { RegistrationComponent } from './Components/registration/registration.co
     BodyComponent,
     FooterComponent,
     LoginComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    ParentComponentComponent,
+    ProductsComponent,
+    ProductsDetailsComponent
   ],
   imports: [
     BrowserModule,

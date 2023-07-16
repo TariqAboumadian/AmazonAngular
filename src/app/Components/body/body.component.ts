@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ICategory } from 'src/app/Models/icategory';
 import { IProduct } from 'src/app/Models/iproduct';
 import { ISubCategory } from 'src/app/Models/isub-category';
@@ -11,7 +12,7 @@ import { ProductService } from 'src/app/Services/product.service';
   styleUrls: ['./body.component.css']
 })
 export class BodyComponent implements OnInit  {
-constructor(private categoryservice: CategoryService,private productservices:ProductService){
+constructor(private categoryservice: CategoryService,private productservices:ProductService,private router:Router){
 
 }
 CategoryList:ICategory[]=[];
