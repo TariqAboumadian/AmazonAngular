@@ -1,5 +1,5 @@
 
-  <header class="bg-dark text-white p-2">
+  <header class="bg-dark text-white p-2" id="top">
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-2 col-sm-12 text-sm-start d-flex align-items-center
@@ -15,20 +15,20 @@
           <div class="input-group mx-md-2  text-sm-start">
             <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="true">All</button>
             <ul class="dropdown-menu" id="dropdown">
-              <li *ngFor="let item of SubCategoryList"><a class="dropdown-item" href="#">{{item.name}}</a></li>
+              <li *ngFor="let item of CategoryList"><a class="dropdown-item" href="#">{{item.name}}</a></li>
             </ul>
             <!-- <select class="form-select-lg" >
               <option *ngFor="let item of SubCategoryList">{{item.name}}</option>
             </select> -->
             <input type="text" class="form-control" [(ngModel)]="prodname" aria-label="Text input with dropdown button">
-            <button class="btn btn-outline-secondary" type="button" id="button-addon1"><i class="fa-solid fa-magnifying-glass"></i></button>
+            <button class="btn btn-outline-secondary" type="button" style="background-color: rgb(255, 194, 103) ;color: #232F3E;" id="button-addon1"><i class="fa-solid fa-magnifying-glass"></i></button>
           </div>
         </div>
 
       <div class="col-md-5 col-sm-12 text-sm-start">
         <div class="text-md-center text-sm-start">
-          <button type="button" class="btn btn-outline-light me-2">Login</button>
-          <button type="button" class="btn btn-warning">Sign-up</button>
+          <button type="button" class="btn btn-outline-light me-2"  routerLink="/Login">Login</button>
+          <button type="button" class="btn btn-warning" routerLink="/register">Sign-up</button>
           <button type="button" class="btn btn-outline-light mx-2 border-0">Order</button>
           <button type="button" class="btn btn-outline-light mx-1 border-0"><i class="fa-solid fa-cart-shopping fs-3"></i> Cart</button>
         </div>
