@@ -25,4 +25,7 @@ GetAllCategories():Observable<ICategory[]>{
 GetSubCategoryesByCategoryId(id:number):Observable<ISubCategory[]>{
   return this.httpclient.get<ISubCategory[]>(`${environment.BaseApiUrl}/Category/SubCategories?id=${id}`);
 }
+GetAllSubCategoryes():Observable<ISubCategory[]>{
+  return this.httpclient.get<ISubCategory[]>(`${environment.BaseApiUrl}/Category/AllSubCategories`);
+}
 }

@@ -18,11 +18,5 @@ export class NavbarComponent implements OnInit {
     this.categoryservice.GetAllCategories().subscribe(data=>{
       this.CategoryList=data;
     });
-    this.categoryservice.GetSubCategoryesByCategoryId(1).subscribe(data=>{
-      this.SubCategoryList=data;
-      for(let ite of this.CategoryList){
-        console.log(ite.name);
-      }
-    });
   }
 }

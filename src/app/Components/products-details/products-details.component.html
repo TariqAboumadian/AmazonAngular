@@ -1,1 +1,62 @@
-<p>products-details works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 col-sm-12 p-3  my-5 text-center border border-2" >
+      <section class="gallery" >
+          <div class="img-container">
+            <img src="{{product?.images}}" class="img-fluid img-prev border border-2" id="preview" style="height: 400px;" alt=".....">
+              <ng-container *ngFor="let img of product?.images">
+                <div class="img-slide my-2 p-3 border border-2">
+                  <img [src]="img" class="img-fluid" alt="....." appProductDetails>
+                </div>
+              </ng-container>
+          </div>
+      </section>
+    </div>
+    <div class="col-md-5 col-sm-12 my-5  mx-2">
+      <div>
+        <p class="fs-3">{{product?.name}}</p>
+      </div>
+      <hr>
+      <div>
+        <p class="fs-3 text-info">{{product?.price|currency:'EGP':'symbol'}}</p>
+      </div>
+      <hr>
+      <div>
+        <p class="fs-4  text-dark">{{product?.description}}</p>
+      </div>
+    </div>
+
+    <div class="col-md-2 col-sm-12 my-5 text-center border border-2">
+      <form class="form text-center">
+        <div class="text-center">
+          <label class="mt-3 mx-2">Quantity</label>
+          <select class="form-control rounded-pill d-inline mx-auto w-75">
+            <ng-container *ngFor="let i of numbers">
+              <option class="text-center">{{i}}</option>
+            </ng-container>
+          </select>
+        </div>
+        <div class="my-2">
+          <ng-container [ngSwitch]="product?.unitInStock">
+            <ng-container *ngSwitchCase="0">
+              <p class="text-danger">Out Of Stock</p>
+            </ng-container>
+            <ng-container *ngSwitchCase="1">
+              <p class="text-danger">last One</p>
+            </ng-container>
+            <ng-container *ngSwitchCase="2">
+              <p class="text-danger">LastTwo</p>
+            </ng-container>
+            <ng-container *ngSwitchDefault><p class="text-success">in Stock</p></ng-container>
+          </ng-container>
+        </div>
+        <div>
+          <button class="btn rounded-pill btn-warning w-75 border border-warning my-2">Add To Cart</button>
+          <button class="btn rounded-pill btn-warning w-75 border border-warning">
+            Buy Now
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

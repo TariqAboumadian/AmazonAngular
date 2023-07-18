@@ -27,13 +27,7 @@ export class HeaderComponent implements OnInit{
       this.CategoryList=data;
       console.log(data);
       console.log(this.CategoryList);
-      
-    });
-    this.categoryservice.GetSubCategoryesByCategoryId(1).subscribe(data=>{
-      this.SubCategoryList=data;
-      for(let ite of this.CategoryList){
-        console.log(ite.name);
-      }
+
     });
   }
 }

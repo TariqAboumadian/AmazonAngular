@@ -13,6 +13,7 @@ import { RegistrationComponent } from './Components/registration/registration.co
 import { ParentComponentComponent } from './Components/parent-component/parent-component.component';
 import { ProductsComponent } from './Components/products/products.component';
 import { ProductsDetailsComponent } from './Components/products-details/products-details.component';
+import { ProductDetailsDirective } from './Directives/product-details.directive';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ProductsDetailsComponent } from './Components/products-details/products
     RegistrationComponent,
     ParentComponentComponent,
     ProductsComponent,
-    ProductsDetailsComponent
+    ProductsDetailsComponent,
+    ProductDetailsDirective
   ],
   imports: [
     BrowserModule,
