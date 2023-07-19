@@ -1,7 +1,22 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row my-3">
-      <ng-container *ngFor="let product of products">
-          <div class="card col-md-4 col-lg-3 col-sm-12 mx-3 text-center"  style="width: 18rem;">
+    <div class="col-2 mx-5 border border-2">
+      <div class="mx-2">
+        <h3>Price</h3>
+        <p class="lin-height"><a (click)="GetPricedProducts(0,50)" class="link-price">Up to 50 EGP</a></p>
+        <p class="lin-height"><a (click)="GetPricedProducts(50,100)"  class="link-price">50 to 100 EGP</a></p>
+        <p class="lin-height"><a (click)="GetPricedProducts(100,200)"  class="link-price">100 to 200 EGP</a></p>
+        <p class="lin-height"><a (click)="GetPricedProducts(200,300)"  class="link-price">200 to 300 EGP</a></p>
+        <p class="lin-height"><a (click)="GetPricedProducts(300,400)"  class="link-price">300 to 400 EGP</a></p>
+        <p class="lin-height"><a (click)="GetPricedProducts(400,500)"  class="link-price">400 to 500 EGP</a></p>
+        <p class="lin-height"><a (click)="GetPricedProductsAbove(500)" class="link-price">500 EGP & above</a></p>
+      </div>
+      <hr>
+    </div>
+    <div class="col-9">
+      <div class="row">
+        <ng-container *ngFor="let product of products">
+          <div class="card col-md-4 col-lg-4 col-sm-12 mx-3 text-center"  style="width: 18rem;">
               <img src="{{product.images[0]}}" class="m-2 card-img-top img-fluid" alt="..." style="height: 250px;"
               routerLink="/ProductsDetails/{{product.id}}" >
               <div class="card-body">
@@ -10,6 +25,8 @@
               </div>
             </div>
       </ng-container>
+      </div>
+    </div>
   </div>
 </div>
 

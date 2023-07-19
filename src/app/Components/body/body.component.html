@@ -1,13 +1,13 @@
 <div class="container">
     <div class="row my-3">
         <ng-container *ngFor="let category of SubCategoryList">
-            <div class="col-md-3 col-gap col-lg-3  col-sm-12 my-2">
+            <div class="col-md-3 col-gap col-lg-3 text-center  col-sm-12 my-2">
               <div class="card p-3" style="width: 95%;margin: auto;">
                 <h5 class="card-title">{{category.name}}</h5>
                 <img src="{{category.imageName}}" class="card-img-top" alt="..."
-                routerLink="/Products/{{category.id}}">
+                routerLink="/Products/{{category.id}}" style="height: 250px;">
                 <div class="card-body">
-                  <a routerLink="/Products/{{category.id}}"  style="text-decoration: none; font-size: 13px;">Se More...</a>
+                  <a routerLink="/Products/{{category.id}}"  style="text-decoration: none; font-size: 13px;" class="btn  btn-warning ">Se More...</a>
                 </div>
               </div>
             </div>

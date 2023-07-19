@@ -3,6 +3,7 @@ import { IProduct } from '../Models/iproduct';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/Environments/environment.development';
 import { Observable } from 'rxjs';
+import { PriceVM } from '../ViewModel/price-vm';
 @Injectable({
   providedIn: 'root'
 })
@@ -16,11 +17,6 @@ export class ProductService {
         })
   }
 }
-
-
-  AddProduct(newproduct:IProduct):Observable<IProduct>{
-    return this.httpclient.post<IProduct>(`${environment.BaseApiUrl}/products/`,JSON.stringify(newproduct),this.http);
-  }
   GetAllProducts():Observable<IProduct[]>{
     return this.httpclient.get<IProduct[]>(`${environment.BaseApiUrl}/Product/AllProducts`);
   }
@@ -33,21 +29,19 @@ export class ProductService {
   GetProductByCategoryId(id:number):Observable<IProduct[]>{
     return this.httpclient.get<IProduct[]>(`${environment.BaseApiUrl}/Product/GetProductsByCategory?categoryid=${id}`);
   }
-  GetProductsbyPrice(min:number,max:number):Observable<IProduct[]>{
-    return this.httpclient.get<IProduct[]>(`${environment.BaseApiUrl}/Product/FillterByPrice?minprice=${min}&maxprice=${max}`);
+  GetProductsbyPrice(catid:number,min:number,max:number):Observable<IProduct[]>{
+    return this.httpclient.get<IProduct[]>(`${environment.BaseApiUrl}/Product/FillterByPrice?catid=${catid}&minprice=${min}&maxprice=${max}`);
   }
+
+  GetProductsbyPriceMax(catid:number,max:number):Observable<IProduct[]>{
+    return this.httpclient.get<IProduct[]>(`${environment.BaseApiUrl}/Product/FillterByPriceMax?catid=${catid}&maxprice=${max}`);
+  }
+
   GetProductsByName(name:string):Observable<IProduct[]>{
     return this.httpclient.get<IProduct[]>(`${environment.BaseApiUrl}/Product/SerchByName?name=${name}`);
   }
 
-
-
-  DeleteProduct(id:number):Observable<IProduct>{
-    return this.httpclient.delete<IProduct>(`${environment.BaseApiUrl}/products/${id}`,this.http);
+  GetMinMaxPrice(id:number):Observable<PriceVM>{
+    return this.httpclient.get<PriceVM>(`${environment.BaseApiUrl}/Product/GetMinMaxPrice?categoryid=${id}`);
   }
-
-  UpdateProduct(newproduct:IProduct,id:number):Observable<IProduct>{
-    return this.httpclient.put<IProduct>(`${environment.BaseApiUrl}/products/${id}`,JSON.stringify(newproduct),this.http);
-  }
-
 }

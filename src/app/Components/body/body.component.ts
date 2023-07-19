@@ -30,29 +30,12 @@ ProductList:IProduct[]=[];
 
     this.categoryservice.GetAllSubCategoryes().subscribe(data=>{
       this.SubCategoryList=data;
-      console.log(this.SubCategoryList);
     });
 
     this.productservices.GetAllProducts().subscribe(data=>{
       this.ProductList=data;
-      console.log(this.ProductList);
     });
 
-    this.productservices.GetProductsPaginated(2,2).subscribe(data=>{
-      this.ProductList=data;
-      console.log(this.ProductList);
-    });
-    this.productservices.GetProductByCategoryId(1).subscribe(data=>{
-      this.ProductList=data;
-      console.log(this.ProductList);
-    });
-    this.productservices.GetProductsbyPrice(100,300).subscribe(data=>{
-      this.ProductList=data;
-      console.log(this.ProductList);
-    });
-    this.productservices.GetProductsByName("ss").subscribe(data=>{
-      this.ProductList=data;
-      console.log(this.ProductList);
-    });
+
   }
 }

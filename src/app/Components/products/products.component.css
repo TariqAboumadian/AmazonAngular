@@ -1,0 +1,10 @@
+.link-price{
+  text-decoration: none;
+  color: black;
+}
+.link-price:hover{
+  color: #FFA41C;
+}
+.lin-height{
+  line-height: .7;
+}
