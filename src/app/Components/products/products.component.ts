@@ -15,7 +15,8 @@ export class ProductsComponent implements OnInit{
   products:IProduct[]=[];
   priceminmax:PriceVM|undefined;
   PriceRangeList:number[]=[];
-
+  page:number=1;
+  itemsperpage:number=4;
   ngOnInit(): void {
 
     this.catid=this.activeroute.snapshot.paramMap.get('catid')?Number(this.activeroute.snapshot.paramMap.get('catid')):0;

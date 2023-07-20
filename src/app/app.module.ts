@@ -14,7 +14,7 @@ import { ParentComponentComponent } from './Components/parent-component/parent-c
 import { ProductsComponent } from './Components/products/products.component';
 import { ProductsDetailsComponent } from './Components/products-details/products-details.component';
 import { ProductDetailsDirective } from './Directives/product-details.directive';
-
+import {NgxPaginationModule} from 'ngx-pagination';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +34,8 @@ import { ProductDetailsDirective } from './Directives/product-details.directive'
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

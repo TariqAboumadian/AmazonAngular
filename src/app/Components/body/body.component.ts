@@ -12,12 +12,12 @@ import { ProductService } from 'src/app/Services/product.service';
   styleUrls: ['./body.component.css']
 })
 export class BodyComponent implements OnInit  {
-constructor(private categoryservice: CategoryService,private productservices:ProductService,private router:Router){
-
-}
+constructor(private categoryservice: CategoryService,private productservices:ProductService,private router:Router){}
 CategoryList:ICategory[]=[];
 SubCategoryList:ISubCategory[]=[];
 ProductList:IProduct[]=[];
+page:number=1;
+itemsperpage:number=4;
   ngOnInit(): void {
     this.categoryservice.GetAllCategories().subscribe(data=>{
       this.CategoryList=data;
