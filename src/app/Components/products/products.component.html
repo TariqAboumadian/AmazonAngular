@@ -2,7 +2,17 @@
   <div class="row my-3">
     <div class="col-md-2 col-sm-4 mx-2 border border-2">
       <div class="mx-2">
-        <h3>Price</h3>
+        <p class="fs-4">Categories</p>
+        <ul style="list-style-type: none;list-style-position: inside;">
+          <li *ngFor="let category of subcategories">
+            <a  class="link-price" routerLinkActive="active" (click)="GetProductsBysubcategory(category.id)">{{category.name}}</a>
+          </li>
+        </ul>
+      </div>
+      <hr>
+      <div class="mx-2">
+        <p class="fs-4">Price</p>
+        <ul>
         <p class="lin-height"><a (click)="GetPricedProducts(0,50)" class="link-price">Up to 50 EGP</a></p>
         <p class="lin-height"><a (click)="GetPricedProducts(50,100)"  class="link-price">50 to 100 EGP</a></p>
         <p class="lin-height"><a (click)="GetPricedProducts(100,200)"  class="link-price">100 to 200 EGP</a></p>
@@ -10,8 +20,8 @@
         <p class="lin-height"><a (click)="GetPricedProducts(300,400)"  class="link-price">300 to 400 EGP</a></p>
         <p class="lin-height"><a (click)="GetPricedProducts(400,500)"  class="link-price">400 to 500 EGP</a></p>
         <p class="lin-height"><a (click)="GetPricedProductsAbove(500)" class="link-price">500 EGP & above</a></p>
+      </ul>
       </div>
-      <hr>
     </div>
     <div class="col-md-9 mx-2 col-sm-6">
       <div class="row justify-content-evenly gap-3">
@@ -27,7 +37,7 @@
       </ng-container>
       </div>
       <div class="text-center my-4">
-        <pagination-controls class=".my-pagination " (pageChange)="page = $event"></pagination-controls>
+        <pagination-controls *ngIf="products.length>0" (pageChange)="page = $event"></pagination-controls>
       </div>
     </div>
   </div>

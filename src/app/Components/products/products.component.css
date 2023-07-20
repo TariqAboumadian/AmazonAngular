@@ -1,6 +1,7 @@
 .link-price{
   text-decoration: none;
   color: black;
+  cursor: pointer;
 }
 .link-price:hover{
   color: #FFA41C;
