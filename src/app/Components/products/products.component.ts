@@ -18,22 +18,6 @@ import { PriceVM } from 'src/app/ViewModel/price-vm';
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css'],
 })
-<<<<<<< HEAD
-export class ProductsComponent implements OnInit{
-  constructor(private activeroute:ActivatedRoute,private productservices:ProductService,private subcategoryservice:CategoryService){}
-  catid: number=0;
-  products:IProduct[]=[];
-  priceminmax:PriceVM|undefined;
-  PriceRangeList:number[]=[];
-  subcategories:ISubCategory[]=[];
-  categorysub:ISubCategory[]=[];
-  filterproducts:IProduct[]=[];
-
-  page:number=1;
-  itemsperpage:number=3;
-
-
-=======
 export class ProductsComponent implements OnInit {
   categoryIds: number[] = [];
   searchTerm: string;
@@ -56,13 +40,12 @@ export class ProductsComponent implements OnInit {
     //this.sentCatid=0;
     this.searchTerm='';
   }
->>>>>>> 95636b5ffc5ce7299299b89c88bd0947aa05a6e5
 
   ngOnInit(): void {
     this.activeroute.queryParams.subscribe((params) => {
       this.catid = params['sentCatid'];
       this.searchTerm = params['term'];
-      if (this.catid != undefined && this.searchTerm!=undefined && this.catid!=0) {        
+      if (this.catid != undefined && this.searchTerm!=undefined && this.catid!=0) {
         this.subcategoryservice
           .GetSubCategoryesByCategoryId(this.catid)
           .subscribe((subcategoriesResult) => {
@@ -74,9 +57,9 @@ export class ProductsComponent implements OnInit {
               this.getProductBySearchCategoryId(cid);
             });
           });
-      } 
+      }
       else if((this.catid != undefined && this.searchTerm!=undefined) || this.catid==0)
-      {        
+      {
         this.productservices.GetAllProducts().subscribe((productList) => {
           let res: IProduct[] = [];
           if (productList.length > 0) {
@@ -90,14 +73,6 @@ export class ProductsComponent implements OnInit {
 
     });
 
-<<<<<<< HEAD
-    this.productservices.GetProductByCategoryId(this.catid).subscribe(data=>{
-      this.products=data;
-    });
-    
-    this.subcategoryservice.GetAllSubCategoryes().subscribe(data=>{
-      this.subcategories=data;
-=======
     this.catid = this.activeroute.snapshot.paramMap.get('catid')
       ? Number(this.activeroute.snapshot.paramMap.get('catid'))
       : 0;
@@ -126,13 +101,12 @@ export class ProductsComponent implements OnInit {
 
     this.subcategoryservice.GetAllSubCategoryes().subscribe((data) => {
       this.subcategories = data;
->>>>>>> 95636b5ffc5ce7299299b89c88bd0947aa05a6e5
     });
   }
   GetPricedProducts(min: number, max: number) {
     console.log('print category Id');
     console.log(this.catid);
-    
+
     this.productservices
       .GetProductsbyPrice(this.catid, min, max)
       .subscribe((data) => {
@@ -166,9 +140,3 @@ export class ProductsComponent implements OnInit {
     });
   }
 }
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> 95636b5ffc5ce7299299b89c88bd0947aa05a6e5
