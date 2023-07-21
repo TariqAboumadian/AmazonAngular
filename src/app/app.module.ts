@@ -15,6 +15,7 @@ import { ProductsComponent } from './Components/products/products.component';
 import { ProductsDetailsComponent } from './Components/products-details/products-details.component';
 import { ProductDetailsDirective } from './Directives/product-details.directive';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { ProductsSearchComponent } from './Components/products-search/products-search.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +28,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
     ParentComponentComponent,
     ProductsComponent,
     ProductsDetailsComponent,
-    ProductDetailsDirective  
+    ProductDetailsDirective,
+    ProductsSearchComponent  
   ],
   imports: [
     BrowserModule,

@@ -6,6 +6,7 @@ import { BodyComponent } from './Components/body/body.component';
 import { ParentComponentComponent } from './Components/parent-component/parent-component.component';
 import { ProductsComponent } from './Components/products/products.component';
 import { ProductsDetailsComponent } from './Components/products-details/products-details.component';
+import { ProductsSearchComponent } from './Components/products-search/products-search.component';
 
 const routes: Routes = [
   {path:'',component:ParentComponentComponent,children:[
@@ -13,9 +14,9 @@ const routes: Routes = [
     {path:'Home',component:BodyComponent,title:"Home"},
     {path:'Products/:catid',component:ProductsComponent,title:"Get Products"},
     // {path:'products/:sentCatId/:term',component:ProductsComponent},
-    {path:'products',component:ProductsComponent},
+    {path:'products',component:ProductsSearchComponent},
     {path:'ProductsDetails/:prodid',component:ProductsDetailsComponent,title:"Get Products Details"}
-    
+
   ]},
   {path:'register' , component:RegistrationComponent,title:"Registeration"},
   {path:'Login' , component:LoginComponent,title:"Login"}

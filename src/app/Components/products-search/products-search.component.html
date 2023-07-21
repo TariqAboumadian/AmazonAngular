@@ -1,0 +1,45 @@
+<div class="container-fluid">
+  <div class="row my-3">
+    <div class="col-md-3 col-sm-4 mx-2 border border-2">
+      <div class="mx-2">
+        <p class="fs-4">Categories</p>
+        <ul style="list-style-type: none;list-style-position: inside;">
+          <li *ngFor="let category of subcategories">
+            <a  class="link-price" routerLinkActive="active" (click)="GetProductsBysubcategory(category.id)">{{category.name}}</a>
+          </li>
+        </ul>
+      </div>
+      <hr>
+      <div class="mx-2">
+        <p class="fs-4">Price</p>
+        <ul>
+        <p class="lin-height"><a (click)="GetPricedProducts(0,50)" class="link-price">Up to 50 EGP</a></p>
+        <p class="lin-height"><a (click)="GetPricedProducts(50,100)"  class="link-price">50 to 100 EGP</a></p>
+        <p class="lin-height"><a (click)="GetPricedProducts(100,200)"  class="link-price">100 to 200 EGP</a></p>
+        <p class="lin-height"><a (click)="GetPricedProducts(200,300)"  class="link-price">200 to 300 EGP</a></p>
+        <p class="lin-height"><a (click)="GetPricedProducts(300,400)"  class="link-price">300 to 400 EGP</a></p>
+        <p class="lin-height"><a (click)="GetPricedProducts(400,500)"  class="link-price">400 to 500 EGP</a></p>
+        <p class="lin-height"><a (click)="GetPricedProductsAbove(500)" class="link-price">500 EGP & above</a></p>
+      </ul>
+      </div>
+    </div>
+    <div class="col-md-8 mx-2 col-sm-6">
+      <div class="row justify-content-evenly gap-3">
+        <ng-container *ngFor="let product of products | paginate: { itemsPerPage: itemsperpage, currentPage: page }">
+          <div class="card col-md-3  col-sm-12  text-center">
+              <img src="{{product.images[0]}}" class="m-2 card-img-top img-fluid" alt="..." style="height: 250px;"
+              routerLink="/ProductsDetails/{{product.id}}" >
+              <div class="card-body">
+                <h5 class="card-title">{{product.name}}</h5>
+                <h5 class="card-title">{{product.price|currency:'EGP':'code'}}</h5>
+              </div>
+            </div>
+      </ng-container>
+      </div>
+      <div class="text-center my-4">
+        <pagination-controls *ngIf="products.length>0" (pageChange)="page = $event"></pagination-controls>
+      </div>
+    </div>
+  </div>
+</div>
+
