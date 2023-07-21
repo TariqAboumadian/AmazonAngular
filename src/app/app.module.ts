@@ -27,7 +27,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
     ParentComponentComponent,
     ProductsComponent,
     ProductsDetailsComponent,
-    ProductDetailsDirective
+    ProductDetailsDirective  
   ],
   imports: [
     BrowserModule,
