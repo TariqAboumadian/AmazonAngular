@@ -13,15 +13,18 @@
 
         <div class="col-md-5 col-sm-12 text-md-center">
           <div class="input-group mx-md-2  text-sm-start">
-            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="true">All</button>
-            <ul class="dropdown-menu" id="dropdown">
+            <!-- <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="true">All</button> -->
+            <!-- <ul class="dropdown-menu" id="dropdown">
               <li *ngFor="let item of CategoryList"><a class="dropdown-item" href="#">{{item.name}}</a></li>
-            </ul>
-            <!-- <select class="form-select-lg" >
-              <option *ngFor="let item of SubCategoryList">{{item.name}}</option>
-            </select> -->
-            <input type="text" class="form-control" [(ngModel)]="prodname" aria-label="Text input with dropdown button">
-            <button class="btn btn-outline-secondary" type="button" style="background-color: rgb(255, 194, 103) ;color: #232F3E;" id="button-addon1"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </ul> -->
+            <select class="form-select" [(ngModel)]="categoryId">
+              <option value="0">All</option>
+              <option *ngFor="let item of CategoryList" [value]="item.id">{{item.name}}</option>
+            </select>
+            <input type="text" class="form-control w-50" #term [(ngModel)]="prodname" aria-label="Text input with dropdown button">
+            <a class="btn btn-outline-secondary" (click)="onSearchButtonClick(term.value)" type="button" style="background-color: rgb(255, 194, 103) ;color: #232F3E;" id="button-addon1">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </a>
           </div>
         </div>
 

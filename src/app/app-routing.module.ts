@@ -12,7 +12,10 @@ const routes: Routes = [
     {path:'',redirectTo:"Home",pathMatch:'full'},
     {path:'Home',component:BodyComponent,title:"Home"},
     {path:'Products/:catid',component:ProductsComponent,title:"Get Products"},
+    // {path:'products/:sentCatId/:term',component:ProductsComponent},
+    {path:'products',component:ProductsComponent},
     {path:'ProductsDetails/:prodid',component:ProductsDetailsComponent,title:"Get Products Details"}
+    
   ]},
   {path:'register' , component:RegistrationComponent,title:"Registeration"},
   {path:'Login' , component:LoginComponent,title:"Login"}

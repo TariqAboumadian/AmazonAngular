@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ICategory } from 'src/app/Models/icategory';
 import { ISubCategory } from 'src/app/Models/isub-category';
 import { CategoryService } from 'src/app/Services/category.service';
@@ -20,7 +21,14 @@ export class HeaderComponent implements OnInit{
   }
   CategoryList:ICategory[]=[];
   SubCategoryList:ISubCategory[]=[];
-  constructor(private categoryservice: CategoryService,private productservices:ProductService){}
+  categoryId:number;
+  constructor(
+    private categoryservice: CategoryService,
+    private productservices:ProductService,
+    private router: Router)
+  {
+    this.categoryId=0;
+  }
 
   ngOnInit(): void {
     this.categoryservice.GetAllCategories().subscribe(data=>{
@@ -29,5 +37,10 @@ export class HeaderComponent implements OnInit{
       console.log(this.CategoryList);
 
     });
+  }
+  onSearchButtonClick(searchInputValue: string): void {
+    this.router.navigate(['/products'], { queryParams: { sentCatid:this.categoryId,term: searchInputValue } });
+    //this.router.navigate(['/products',this.categoryId,searchInputValue]);
+  
   }
 }

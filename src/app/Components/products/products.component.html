@@ -25,7 +25,7 @@
     </div>
     <div class="col-md-9 mx-2 col-sm-6">
       <div class="row justify-content-evenly gap-3">
-        <ng-container *ngFor="let product of products| paginate: { itemsPerPage: itemsperpage, currentPage: page }">
+        <ng-container *ngFor="let product of products | paginate: { itemsPerPage: itemsperpage, currentPage: page }">
           <div class="card col-md-3  col-sm-12  text-center">
               <img src="{{product.images[0]}}" class="m-2 card-img-top img-fluid" alt="..." style="height: 250px;"
               routerLink="/ProductsDetails/{{product.id}}" >
