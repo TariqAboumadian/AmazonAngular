@@ -18,8 +18,14 @@ export class ProductsComponent implements OnInit{
   priceminmax:PriceVM|undefined;
   PriceRangeList:number[]=[];
   subcategories:ISubCategory[]=[];
+  categorysub:ISubCategory[]=[];
+  filterproducts:IProduct[]=[];
+
   page:number=1;
   itemsperpage:number=3;
+
+
+
   ngOnInit(): void {
 
     this.catid=this.activeroute.snapshot.paramMap.get('catid')?Number(this.activeroute.snapshot.paramMap.get('catid')):0;
@@ -30,17 +36,7 @@ export class ProductsComponent implements OnInit{
     this.productservices.GetProductByCategoryId(this.catid).subscribe(data=>{
       this.products=data;
     });
-
-    this.productservices.GetMinMaxPrice(this.catid).subscribe(data=>{
-      this.priceminmax=data;
-      let min=this.priceminmax?.minPrice;
-      let max=this.priceminmax?.maxPrice;
-      for(let i=min;i<=max;i+=50){
-        this.PriceRangeList.push(i);
-      }
-    console.log(this.PriceRangeList);
-    });
-
+    
     this.subcategoryservice.GetAllSubCategoryes().subscribe(data=>{
       this.subcategories=data;
     });
@@ -62,4 +58,6 @@ export class ProductsComponent implements OnInit{
     });
   }
 }
+
+
 

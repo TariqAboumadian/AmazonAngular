@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="row my-3">
-    <div class="col-md-2 col-sm-4 mx-2 border border-2">
+    <div class="col-md-3 col-sm-4 mx-2 border border-2">
       <div class="mx-2">
         <p class="fs-4">Categories</p>
         <ul style="list-style-type: none;list-style-position: inside;">
@@ -23,7 +23,7 @@
       </ul>
       </div>
     </div>
-    <div class="col-md-9 mx-2 col-sm-6">
+    <div class="col-md-8 mx-2 col-sm-6">
       <div class="row justify-content-evenly gap-3">
         <ng-container *ngFor="let product of products| paginate: { itemsPerPage: itemsperpage, currentPage: page }">
           <div class="card col-md-3  col-sm-12  text-center">
@@ -42,4 +42,3 @@
     </div>
   </div>
 </div>
-
