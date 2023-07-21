@@ -4,6 +4,12 @@
   "newProjectRoot": "projects",
   "projects": {
     "Amazonangular": {
+      "i18n": {
+        "sourceLocale":"en-US",
+        "locales": {
+          "en":["src/locals/messages.xlf"],
+          "ar":["src/locals/messages.ar.xlf"]}
+      },
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,6 +19,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "localize":["en"],
             "outputPath": "dist/amazonangular",
             "index": "src/index.html",
             "main": "src/main.ts",

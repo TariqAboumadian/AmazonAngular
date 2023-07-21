@@ -29,7 +29,7 @@ import { ProductsSearchComponent } from './Components/products-search/products-s
     ProductsComponent,
     ProductsDetailsComponent,
     ProductDetailsDirective,
-    ProductsSearchComponent  
+    ProductsSearchComponent
   ],
   imports: [
     BrowserModule,

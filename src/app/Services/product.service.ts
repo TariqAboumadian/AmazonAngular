@@ -13,35 +13,32 @@ export class ProductService {
     this.http={
       headers:new HttpHeaders(
         {
-            'content-type': 'application/json'
+            'content-type': 'application/json',
+            'accept-language':localStorage.getItem('lang')||'en'
         })
   }
 }
   GetAllProducts():Observable<IProduct[]>{
-    return this.httpclient.get<IProduct[]>(`${environment.BaseApiUrl}/Product/AllProducts`);
+    return this.httpclient.get<IProduct[]>(`${environment.BaseApiUrl}/Product/AllProducts`,this.http);
   }
   GetProductsPaginated(pagenumber:number,items:number):Observable<IProduct[]>{
-    return this.httpclient.get<IProduct[]>(`${environment.BaseApiUrl}/Product/ProductsPagination?pagenumber=${pagenumber}&items=${items}`);
+    return this.httpclient.get<IProduct[]>(`${environment.BaseApiUrl}/Product/ProductsPagination?pagenumber=${pagenumber}&items=${items}`,this.http);
   }
   GetProductById(id:number):Observable<IProduct>{
-    return this.httpclient.get<IProduct>(`${environment.BaseApiUrl}/Product/GetProdById?id=${id}`);
+    return this.httpclient.get<IProduct>(`${environment.BaseApiUrl}/Product/GetProdById?id=${id}`,this.http);
   }
   GetProductByCategoryId(id:number):Observable<IProduct[]>{
-    return this.httpclient.get<IProduct[]>(`${environment.BaseApiUrl}/Product/GetProductsByCategory?categoryid=${id}`);
+    return this.httpclient.get<IProduct[]>(`${environment.BaseApiUrl}/Product/GetProductsByCategory?categoryid=${id}`,this.http);
   }
   GetProductsbyPrice(catid:number,min:number,max:number):Observable<IProduct[]>{
-    return this.httpclient.get<IProduct[]>(`${environment.BaseApiUrl}/Product/FillterByPrice?catid=${catid}&minprice=${min}&maxprice=${max}`);
+    return this.httpclient.get<IProduct[]>(`${environment.BaseApiUrl}/Product/FillterByPrice?catid=${catid}&minprice=${min}&maxprice=${max}`,this.http);
   }
 
   GetProductsbyPriceMax(catid:number,max:number):Observable<IProduct[]>{
-    return this.httpclient.get<IProduct[]>(`${environment.BaseApiUrl}/Product/FillterByPriceMax?catid=${catid}&maxprice=${max}`);
+    return this.httpclient.get<IProduct[]>(`${environment.BaseApiUrl}/Product/FillterByPriceMax?catid=${catid}&maxprice=${max}`,this.http);
   }
 
   GetProductsByName(name:string):Observable<IProduct[]>{
-    return this.httpclient.get<IProduct[]>(`${environment.BaseApiUrl}/Product/SerchByName?name=${name}`);
-  }
-
-  GetMinMaxPrice(id:number):Observable<PriceVM>{
-    return this.httpclient.get<PriceVM>(`${environment.BaseApiUrl}/Product/GetMinMaxPrice?categoryid=${id}`);
+    return this.httpclient.get<IProduct[]>(`${environment.BaseApiUrl}/Product/SerchByName?name=${name}`,this.http);
   }
 }

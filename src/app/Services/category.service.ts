@@ -14,18 +14,19 @@ export class CategoryService  {
     this.http={
       headers:new HttpHeaders(
         {
-            'content-type': 'application/json'
+            'content-type': 'application/json',
+            'accept-language':localStorage.getItem('lang')||'en'
         })
   }
 }
 
 GetAllCategories():Observable<ICategory[]>{
-  return this.httpclient.get<ICategory[]>(`${environment.BaseApiUrl}/Category/Categories`);
+  return this.httpclient.get<ICategory[]>(`${environment.BaseApiUrl}/Category/Categories`,this.http);
 }
 GetSubCategoryesByCategoryId(id:number):Observable<ISubCategory[]>{
-  return this.httpclient.get<ISubCategory[]>(`${environment.BaseApiUrl}/Category/SubCategories?id=${id}`);
+  return this.httpclient.get<ISubCategory[]>(`${environment.BaseApiUrl}/Category/SubCategories?id=${id}`,this.http);
 }
 GetAllSubCategoryes():Observable<ISubCategory[]>{
-  return this.httpclient.get<ISubCategory[]>(`${environment.BaseApiUrl}/Category/AllSubCategories`);
+  return this.httpclient.get<ISubCategory[]>(`${environment.BaseApiUrl}/Category/AllSubCategories`,this.http);
 }
 }

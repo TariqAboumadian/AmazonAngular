@@ -30,6 +30,7 @@ itemsperpage:number=4;
 
     this.categoryservice.GetAllSubCategoryes().subscribe(data=>{
       this.SubCategoryList=data;
+      console.log(this.SubCategoryList);
     });
 
     this.productservices.GetAllProducts().subscribe(data=>{
