@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './Components/header/header.component';
@@ -16,6 +16,9 @@ import { ProductsDetailsComponent } from './Components/products-details/products
 import { ProductDetailsDirective } from './Directives/product-details.directive';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { ProductsSearchComponent } from './Components/products-search/products-search.component';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { MyInterceptor } from './interceptors/language.inteceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,9 +40,27 @@ import { ProductsSearchComponent } from './Components/products-search/products-s
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
   ],
-  providers: [],
+  providers: [
+    {
+    provide: HTTP_INTERCEPTORS,
+    useClass: MyInterceptor,
+    multi: true,
+  },
+    HttpClient
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+ }
+ export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}

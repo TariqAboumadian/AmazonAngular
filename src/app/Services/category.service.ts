@@ -21,12 +21,12 @@ export class CategoryService  {
 }
 
 GetAllCategories():Observable<ICategory[]>{
-  return this.httpclient.get<ICategory[]>(`${environment.BaseApiUrl}/Category/Categories`,this.http);
+  return this.httpclient.get<ICategory[]>(`${environment.BaseApiUrl}/Category/Categories`);
 }
 GetSubCategoryesByCategoryId(id:number):Observable<ISubCategory[]>{
-  return this.httpclient.get<ISubCategory[]>(`${environment.BaseApiUrl}/Category/SubCategories?id=${id}`,this.http);
+  return this.httpclient.get<ISubCategory[]>(`${environment.BaseApiUrl}/Category/SubCategories?id=${id}`);
 }
 GetAllSubCategoryes():Observable<ISubCategory[]>{
-  return this.httpclient.get<ISubCategory[]>(`${environment.BaseApiUrl}/Category/AllSubCategories`,this.http);
+  return this.httpclient.get<ISubCategory[]>(`${environment.BaseApiUrl}/Category/AllSubCategories`);
 }
 }

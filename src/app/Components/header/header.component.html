@@ -22,7 +22,11 @@
             </ul> -->
             <select class="form-select" [(ngModel)]="categoryId">
               <option value="0">All</option>
-              <option *ngFor="let item of CategoryList" [value]="item.id">{{item.name}}</option>
+              <ng-container *ngFor="let item of CategoryList">
+                <option [value]="item.id" *ngIf="item.name!=null;else check">{{item.name}}</option>
+                <ng-template #check><option [value]="item.id">{{item.arabicName}}</option></ng-template>
+              </ng-container>
+
             </select>
             <input type="text" class="form-control w-50" #term [(ngModel)]="prodname" aria-label="Text input with dropdown button">
             <a class="btn btn-outline-secondary" (click)="onSearchButtonClick(term.value)" type="button" style="background-color: rgb(255, 194, 103) ;color: #232F3E;" id="button-addon1">
@@ -33,10 +37,10 @@
 
       <div class="col-md-5 col-sm-12 text-sm-start">
         <div class="text-md-center text-sm-start">
-          <button type="button" class="btn btn-outline-light me-2"  routerLink="/Login" i18n>Login</button>
-          <button type="button" class="btn btn-warning" routerLink="/register" i18n>Sign-up</button>
-          <button type="button" class="btn btn-outline-light mx-2 border-0" i18n>Order</button>
-          <button type="button" class="btn btn-outline-light mx-1 border-0" i18n><i class="fa-solid fa-cart-shopping fs-3"></i> Cart</button>
+          <button type="button" class="btn btn-outline-light me-2"  routerLink="/Login" >{{'Login'|translate}}</button>
+          <button type="button" class="btn btn-warning" routerLink="/register" >{{'Sign-up'|translate}}</button>
+          <button type="button" class="btn btn-outline-light mx-2 border-0" >{{'Order'|translate}}</button>
+          <button type="button" class="btn btn-outline-light mx-1 border-0" ><i class="fa-solid fa-cart-shopping fs-3"></i> {{'Cart'|translate}}</button>
         </div>
       </div>
 
