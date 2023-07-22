@@ -2,16 +2,23 @@
   <div class="row my-3">
     <div class="col-md-3 col-sm-4 mx-2 border border-2">
       <div class="mx-2">
-        <p class="fs-4">Categories</p>
+        <p class="fs-4">{{'Categories'|translate}}</p>
         <ul style="list-style-type: none;list-style-position: inside;">
-          <li *ngFor="let category of subcategories">
-            <a  class="link-price" routerLinkActive="active" (click)="GetProductsBysubcategory(category.id)">{{category.name}}</a>
-          </li>
+          <ng-container *ngIf="lnaguage== 'en' else chacklang">
+            <li *ngFor="let category of subcategories">
+              <a  class="link-price" routerLinkActive="active" (click)="GetProductsBysubcategory(category.id)">{{category.name}}</a>
+            </li>
+          </ng-container>
+          <ng-template #chacklang>
+            <li *ngFor="let category of subcategories">
+              <a  class="link-price" routerLinkActive="active" (click)="GetProductsBysubcategory(category.id)">{{category.arabicName}}</a>
+            </li>
+          </ng-template>
         </ul>
       </div>
       <hr>
       <div class="mx-2">
-        <p class="fs-4">Price</p>
+        <p class="fs-4">{{'Price'|translate}}</p>
         <ul>
         <p class="lin-height"><a (click)="GetPricedProducts(0,50)" class="link-price">Up to 50 EGP</a></p>
         <p class="lin-height"><a (click)="GetPricedProducts(50,100)"  class="link-price">50 to 100 EGP</a></p>
@@ -30,8 +37,14 @@
               <img src="{{product.images[0]}}" class="m-2 card-img-top img-fluid" alt="..." style="height: 250px;"
               routerLink="/ProductsDetails/{{product.id}}" >
               <div class="card-body">
-                <h5 class="card-title">{{product.name}}</h5>
-                <h5 class="card-title">{{product.price|currency:'EGP':'code'}}</h5>
+                <ng-container *ngIf="lnaguage== 'en';else checklang">
+                  <h5 class="card-title">{{product.name}}</h5>
+                  <h5 class="card-title">{{product.price|currency:'EGP':'code'}}</h5>
+                </ng-container>
+                <ng-template #checklang>
+                  <h5 class="card-title">{{product.arabicName}}</h5>
+                  <h5 class="card-title">{{product.price|currency:'ج.م':'symbol'}}</h5>
+                </ng-template>
               </div>
             </div>
       </ng-container>

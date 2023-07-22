@@ -16,6 +16,7 @@ export class ProductsDetailsComponent implements OnInit {
     prodid: number=0;
     numbers: number[]=[];
     product:IProduct|undefined;
+    lnguage:string="en";
   ngOnInit(): void {
     this.prodid=this.activerouter.snapshot.paramMap.get('prodid')?Number(this.activerouter.snapshot.paramMap.get('prodid')):0;
     console.log(this.prodid);
@@ -25,7 +26,8 @@ export class ProductsDetailsComponent implements OnInit {
       this.product=data;
       console.log(data);
       this.numbers = [...Array(10).keys()].map(i => i + 1);
-    })
+    });
+    this.lnguage=localStorage.getItem('lang') || 'en';
   }
 //   arr:number[]=[];
 //   range(first:number,last:number):number[]{

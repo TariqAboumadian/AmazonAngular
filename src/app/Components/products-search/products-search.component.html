@@ -2,16 +2,23 @@
   <div class="row my-3">
     <div class="col-md-3 col-sm-4 mx-2 border border-2">
       <div class="mx-2">
-        <p class="fs-4">Categories</p>
+        <p class="fs-4">{{'Categories'|translate}}</p>
         <ul style="list-style-type: none;list-style-position: inside;">
-          <li *ngFor="let category of subcategories">
-            <a  class="link-price" routerLinkActive="active" (click)="GetProductsBysubcategory(category.id)">{{category.name}}</a>
-          </li>
+          <ng-container *ngIf="language== 'en' else chacklang">
+            <li *ngFor="let category of subcategories">
+              <a  class="link-price" routerLinkActive="active" (click)="GetProductsBysubcategory(category.id)">{{category.name}}</a>
+            </li>
+          </ng-container>
+          <ng-template #chacklang>
+            <li *ngFor="let category of subcategories">
+              <a  class="link-price" routerLinkActive="active" (click)="GetProductsBysubcategory(category.id)">{{category.arabicName}}</a>
+            </li>
+          </ng-template>
         </ul>
       </div>
       <hr>
       <div class="mx-2">
-        <p class="fs-4">Price</p>
+        <p class="fs-4">{{'Price'|translate}}</p>
         <ul>
         <p class="lin-height"><a (click)="GetPricedProducts(0,50)" class="link-price">Up to 50 EGP</a></p>
         <p class="lin-height"><a (click)="GetPricedProducts(50,100)"  class="link-price">50 to 100 EGP</a></p>

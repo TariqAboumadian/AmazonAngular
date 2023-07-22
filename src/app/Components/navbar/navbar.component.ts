@@ -12,11 +12,13 @@ import { ProductService } from 'src/app/Services/product.service';
 export class NavbarComponent implements OnInit {
   CategoryList:ICategory[]=[];
   SubCategoryList:ISubCategory[]=[];
+  language:string="en";
   constructor(private categoryservice: CategoryService,private productservices:ProductService){}
 
   ngOnInit(): void {
     this.categoryservice.GetAllCategories().subscribe(data=>{
       this.CategoryList=data;
     });
+    this.language=localStorage.getItem("lang") || "en";
   }
 }

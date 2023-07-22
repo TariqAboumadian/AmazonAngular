@@ -21,9 +21,9 @@
               <li *ngFor="let item of CategoryList"><a class="dropdown-item" href="#">{{item.name}}</a></li>
             </ul> -->
             <select class="form-select" [(ngModel)]="categoryId">
-              <option value="0">All</option>
+              <option value="0">{{'All'|translate}}</option>
               <ng-container *ngFor="let item of CategoryList">
-                <option [value]="item.id" *ngIf="item.name!=null;else check">{{item.name}}</option>
+                <option [value]="item.id" *ngIf="_lang=='en';else check">{{item.name}}</option>
                 <ng-template #check><option [value]="item.id">{{item.arabicName}}</option></ng-template>
               </ng-container>
 

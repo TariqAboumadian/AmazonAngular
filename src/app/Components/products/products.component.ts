@@ -26,6 +26,7 @@ export class ProductsComponent implements OnInit {
   subcategories: ISubCategory[] = [];
   page: number = 1;
   itemsperpage: number = 3;
+  lnaguage:string="en";
   constructor(
     private activeroute: ActivatedRoute,
     private productservices: ProductService,
@@ -37,7 +38,7 @@ export class ProductsComponent implements OnInit {
     this.catid = this.activeroute.snapshot.paramMap.get('catid')
       ? Number(this.activeroute.snapshot.paramMap.get('catid'))
       : 0;
-
+      this.lnaguage=localStorage.getItem('lang') || 'en';
     this.productservices
       .GetProductByCategoryId(this.catid)
       .subscribe((data) => {

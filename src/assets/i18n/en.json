@@ -2,5 +2,9 @@
   "Login":"Login",
   "Sign-up":"Sign-up",
   "Order":"Order",
-  "Cart":"Cart"
+  "Cart":"Cart",
+  "Categories":"Categories",
+  "Price":"Price",
+  "All":"All",
+  "Se More...":"Se More..."
 }

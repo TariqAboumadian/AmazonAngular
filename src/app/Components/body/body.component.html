@@ -3,11 +3,16 @@
         <ng-container *ngFor="let category of SubCategoryList | paginate: { itemsPerPage: itemsperpage, currentPage: page }">
             <div class="col-md-3 col-gap col-lg-3 text-center  col-sm-12 my-2">
               <div class="card p-3" style="width: 95%;margin: auto;">
-                <h5 class="card-title">{{category.arabicName}}</h5>
+                <ng-container *ngIf="language== 'en' else Checklang">
+                  <h5 class="card-title">{{category.name}}</h5>
+                </ng-container>
+                <ng-template #Checklang>
+                  <h5 class="card-title">{{category.arabicName}}</h5>
+                </ng-template>
                 <img src="{{category.imageName}}" class="card-img-top" alt="..."
                 routerLink="/Products/{{category.id}}" style="height: 250px;">
                 <div class="card-body">
-                  <a routerLink="/Products/{{category.id}}"  style="text-decoration: none; font-size: 13px;" class="btn  btn-warning ">Se More...</a>
+                  <a routerLink="/Products/{{category.id}}"  style="text-decoration: none; font-size: 13px;" class="btn  btn-warning ">{{'Se More...'|translate}}</a>
                 </div>
               </div>
             </div>

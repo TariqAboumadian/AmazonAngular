@@ -14,6 +14,7 @@ import { ProductService } from 'src/app/Services/product.service';
 export class HeaderComponent implements OnInit{
 
   _productName: string="";
+  
   get prodname():string{
     return this._productName;
   }
