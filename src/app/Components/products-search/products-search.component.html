@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<!-- <div class="container-fluid">
   <div class="row my-3">
     <div class="col-md-3 col-sm-4 mx-2 border border-2">
       <div class="mx-2">
@@ -48,5 +48,110 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
+
+
+
+<div class="container-fluid">
+	<div class="row my-5">
+	<aside class="col-md-3">
+
+<div class="card">
+	<article class="filter-group">
+		<header class="card-header">
+			<a data-toggle="collapse" data-target="#collapse_1" aria-expanded="true" class="">
+				<i class="icon-control fa fa-chevron-down"></i>
+				<h6 class="title">{{'Categories'|translate}}</h6>
+			</a>
+		</header>
+		<div class="filter-content collapse show" id="collapse_1" style="">
+			<div class="card-body">
+				<ul style="list-style-type: none;list-style-position: inside;">
+          <ng-container *ngIf="language== 'en' else chacklang">
+            <li *ngFor="let category of subcategories">
+              <a  class="link-price" routerLinkActive="active" (click)="GetProductsBysubcategory(category.id)">{{category.name}}</a>
+            </li>
+          </ng-container>
+          <ng-template #chacklang>
+            <li *ngFor="let category of subcategories">
+              <a  class="link-price" routerLinkActive="active" (click)="GetProductsBysubcategory(category.id)">{{category.arabicName}}</a>
+            </li>
+          </ng-template>
+				</ul>
+
+			</div> <!-- card-body.// -->
+		</div>
+	</article> <!-- filter-group  .// -->
+
+
+	<article class="filter-group">
+		<header class="card-header">
+			<a  data-toggle="collapse" data-target="#collapse_3" aria-expanded="true" class="">
+				<i class="icon-control fa fa-chevron-down"></i>
+				<h6 class="title">{{'Price'|translate}} </h6>
+			</a>
+		</header>
+		<div class="filter-content collapse show" id="collapse_3">
+			<div class="card-body">
+
+        <ul>
+          <p class="lin-height"><a (click)="GetPricedProducts(0,50)" class="link-price">{{'Up to'|translate}} 50 {{'EGP'|translate}}</a></p>
+          <p class="lin-height"><a (click)="GetPricedProducts(50,100)"  class="link-price">50 {{'to'|translate}} 100 {{'EGP'|translate}}</a></p>
+          <p class="lin-height"><a (click)="GetPricedProducts(100,200)"  class="link-price">100 {{'to'|translate}} 200 {{'EGP'|translate}}</a></p>
+          <p class="lin-height"><a (click)="GetPricedProducts(200,300)"  class="link-price">200 {{'to'|translate}} 300 {{'EGP'|translate}}</a></p>
+          <p class="lin-height"><a (click)="GetPricedProducts(300,400)"  class="link-price">300 {{'to'|translate}} 400 {{'EGP'|translate}}</a></p>
+          <p class="lin-height"><a (click)="GetPricedProducts(400,500)"  class="link-price">400 {{'to'|translate}} 500 {{'EGP'|translate}}</a></p>
+          <p class="lin-height"><a (click)="GetPricedProductsAbove(500)" class="link-price">500 {{'EGP'|translate}} & {{'above'|translate}}</a></p>
+        </ul>
+				<div class="form-row">
+				<div class="form-group col-md-6">
+				  <label class="mx-3">{{'Min'|translate}}</label>
+				  <input class="form-control mx-3 my-2" #minprice placeholder="$0" min="0" type="number">
+				</div>
+				<div class="form-group text-right  col-md-6">
+				  <label class="mx-3">{{'Max'|translate}}</label>
+				  <input class="form-control  mx-3 my-2" min="0" #maxprice placeholder="$1,0000" type="number">
+				</div>
+				</div> <!-- form-row.// -->
+				<button class="btn btn-block btn-warning mx-3 my-2" (click)="GetPricedProducts(minprice.value,maxprice.value)">{{'Apply'|translate}}</button>
+			</div><!-- card-body.// -->
+		</div>
+	</article> <!-- filter-group .// -->
+</div> <!-- card.// -->
+
+
+	</aside>
+<main class="col-md-9">
+<div class="row">
+  <ng-container *ngFor="let product of products | paginate: { itemsPerPage: itemsperpage, currentPage: page }">
+	<div class="col-md-4 text-center p-2">
+		<figure class="card card-product-grid">
+			<div class="img-wrap">
+				<img [src]="product.images[0]" class="img-fluid w-100" style="height: 250px;" routerLink="/ProductsDetails/{{product.id}}">
+			</div> <!-- img-wrap.// -->
+			<figcaption class="info-wrap">
+				<div class="fix-height" style="height: 150px;">
+          <ng-container *ngIf="language== 'en';else checklang">
+            <h5 class="title">{{product.name}}</h5>
+            <h5 class="title">{{product.price|currency:'EGP':'code'}}</h5>
+          </ng-container>
+					<div class="price-wrap mt-2">
+            <ng-template #checklang>
+              <h5 class="card-title">{{product.arabicName}}</h5>
+              <h5 class="card-title">{{product.price|currency:'ج.م':'symbol'}}</h5>
+            </ng-template>
+					</div> <!-- price-wrap.// -->
+				</div>
+				<a href="#" class="btn btn-block my-2 btn-warning">{{'Add to cart'|translate}} </a>
+			</figcaption>
+		</figure>
+	</div> <!-- col.// -->
+</ng-container>
+</div> <!-- row end.// -->
+<div class="text-center my-4">
+  <pagination-controls *ngIf="products.length>0" (pageChange)="page = $event"></pagination-controls>
+</div>
+	</main>
+	</div>
+</div>

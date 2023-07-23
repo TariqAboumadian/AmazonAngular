@@ -22,6 +22,7 @@ export class ProductsSearchComponent {
   page: number = 1;
   language:string="en";
   itemsperpage: number = 3;
+
   constructor(
     private activeroute: ActivatedRoute,
     private productservices: ProductService,
@@ -68,13 +69,15 @@ export class ProductsSearchComponent {
     });
   }
 
-  GetPricedProducts(min: number, max: number) {
+  GetPricedProducts(min: any, max: any) {
+    let minprice:number=parseInt(min);
+    let maxprice:number=parseInt(max);
     console.log('print category Id');
     console.log(this.categoryIds);
     this.products=[];
     this.categoryIds.forEach(id=>{
       this.productservices
-      .GetProductsbyPrice(id, min, max)
+      .GetProductsbyPrice(id, minprice, maxprice)
       .subscribe((data) => {
         this.products.push(...data);
       });
@@ -102,9 +105,16 @@ export class ProductsSearchComponent {
   private getProductBySearchCategoryId(id: number): void {
     this.productservices.GetProductByCategoryId(id).subscribe((data) => {
       let res: IProduct[] = [];
-      if (data.length > 0) {
+      if (data.length > 0 && this.language=='en') {
         res = data.filter((item: IProduct) => {
           return item.name
+            .toLowerCase()
+            .includes(this.searchTerm.toLowerCase());
+        });
+        this.products.push(...res);
+      }else{
+        res = data.filter((item: IProduct) => {
+          return item.arabicName
             .toLowerCase()
             .includes(this.searchTerm.toLowerCase());
         });
