@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
     <div class="row my-3">
         <ng-container *ngFor="let category of SubCategoryList | paginate: { itemsPerPage: itemsperpage, currentPage: page }">
             <div class="col-md-3 col-gap col-lg-3 text-center  col-sm-12 my-2">
@@ -21,4 +21,34 @@
     <div class="text-center my-4">
       <pagination-controls class=".my-pagination " (pageChange)="page = $event"></pagination-controls>
     </div>
+</div> -->
+
+
+<div class="container p-3">
+  <div class="d-flex justify-content-center align-items-center mt-5"> <button class="btn btn-dark">OUR CATEGORIES</button> </div>
+  <div class="d-flex justify-content-center mt-3"> <span class="text text-center">Finding Best Products Now<br> in Your Fingertips</span> </div>
+  <div class="row mt-2 g-4">
+
+    <ng-container *ngFor="let category of SubCategoryList | paginate: { itemsPerPage: 8, currentPage: page }">
+      <div class="col-md-3 ">
+          <div class="card p-1">
+              <div class="d-flex justify-content-between align-items-center p-2">
+                  <div class="flex-column lh-1 imagename">
+                    <ng-container *ngIf="language== 'en' else Checklang">
+                  <h5 class="card-title">{{category.name}}</h5>
+                </ng-container>
+                <ng-template #Checklang>
+                  <h5 class="card-title">{{category.arabicName}}</h5>
+                </ng-template>
+                  </div>
+                  <div>
+                    <img [src]="category.imageName" routerLink="/Products/{{category.id}}" height="100" width="100" /> </div>
+              </div>
+          </div>
+      </div>
+    </ng-container>
+  </div>
+  <div class="text-center my-4">
+    <pagination-controls class=".my-pagination " (pageChange)="page = $event"></pagination-controls>
+  </div>
 </div>
