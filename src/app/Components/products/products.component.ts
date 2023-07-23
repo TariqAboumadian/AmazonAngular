@@ -56,12 +56,13 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-  GetPricedProducts(min: number, max: number) {
+  GetPricedProducts(min: any, max: any) {
     console.log('print category Id');
     console.log(this.catid);
-
+    let minprice:number=parseInt(min);
+    let maxprice:number=parseInt(max);
     this.productservices
-      .GetProductsbyPrice(this.catid, min, max)
+      .GetProductsbyPrice(this.catid, minprice, maxprice)
       .subscribe((data) => {
         this.products = data;
       });
