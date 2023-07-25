@@ -7,15 +7,21 @@ import { ParentComponentComponent } from './Components/parent-component/parent-c
 import { ProductsComponent } from './Components/products/products.component';
 import { ProductsDetailsComponent } from './Components/products-details/products-details.component';
 import { ProductsSearchComponent } from './Components/products-search/products-search.component';
+import { CartComponent } from './Components/cart/cart.component';
+import { OrderComponent } from './Components/order/order.component';
+import { ProductRatingComponent } from './Components/product-rating/product-rating.component';
 
 const routes: Routes = [
   {path:'',component:ParentComponentComponent,children:[
     {path:'',redirectTo:"Home",pathMatch:'full'},
     {path:'Home',component:BodyComponent,title:"Home"},
     {path:'Products/:catid',component:ProductsComponent,title:"Get Products"},
-    // {path:'products/:sentCatId/:term',component:ProductsComponent},
     {path:'products',component:ProductsSearchComponent},
-    {path:'ProductsDetails/:prodid',component:ProductsDetailsComponent,title:"Get Products Details"}
+    {path:'ProductsDetails/:prodid',component:ProductsDetailsComponent,title:"Get Products Details"},
+    {path:'Cart',component:CartComponent,title:" Cart"},
+    {path:'Order',component:OrderComponent,title:" Order"},
+    {path:'Order/:orderId',component:OrderComponent,title:" Order"},
+    {path:'ProductRating',component:ProductRatingComponent,title:" Rate"}
 
   ]},
   {path:'register' , component:RegistrationComponent,title:"Registeration"},

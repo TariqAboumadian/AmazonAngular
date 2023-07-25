@@ -11,24 +11,31 @@
     <div class="row">
         <div class="panel panel-default">
             <div class="panel-body">
-                <form method="POST" (ngSubmit)="login()"  #signupForm="ngForm" role="form">
+                <form method="POST" (ngSubmit)="login()" [formGroup]="form" role="form">
                     <div class="form-group">
                         <h2>Login</h2>
                     </div>
-                    <div class="form-group">
-                        <strong>Email or mobile phone number</strong>
-                        <input id="signinEmail" name="signinEmail" type="email" maxlength="50" class="form-control"
-                        [(ngModel)]="user.EmailAddress" #signinEmailInput="ngModel" 
-                        [ngClass]="{'is-invalid':(signinEmailInput.touched||signinEmailInput.dirty)&&
-                        signinEmailInput.invalid}">
+                    <div class="form-group mb-2">
+                        <strong>Enter Your Email or Mobile Phone</strong>
+                        <input id="EmailAddress" name="EmailAddress" maxlength="25" 
+                         formControlName="EmailAddress" class="form-control"
+                        [ngClass]="{'is-invalid':(EmailAddress?.touched||EmailAddress?.dirty)&&EmailAddress?.invalid}" >
+                        <span class="invalid-feedback">
+                          <span *ngIf="EmailAddress?.errors?.['required']">Please enter your Email or Phone</span>
+                         </span>
                     </div>
-                    <div class="form-group">
-                        <strong>Password</strong>
-                        <span class="right"><a  href="#" style="text-decoration: none;">Forgot password</a></span>
-                        <input id="signinPassword" name="signinPassword" type="password" maxlength="25" class="form-control" 
-                        [(ngModel)]="user.password" #signinPasswordInput="ngModel" 
-                        [ngClass]="{'is-invalid':(signinPasswordInput.touched||signinPasswordInput.dirty)&&
-                        signinPasswordInput.invalid}">
+                    <div class="form-group mb-2">
+                      <label for="password"><strong>Password</strong></label>
+                      <input  maxlength="25" 
+                      formControlName="password"
+                      id="password" 
+                      type="password" 
+                      class="form-control"
+                        [ngClass]="{'is-invalid':(Password?.touched||Password?.dirty)&&Password?.invalid}" >
+                      <span class="invalid-feedback">
+                        <span *ngIf="Password?.errors?.['required']">Please enter your Password</span>
+                        <span *ngIf="Password?.errors?.['pattern']">Password must be more complex</span>
+                       </span>
                     </div>
                     <div class="form-group" style="padding-top: 15px;">
                         <button id="signinSubmit" type="submit" class="btn col-12 mx-auto">Sign in</button>
@@ -36,11 +43,11 @@
                     <div class="form-group divider">
                         <hr class="left"><small>New to Amazon?</small><hr class="right">
                     </div>
-                    <p class="form-group"><a href="#" class="create" class="btn col-12 mx-auto" >Create an account</a></p>
+                    <p class="form-group"><a href="#" routerLink="/register" class="create" class="btn col-12 mx-auto" >Create an account</a></p>
                     <p class="form-group">By signing in you are agreeing to our <a href="#">Conditions of Use and Sale</a> and our <a href="#">Privacy Nodtice</a>.</p>
                 </form>
             </div>
         </div>
     </div>
-</div>
-<!-- <h2>{{user |json}}</h2> -->
+  </div>
+  <!-- <h2>{{user |json}}</h2> -->

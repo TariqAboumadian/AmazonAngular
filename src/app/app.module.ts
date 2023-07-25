@@ -7,7 +7,6 @@ import { HeaderComponent } from './Components/header/header.component';
 import { NavbarComponent } from './Components/navbar/navbar.component';
 import { BodyComponent } from './Components/body/body.component';
 import { FooterComponent } from './Components/footer/footer.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './Components/login/login.component';
 import { RegistrationComponent } from './Components/registration/registration.component';
 import { ParentComponentComponent } from './Components/parent-component/parent-component.component';
@@ -19,6 +18,8 @@ import { ProductsSearchComponent } from './Components/products-search/products-s
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { MyInterceptor } from './interceptors/language.inteceptor';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,6 +42,7 @@ import { MyInterceptor } from './interceptors/language.inteceptor';
     ReactiveFormsModule,
     HttpClientModule,
     NgxPaginationModule,
+    CommonModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

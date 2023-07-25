@@ -11,46 +11,61 @@
     <div class="row">
     <div class="panel panel-default">
       <div class="panel-body">
-          <form method="POST"  (ngSubmit)="register()"  #signupForm="ngForm" role="form">
+          <form method="POST"  (ngSubmit)="register()"   [formGroup]="form" role="form">
               <div class="form-group">
                   <h2>Create account</h2>
               </div>
               <div class="form-group mb-2">
                   <strong>Your name</strong>
-                  <input id="userName" name="userName" type="text" maxlength="50" class="form-control"
-                   [(ngModel)]="user.userName" #userNameInput="ngModel" 
-                  [ngClass]="{'is-invalid':(userNameInput.touched||userNameInput.dirty)&&
-                  userNameInput.invalid}">
+                  <input id="userName" name="userName" type="text" maxlength="50"
+                  formControlName="userName" class="form-control"
+                  [ngClass]="{'is-invalid':(userName?.touched||userName?.dirty)&&userName?.invalid}" >
+                  <span class="invalid-feedback">
+                    <span *ngIf="userName?.errors?.['required']">Please enter your Name</span>
+                   </span>
               </div>
               <div class="form-group mb-2">
                   <strong>Enter Your Email or Mobile Phone</strong>
-                  <input id="signinEmail" name="signinEmail"  maxlength="25" class="form-control"
-                  [(ngModel)]="user.EmailAddress" #signinEmailInput="ngModel" 
-                  [ngClass]="{'is-invalid':(signinEmailInput.touched||signinEmailInput.dirty)&&
-                  signinEmailInput.invalid}">
+                  <input id="EmailAddress" name="EmailAddress"  maxlength="25" 
+                   formControlName="EmailAddress" class="form-control"
+                  [ngClass]="{'is-invalid':(EmailAddress?.touched||EmailAddress?.dirty)&&EmailAddress?.invalid}" >
+                  <span class="invalid-feedback">
+                    <span *ngIf="EmailAddress?.errors?.['required']">Please enter your Email or Phone</span>
+                   </span>
               </div>
               <div class="form-group mb-2">
-                  <strong>Password</strong>
-                  <input id="signinPassword" name="signinPassword" type="password" maxlength="25" class="form-control" placeholder="at least 6 Characters"
-                  [(ngModel)]="user.Password" #signinPasswordInput="ngModel" 
-                  [ngClass]="{'is-invalid':(signinPasswordInput.touched||signinPasswordInput.dirty)&&
-                  signinPasswordInput.invalid}">
+                <label for="Password"><strong>Password</strong></label>
+                <input  maxlength="25" 
+                formControlName="Password"
+                id="Password" 
+                type="Password" 
+                class="form-control"
+                  [ngClass]="{'is-invalid':(Password?.touched||Password?.dirty)&&Password?.invalid}" >
+                <span class="invalid-feedback">
+                  <span *ngIf="Password?.errors?.['required']">Please enter your Password</span>
+                  <span *ngIf="Password?.errors?.['pattern']">Password must be more complex</span>
+                 </span>
               </div>
               <div class="form-group mb-2">
-                  <strong>Re Password</strong>
-                  <input id="signinPassword" name="signinPassword" type="password" maxlength="25" class="form-control"
-                  [(ngModel)]="user.ConfirmPassword" #signinPasswordInput="ngModel" 
-                  [ngClass]="{'is-invalid':(signinPasswordInput.touched||signinPasswordInput.dirty)&&
-                  signinPasswordInput.invalid}">
+                <label for="ConfirmPassword"><strong>Confirm Password</strong></label>
+                  <input required maxlength="25" 
+                  class="form-control"
+                   formControlName="ConfirmPassword"
+                id="ConfirmPassword" 
+                type="Password"
+                [ngClass]="{'is-invalid':(ConfirmPassword?.touched||ConfirmPassword?.dirty)&&ConfirmPassword?.invalid}" >
+                <span class="invalid-feedback">
+                  <span *ngIf="ConfirmPassword?.errors?.['required']">Please enter your Confirm Password</span>
+                  <span *ngIf="ConfirmPassword?.errors?.['pattern']">Confirm Password must be more complex</span>
+                  <span *ngIf="ConfirmPassword?.errors?.['confirmedValidator']">Password and Confirm Password must be matched</span>
+                 </span>
               </div>
               <div class="form-group mb-2" style="padding-top: 15px;">
                   <button id="signinSubmit" type="submit" class="btn col-12 mx-auto">Create your Amazon account</button>
               </div><br>
-              <p class="form-group">Alread have an account? <a href="#" style="text-decoration: none;">Sing in</a></p>
+              <p class="form-group">Alread have an account? <a href="#" routerLink="/Login" style="text-decoration: none;">Sing in</a></p>
           </form>
       </div>
     </div>
     </div>
     </div>
-
-    <!-- <h2>{{user |json}}</h2> -->

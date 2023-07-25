@@ -8,4 +8,5 @@ export interface IProduct {
   arabicDescription:string;
   categoryId:number;
   images:string[];
+  Qty:number;
 }
