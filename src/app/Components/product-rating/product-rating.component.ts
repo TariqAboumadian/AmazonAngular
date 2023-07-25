@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { from } from 'rxjs';
 import { IRating } from 'src/app/Models/irating';
 import { ProductRatingService } from 'src/app/Services/product-rating.service';
-
 @Component({
   selector: 'app-product-rating',
   templateUrl: './product-rating.component.html',
@@ -22,8 +20,8 @@ export class ProductRatingComponent implements OnInit {
 constructor(private fb: FormBuilder,private activatedRoute: ActivatedRoute,private productRatingService: ProductRatingService){
 this.userForm=this.fb.group({
   review:[''],
-  userName:[''],
-  rate:[,Validators.min(1)]
+ userName:[''],
+ rate:[,Validators.min(1)]
 })
 }
 get review(){
@@ -54,12 +52,12 @@ get rate(){
     this.productRate.productId=this.productId
     console.log(this.productRate);
     }
-    
+
     this.productRatingService.AddRate(this.productRate).subscribe(data=>
       {
         console.log(data);
       })
-   }  
+   }
 
 selectRate(event:any){
     var target=event.target;
@@ -90,4 +88,3 @@ clearRate(){
 }
 }
 }
-

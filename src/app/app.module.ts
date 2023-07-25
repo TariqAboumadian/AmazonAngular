@@ -18,8 +18,11 @@ import { ProductsSearchComponent } from './Components/products-search/products-s
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { MyInterceptor } from './interceptors/language.inteceptor';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { ProductRatingComponent } from './Components/product-rating/product-rating.component';
+import { CartComponent } from './Components/cart/cart.component';
+import { OrderComponent } from './Components/order/order.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,16 +36,19 @@ import { CommonModule } from '@angular/common';
     ProductsComponent,
     ProductsDetailsComponent,
     ProductDetailsDirective,
-    ProductsSearchComponent
+    ProductsSearchComponent,
+    ProductRatingComponent,
+    CartComponent,
+    OrderComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule,
     HttpClientModule,
     NgxPaginationModule,
     CommonModule,
+    ReactiveFormsModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
