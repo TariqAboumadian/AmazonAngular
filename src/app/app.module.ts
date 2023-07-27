@@ -23,6 +23,7 @@ import { CommonModule } from '@angular/common';
 import { ProductRatingComponent } from './Components/product-rating/product-rating.component';
 import { CartComponent } from './Components/cart/cart.component';
 import { OrderComponent } from './Components/order/order.component';
+import { ShippingaddressComponent } from './Components/shippingaddress/shippingaddress.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +40,8 @@ import { OrderComponent } from './Components/order/order.component';
     ProductsSearchComponent,
     ProductRatingComponent,
     CartComponent,
-    OrderComponent
+    OrderComponent,
+    ShippingaddressComponent
   ],
   imports: [
     BrowserModule,

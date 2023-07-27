@@ -23,25 +23,7 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {
     this.ShowItemCart();
   }
-  createOrder(){
-    var date = new Date();
-    this.Order.orderDate = date;
-    const newDate = new Date(date.getTime());
-    newDate.setDate(date.getDate()+4);
-    this.Order.arrivalDate=newDate;
-    const id=sessionStorage.getItem('userid');
-    if(id!=null){
-      this.Order.userId=id;
-    }
-    console.log(this.Order);
-    this.orderService.CreateOrder(this.Order).subscribe(
-       (data:any) => {
-           this.navigateToOrder(data.id);
-    })
-    }
-    navigateToOrder(id: number) {
-      this.router.navigate(['/Order', id]);
-    }
+
   ShowItemCart(){
     this.products= this.cartItemService.getCartItems();
     this.cookiesService.set('counter', JSON.stringify(this.cartItemService.getCartItems().length));
@@ -58,6 +40,6 @@ export class CartComponent implements OnInit {
     this.cartItemService.removeFromCart(itemId);
     this.ShowItemCart();
   }
-
+ 
 
 }

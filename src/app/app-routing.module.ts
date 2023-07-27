@@ -10,6 +10,7 @@ import { ProductsSearchComponent } from './Components/products-search/products-s
 import { CartComponent } from './Components/cart/cart.component';
 import { OrderComponent } from './Components/order/order.component';
 import { ProductRatingComponent } from './Components/product-rating/product-rating.component';
+import { ShippingaddressComponent } from './Components/shippingaddress/shippingaddress.component';
 
 const routes: Routes = [
   {path:'',component:ParentComponentComponent,children:[
@@ -21,7 +22,8 @@ const routes: Routes = [
     {path:'Cart',component:CartComponent,title:" Cart"},
     {path:'Order',component:OrderComponent,title:" Order"},
     {path:'Order/:orderId',component:OrderComponent,title:" Order"},
-    {path:'ProductRating',component:ProductRatingComponent,title:" Rate"}
+    {path:'ProductRating',component:ProductRatingComponent,title:" Rate"},
+    {path:'shipping',component:ShippingaddressComponent,title:" Shipping Address"}
 
   ]},
   {path:'register' , component:RegistrationComponent,title:"Registeration"},
