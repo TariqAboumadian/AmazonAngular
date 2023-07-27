@@ -25,6 +25,7 @@ itemsperpage:number=4;
       this.CategoryList=data;
       //console.log(this.CategoryList);
     });
+
     this.categoryservice.GetAllSubCategoryes().subscribe(data=>{
       this.SubCategoryList=data;
       console.log(this.SubCategoryList);

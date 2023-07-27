@@ -29,9 +29,14 @@
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**.*",
+                "input": "../uploadedImages/"
+                ,"output": "uploadedImages/"
+              }
             ],
-            
+
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
