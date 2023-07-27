@@ -23,7 +23,7 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {
     this.ShowItemCart();
   }
-//Test
+
   ShowItemCart(){
     this.products= this.cartItemService.getCartItems();
     this.cookiesService.set('counter', JSON.stringify(this.cartItemService.getCartItems().length));
