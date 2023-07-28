@@ -78,10 +78,10 @@
         <div class="mt-1">
       <div class="progress" role="progressbar" aria-label="Warning example"
          aria-valuemin="1" aria-valuemax="5">
-        <div class="progress-bar bg-warning" [style.width.%]="(rate.value/5)*100"></div>
+        <div class="progress-bar bg-warning" [style.width.%]="(rate.value/reviewsCount)*100"></div>
       </div>
       </div>
-      <p class="ms-1">{{(rate.value/5)*100}}%</p>
+      <p class="ms-1">{{(rate.value/reviewsCount)*100}}%</p>
       </div>
       <button class="btn btn-secondary text-center ms-4" (click)="ProductRate(product)" >
         Write a customer review</button>
