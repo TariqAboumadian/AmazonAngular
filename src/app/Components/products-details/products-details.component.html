@@ -65,12 +65,22 @@
       <h2>Important information</h2>
       <hr>
       <h2>Customer Reviews</h2>
+      <div class="main p-2" *ngFor="let rate of productRates | keyvalue">
+        <p class="me-1">{{rate.key}} star</p>
+        <div class="mt-1">
+      <div class="progress" role="progressbar" aria-label="Warning example"
+         aria-valuemin="1" aria-valuemax="5">
+        <div class="progress-bar bg-warning" [style.width.%]="(rate.value/5)*100"></div>
+      </div>
+      </div>
+      <p class="ms-1">{{(rate.value/5)*100}}%</p>
+      </div>
       <button class="btn btn-secondary text-center ms-4" (click)="ProductRate(product)" >
         Write a customer review</button>
       </div>
       <div class="col-md-4 col-sm-12 mt-3 p-3" >
         <h4>Top review from Egypt</h4>
-        <div class="d-flex flex-column m-4" *ngFor="let rate of productRate">
+        <div class="d-flex flex-column m-4" *ngFor="let rate of productReviews">
           <div class="d-flex flex-row">
             <img src="assets/images/profile.png" class="avatar img-flued" style="width: 50px;height:50px;">
             <h5 class="m-2">{{rate.userName}}</h5>

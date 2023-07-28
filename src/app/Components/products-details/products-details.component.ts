@@ -17,7 +17,8 @@ export class ProductsDetailsComponent implements OnInit {
   Quantity:number=1;
   numbers: number[]=[];
   product:IProduct|undefined;
-  productRate:IRating[]=[];
+  productReviews:IRating[]=[];
+  productRates:{[rate:number]:number}={}
   constructor(private productservice:ProductService,private route:Router,
     private activerouter:ActivatedRoute,private cartItemService:CartItemService,
     private productRatingService: ProductRatingService){}
@@ -28,7 +29,20 @@ export class ProductsDetailsComponent implements OnInit {
       this.numbers = [...Array(10).keys()].map(i => i + 1);
     })
     this.productRatingService.GetRatingByProductId(this.prodid).subscribe(data=>{
-      this.productRate=data;   
+      this.productReviews=data; 
+    })
+
+    this.productRatingService.CalculateProductRating(this.prodid).subscribe(data=>{
+      this.productRates=data;  
+      for(var i=1;i<=5;i++)
+      {
+       if(data[i]==undefined){
+        this.productRates[i]=0
+       }
+      }
+      console.log(this.productRates);
+      
+       
     })
   }
 addToCart(product?:IProduct){
