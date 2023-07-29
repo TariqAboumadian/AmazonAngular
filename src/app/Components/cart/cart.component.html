@@ -48,7 +48,10 @@
       <p><span style="color: rgb(87, 165, 122);">Your order qualifies for FREE Shipping</span> Choose this option at checkout.
         <a href="#" class="bnt btn-link">see details</a>
       </p>
-      <button  routerLink="/shipping" class="btn btn-warning">Proceed To Buy</button>
+      <p>
+       <strong> subItems({{numOfItems}}): {{totalPrice |currency:'EGP':'symbol'}}</strong>
+      </p>
+      <button  routerLink="/shipping" class="btn btn-warning" [disabled]="!isCheck">Proceed To Buy</button>
     </div>
   </div>
 </div>

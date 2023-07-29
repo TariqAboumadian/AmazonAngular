@@ -73,43 +73,7 @@
   </div>
   <hr style="border-top: 3px solid black;  margin: 0 auto;">
   </div>
-
-    </div>
-<div class="col-md-4 col-sm-12 m-3 bg-white text-center">
-  <div class="card">
-    <div class="card-header">
-      <button class="btn btn-warning">use this  adress</button>
-      </div>
-  <div class="card-body">
-    choose a shipping address to continue<br>
-    checking out you still have chance to <br>review
-    and edite your order befor it's final
-    <hr style="border-top: 3px solid black;  margin: 0 auto;">
-    <div style="text-align: left;">
-    <h3>Order Summary</h3>
-
-    <div><span>items:</span></div>
-    <div><span>Shipping &handling</span></div>
-  </div>
-    <hr style="border-top: 1px solid black;  margin: 5 auto;">
-    <div style="text-align: left;">
-      <h3 style="color: rgb(194, 23, 23);">order total</h3>
-    </div>
-
-
-    <div class="card-header ">
-     <div> how are shipping costs calculated?</div>
-      </div>
-</div>
-</div>
-</div>
-</div>
-
-<!-- <h2>{{shippingaddress|json}}</h2> -->
-<!-- <h2>{{userForm.dirty|json}}</h2>
-<h2>{{userForm.touched|json}}</h2>
-<h2>{{userForm.valid|json}}</h2> -->
-<hr>
+  <div class="row">
 <div class="m-2" style="color:  rgb(194, 23, 23);font-weight:bold;; ">2-Payment Method</div>
 <div class=" mt-50 mb-50" style="  width: 500px; padding: 3rem 3.5rem;">
   <form>
@@ -128,5 +92,75 @@
     </div>
     </form>
 </div>
+  </div>
+
+</div>
+<div class="col-md-4 col-sm-12 m-3 bg-white text-center">
+  <div class="card">
+    <div class="card-header">
+      <!-- <ng-container [ngSwitch]="">
+
+        <ng-container *ngSwitchCase="0">
+
+          <p class="text-danger">Out Of Stock</p>
+
+        </ng-container>
+
+        <ng-container *ngSwitchCase="1">
+
+          <p class="text-danger">last One</p>
+
+        </ng-container>
+
+        <ng-container *ngSwitchCase="2">
+
+          <p class="text-danger">LastTwo</p>
+
+        </ng-container>
+
+        <ng-container *ngSwitchDefault><p class="text-success">in Stock</p></ng-container>
+
+      </ng-container> -->
+      <ng-container [ngSwitch]="isCheck">
+        <ng-container *ngSwitchCase="true">
+          <button class="btn btn-warning" (click)="createOrder()">Proceed to order</button>
+        </ng-container>
+        <ng-container *ngSwitchCase="false">
+          <button class="btn btn-warning"> use this address</button>
+        </ng-container>
+       
+    </ng-container>
+      </div>
+  <div class="card-body">
+    choose a shipping address to continue<br>
+    checking out you still have chance to <br>review
+    and edite your order befor it's final
+    <hr style="border-top: 3px solid black;  margin: 0 auto;">
+    <div style="text-align: left;">
+    <h3>Order Summary</h3>
+
+    <div class="d-flex justify-content-between"><span>items:</span><span>{{totalPrice}}</span></div>
+    <div><span>Shipping &handling</span></div>
+  </div>
+    <hr style="border-top: 1px solid black;  margin: 5 auto;">
+    <div class="d-flex justify-content-between">
+      <h3 style="color: rgb(194, 23, 23);">order total: </h3>
+       <h3 style="color: rgb(194, 23, 23);">{{totalPrice}}</h3>
+    </div>
+
+
+    <div class="card-header ">
+     <div> how are shipping costs calculated?</div>
+      </div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- <h2>{{shippingaddress|json}}</h2> -->
+<!-- <h2>{{userForm.dirty|json}}</h2>
+<h2>{{userForm.touched|json}}</h2>
+<h2>{{userForm.valid|json}}</h2> -->
+
 </div>
 <!-- <hr> -->

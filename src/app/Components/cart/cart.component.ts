@@ -16,13 +16,22 @@ export class CartComponent implements OnInit {
   Order:IOrder={} as IOrder;
   numbers:number[]=[];
   selectedOption:number[]=[];
+  isCheck:boolean=false;
+  numOfItems:number=0;
+  totalPrice:number=0;
   constructor(private cartItemService:CartItemService,private cookiesService:CookieService,
     private orderService:OrderService,private router:Router){
     this.numbers = [...Array(10).keys()].map(i => i + 1);
   }
   ngOnInit(): void {
     this.ShowItemCart();
-  }
+    const len= this.cartItemService.getCartItems().length;
+    if(len>0)
+    {
+    this.isCheck=true
+    }
+    this.numOfitemCart();
+}
 
   ShowItemCart(){
     this.products= this.cartItemService.getCartItems();
@@ -31,14 +40,27 @@ export class CartComponent implements OnInit {
       this.selectedOption[i]=this.products[i].Qty;
     }
   }
+  numOfitemCart(){
+    this.numOfItems=0;
+    this.totalPrice=0;
+    var productList= this.cartItemService.getCartItems();
+    for (var i=0;i<productList.length;i++) {
+      this.numOfItems+=Number(productList[i].Qty);
+      this.totalPrice+=productList[i].price * productList[i].Qty;
+    }
+  }
+
 
   updateItem(itemId:number,qty:number){
     this.cartItemService.updateCartItem(itemId,qty);
+    this.numOfitemCart();
   }
 
   removeItem(itemId?:number){
     this.cartItemService.removeFromCart(itemId);
     this.ShowItemCart();
+    this.isCheck=false;
+    this.numOfitemCart();
   }
  
 

@@ -23,7 +23,6 @@ export class LoginComponent {
                    password: ['', [Validators.required,Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$')]],
                  })
                }
- 
                get EmailAddress(){
                  return this.form.get('EmailAddress');
                }
@@ -45,17 +44,16 @@ export class LoginComponent {
  
      this.userService.login(this.user).subscribe(
        (data) => {
- 
          sessionStorage.setItem('userid', data.userId)
          if (!this.cookiesService.check(data.userId)) {
            this.cookiesService.set(data.userId,'');
- 
          }    
          this.router.navigate(['/Home']);
        },
        (error)=>{
-        this.showErrorMessage=true
-        
+        this.showErrorMessage=true       
        }
-     );}
+     );
+     
+  }     
  }

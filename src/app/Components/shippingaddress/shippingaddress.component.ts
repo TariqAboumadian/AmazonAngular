@@ -10,6 +10,7 @@ import { Ishippingaddress } from 'src/app/Models/ishippingaddress';
 import { OrderService } from 'src/app/Services/order.service';
 import { ShippingaddressService } from 'src/app/Services/shippingaddress.service';
 import { render } from 'creditcardpayments/creditCardPayments';
+import { CartItemService } from 'src/app/Services/cart-item.service';
 
 
 @Component({
@@ -27,17 +28,10 @@ export class ShippingaddressComponent implements OnInit {
   isCheck:boolean=false;
   Order:IOrder={} as IOrder;
   shippingForm: FormGroup;
-  ngOnInit(): void {
-    this.getAllcountries();
-    this. getAllCitiesBycountryId();
-   this.GetShippingAddress();
-
-  }
+  totalPrice: number=0;
   constructor( private shippingaddressService:ShippingaddressService,
-    private cookiesService:CookieService,
+    private cookiesService:CookieService,private cartItemService:CartItemService,
     private orderService:OrderService,private router:Router){
-
-
 
     this.shippingForm=new FormGroup({
       name:new FormControl('', [Validators.required,Validators.minLength(5)]),
@@ -46,9 +40,16 @@ export class ShippingaddressComponent implements OnInit {
       buildName:new FormControl('', [Validators.required,Validators.minLength(5)]),
       cityid:new FormControl('', [Validators.required]),
       countryid:new FormControl('', [Validators.required])
+    })   
+    }
 
-    })
-    render({
+    ngOnInit(): void {
+      this.getAllcountries();
+      this. getAllCitiesBycountryId();
+     this.GetShippingAddress();
+     this.numOfitemCart()
+  
+     render({
       id:"#myPaypalButtons ",
       currency:"USD",
       value:"100.00",
@@ -56,6 +57,7 @@ export class ShippingaddressComponent implements OnInit {
         alert("transaction successfully");
       }
     });
+  
     }
 
     get name(){
@@ -92,9 +94,12 @@ export class ShippingaddressComponent implements OnInit {
       this.shippingaddressService.AddShippingAddress(this.shippingaddress).
       subscribe((data:Ishippingaddress)=>{
         console.log(data);
+        this.GetShippingAddress();
+        this.isCheck=true
        });
        console.log(this.shippingaddress.userid)
     }
+   
   }
     getAllcountries()
     {
@@ -119,6 +124,13 @@ export class ShippingaddressComponent implements OnInit {
           console.log(this.shipping);
         }
       })
+    }
+  }
+  numOfitemCart(){
+    this.totalPrice=0;
+    var productList= this.cartItemService.getCartItems();
+    for (var i=0;i<productList.length;i++) {
+      this.totalPrice+=productList[i].price * productList[i].Qty;
     }
   }
 
