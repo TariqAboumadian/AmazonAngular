@@ -15,7 +15,7 @@ import { OrderService } from 'src/app/Services/order.service';
 })
 export class OrderComponent implements OnInit {
 
-  orderItems:IOrderItem[]=[];
+
   orderItem:IOrderItem={} as IOrderItem;
   orders:IOrder[]=[];
   constructor(private cartItemService:CartItemService,private orderItemService:OrderItemService,
@@ -26,6 +26,7 @@ export class OrderComponent implements OnInit {
   ngOnInit(): void {
     this.setOrderIdByparam();
     this.getOrders();
+    this.orders;
 }
 
 setOrderIdByparam()
@@ -40,6 +41,7 @@ setOrderIdByparam()
     this.orderItem.arabicProductname=product.arabicName;
     this.orderItem.imgUrl=product.images[0];
     this.orderItem.count=product.Qty;
+    this.orderItem.productPrice=product.price;
     return this.orderItem;
   }
   addOrderItems()
@@ -48,10 +50,8 @@ setOrderIdByparam()
     for (const item of items) {
         this.orderItemService.addOrderItem(this.convertProductToOrderItem(item)).
         subscribe();
-    }
-
+        }
     this.cartItemService.clearCart();
-
   }
   getOrders()
   {
@@ -79,7 +79,7 @@ setOrderIdByparam()
       (data:any) =>
       {
         this.orders=data;
-      }); 
+      });
     }
   }
  }
