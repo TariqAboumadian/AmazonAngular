@@ -26,5 +26,11 @@
   color: gold;
 }
 
+.main {
+  display: flex;
+}
+.main > div {
+  flex: 1;
+}
 
 

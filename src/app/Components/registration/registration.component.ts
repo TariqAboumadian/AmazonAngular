@@ -14,6 +14,8 @@ export class RegistrationComponent {
   form: FormGroup;
   user:IUserRegister={} as IUserRegister;
   isCheck:boolean=false;
+  showErrorMessage:boolean=false;
+  contentErrorMessage:string="";
   constructor(private userService:UserService,private router:Router,private fb: FormBuilder){
     this.form = this.fb.group({
       userName:['',Validators.required],
@@ -53,6 +55,12 @@ export class RegistrationComponent {
     this.userService.Register(this.user).subscribe(data=>{
       this.router.navigate(['/Login'])
       
-  });
+  },
+  (error)=>{
+    this.showErrorMessage=true
+    this.contentErrorMessage=error.error[0].description;
+    
+  }
+  );
    }
 }

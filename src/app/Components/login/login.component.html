@@ -11,6 +11,9 @@
     <div class="row">
         <div class="panel panel-default">
             <div class="panel-body">
+                <div class="bar error"  *ngIf="showErrorMessage">
+                  <p class="ms-2">Invalid username and password Please try again</p>
+              </div>
                 <form method="POST" (ngSubmit)="login()" [formGroup]="form" role="form">
                     <div class="form-group">
                         <h2>Login</h2>

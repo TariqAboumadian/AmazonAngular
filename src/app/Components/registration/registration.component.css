@@ -42,3 +42,8 @@ border: 1px solid rgb(219, 129, 56);
     background-color:#D8D8D8;
     border: 1px solid rgb(161, 150, 150);
 }
+.error {
+  color: #ba3939;
+  background: #ffe0e0;
+  border: 1px solid #a33a3a;
+}

@@ -23,6 +23,10 @@ export class ProductRatingService {
     JSON.stringify(newRate),this.http);
   }
   GetRatingByProductId(id:number):Observable<IRating[]>{
-    return this.httpclient.get<IRating[]>(`${environment.BaseApiUrl}/rating/getAllRating?productId=${id}`);
+    return this.httpclient.get<IRating[]>(`${environment.BaseApiUrl}/rating/getAllReviews?productId=${id}`);
+  }
+
+  CalculateProductRating(id:number):Observable<any>{
+    return this.httpclient.get<any>(`${environment.BaseApiUrl}/rating/calculateProductRate?productId=${id}`);
   }
 }

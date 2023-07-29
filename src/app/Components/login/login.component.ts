@@ -13,6 +13,7 @@ import { UserService } from 'src/app/Services/user.service';
 export class LoginComponent {
   form:FormGroup;
   user:IUserLogin={} as IUserLogin;
+  showErrorMessage:boolean=false;
    isCheck:boolean=false;
    constructor(private userService:UserService,private router:Router,
                private cookiesService:CookieService,
@@ -51,6 +52,10 @@ export class LoginComponent {
  
          }    
          this.router.navigate(['/Home']);
+       },
+       (error)=>{
+        this.showErrorMessage=true
+        
        }
      );}
  }

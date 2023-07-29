@@ -9,6 +9,8 @@ import { IOrder } from 'src/app/Models/iorder';
 import { Ishippingaddress } from 'src/app/Models/ishippingaddress';
 import { OrderService } from 'src/app/Services/order.service';
 import { ShippingaddressService } from 'src/app/Services/shippingaddress.service';
+import { render } from 'creditcardpayments/creditCardPayments';
+
 
 @Component({
   selector: 'app-shippingaddress',
@@ -46,6 +48,14 @@ export class ShippingaddressComponent implements OnInit {
       countryid:new FormControl('', [Validators.required])
 
     })
+    render({
+      id:"#myPaypalButtons ",
+      currency:"USD",
+      value:"100.00",
+      onApprove:(details)=>{
+        alert("transaction successfully");
+      }
+    });
     }
 
     get name(){
