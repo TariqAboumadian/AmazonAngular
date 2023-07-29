@@ -6,6 +6,7 @@ import { ICategory } from 'src/app/Models/icategory';
 import { ISubCategory } from 'src/app/Models/isub-category';
 import { CategoryService } from 'src/app/Services/category.service';
 import { ProductService } from 'src/app/Services/product.service';
+import { UserService } from 'src/app/Services/user.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -24,16 +25,16 @@ export class HeaderComponent implements OnInit{
   CategoryList:ICategory[]=[];
   SubCategoryList:ISubCategory[]=[];
   categoryId:number;
+  isLoggedin:boolean=false;
   constructor(
     private categoryservice: CategoryService,
-    private productservices:ProductService,
-    private router: Router,
-    private httpclient:HttpClient)
+    private router: Router,private userService:UserService)
   {
     this.categoryId=0;
   }
 
   ngOnInit(): void {
+    this.isLoggedin= this.userService.isLoggedIn;
     this.categoryservice.GetAllCategories().subscribe(data=>{
       this.CategoryList=data;
       console.log(this.CategoryList);
@@ -52,5 +53,11 @@ export class HeaderComponent implements OnInit{
     this._lang=value;
     localStorage.setItem('lang',value);
     window.location.reload();
+  }
+
+  Logout(){
+    this.userService.LogOut();
+    sessionStorage.removeItem('token');
+    this.router.navigate(['/Login']);
   }
 }

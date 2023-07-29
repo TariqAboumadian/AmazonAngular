@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -17,7 +18,8 @@ export class ProductRatingComponent implements OnInit {
   countrate:number=1;
   userForm: FormGroup;
   productRate:IRating={} as IRating;
-constructor(private fb: FormBuilder,private activatedRoute: ActivatedRoute,private productRatingService: ProductRatingService){
+constructor(private fb: FormBuilder,private activatedRoute: ActivatedRoute,
+  private productRatingService: ProductRatingService,private location:Location){
 this.userForm=this.fb.group({
   review:[''],
  userName:[''],
@@ -56,7 +58,9 @@ get rate(){
     this.productRatingService.AddRate(this.productRate).subscribe(data=>
       {
         console.log(data);
+        this.location.back();
       })
+      
    }
 
 selectRate(event:any){

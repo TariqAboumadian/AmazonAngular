@@ -11,6 +11,7 @@ import { CartComponent } from './Components/cart/cart.component';
 import { OrderComponent } from './Components/order/order.component';
 import { ProductRatingComponent } from './Components/product-rating/product-rating.component';
 import { ShippingaddressComponent } from './Components/shippingaddress/shippingaddress.component';
+import { userAuthGuard } from './Guards/user-auth.guard';
 
 const routes: Routes = [
   {path:'',component:ParentComponentComponent,children:[
@@ -20,10 +21,10 @@ const routes: Routes = [
     {path:'products',component:ProductsSearchComponent},
     {path:'ProductsDetails/:prodid',component:ProductsDetailsComponent,title:"Get Products Details"},
     {path:'Cart',component:CartComponent,title:" Cart"},
-    {path:'Order',component:OrderComponent,title:" Order"},
-    {path:'Order/:orderId',component:OrderComponent,title:" Order"},
-    {path:'ProductRating',component:ProductRatingComponent,title:" Rate"},
-    {path:'shipping',component:ShippingaddressComponent,title:" Shipping Address"}
+    {path:'Order',component:OrderComponent,title:" Order",canActivate:[userAuthGuard]},
+    {path:'Order/:orderId',component:OrderComponent,title:" Order",canActivate:[userAuthGuard]},
+    {path:'ProductRating',component:ProductRatingComponent,title:" Rate",canActivate:[userAuthGuard]},
+    {path:'shipping',component:ShippingaddressComponent,title:" Shipping Address",canActivate:[userAuthGuard]}
 
   ]},
   {path:'register' , component:RegistrationComponent,title:"Registeration"},
