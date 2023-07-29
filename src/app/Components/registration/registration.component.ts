@@ -52,13 +52,15 @@ export class RegistrationComponent {
     }
     console.log(this.user);
     
-    this.userService.Register(this.user).subscribe(data=>{
+    this.userService.Register(this.user).subscribe(
+      (data)=>{
       this.router.navigate(['/Login'])
       
   },
   (error)=>{
-    this.showErrorMessage=true
     this.contentErrorMessage=error.error[0].description;
+    console.log(this.contentErrorMessage);
+    this.showErrorMessage=true
     
   }
   );

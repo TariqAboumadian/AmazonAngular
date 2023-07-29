@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { IUserLogin } from '../Models/iuser-login';
 import { environment } from 'src/Environments/environment.development';
 import { IUserRegister } from '../Models/iuser-register';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { ITokenResponse } from '../Models/iresponse-token';
 
 @Injectable({
@@ -11,10 +11,10 @@ import { ITokenResponse } from '../Models/iresponse-token';
 })
 export class UserService {
 
-  userLoggedBehSubject:BehaviorSubject<boolean>;
+  loggedIn:BehaviorSubject<boolean>;
   private http={};
   constructor(private httpClient:HttpClient) {
-    this.userLoggedBehSubject=new BehaviorSubject<boolean>(this.isLogged);
+    this.loggedIn=new BehaviorSubject<boolean>(this.isLoggedIn);
     this.http={
       headers:new HttpHeaders(
         {
@@ -22,21 +22,28 @@ export class UserService {
         })
   }
    }
-   get isLogged():boolean {
+   get isLoggedIn() {
     return (sessionStorage.getItem('token'))?true:false;
   }
-
 
    login(user: IUserLogin): Observable<ITokenResponse> {
     return this.httpClient.post<ITokenResponse>(
        environment.BaseApiUrl + "/Account/Login",
-       JSON.stringify(user), this.http)
+       JSON.stringify(user), this.http).pipe(
+        tap(() => {
+          this.loggedIn.next(this.isLoggedIn);          
+        })
+      );
    }
    Register(user:IUserRegister):Observable<IUserRegister> {
      return this.httpClient.post<IUserRegister>(environment.BaseApiUrl + "/Account/Register",
      JSON.stringify(user), this.http);
    }
    LogOut() {
-     return this.httpClient.get(environment.BaseApiUrl + "/Account/LogOut");
+     return this.httpClient.get(environment.BaseApiUrl + "/Account/LogOut").pipe(
+      tap(() => {
+        this.loggedIn.next(this.isLoggedIn);
+      })
+    );
    }
 }
