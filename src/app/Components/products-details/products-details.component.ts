@@ -14,6 +14,7 @@ import { ProductService } from 'src/app/Services/product.service';
 export class ProductsDetailsComponent implements OnInit {
   images:string[]=[];
   prodid: number=0;
+  catid:number=1;
   Quantity:number=1;
   numbers: number[]=[];
   product:IProduct|undefined;
@@ -21,16 +22,25 @@ export class ProductsDetailsComponent implements OnInit {
   productRates:{[rate:number]:number}={}
   productRating:number=0;
   reviewsCount:number=0;
+  products:IProduct[]=[];
+  firstImage:string="";
   language:string=localStorage.getItem("lang") || "en";
   constructor(private productservice:ProductService,private route:Router,
     private activerouter:ActivatedRoute,private cartItemService:CartItemService,
-    private productRatingService: ProductRatingService){}
+    private productRatingService: ProductRatingService){
+    }
   ngOnInit(): void {
     this.prodid=this.activerouter.snapshot.paramMap.get('prodid')?Number(this.activerouter.snapshot.paramMap.get('prodid')):0;
     this.productservice.GetProductById(this.prodid).subscribe(data=>{
       this.product=data;
+      this.productservice.GetProductByCategoryId(this.product?.categoryId).subscribe(data=>{
+        this.products=data;
+         this.firstImage = this.product?.images[0]||"kkkkk";
+        console.log(this.products);
+      });
       this.numbers = [...Array(10).keys()].map(i => i + 1);
     })
+    console.log(this.catid)
     this.productRatingService.GetRatingByProductId(this.prodid).subscribe(data=>{
       this.customerReviews=data;
        this.reviewsCount = data.length
@@ -47,7 +57,7 @@ export class ProductsDetailsComponent implements OnInit {
         this.productRates[i]=0
        }
       }
-    })
+    });
   }
 addToCart(product?:IProduct){
   if(product)

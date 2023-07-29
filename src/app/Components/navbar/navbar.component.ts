@@ -13,6 +13,8 @@ export class NavbarComponent implements OnInit {
   CategoryList:ICategory[]=[];
   SubCategoryList:ISubCategory[]=[];
   language:string="en";
+  itemsperpage:number=10;
+  page:number=1;
   constructor(private categoryservice: CategoryService,private productservices:ProductService){}
 
   ngOnInit(): void {

@@ -9,4 +9,5 @@ export interface IProduct {
   categoryId:number;
   images:string[];
   Qty:number;
+  rate?:number;
 }

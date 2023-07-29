@@ -1,122 +1,15 @@
-<!-- <div class="container">
-  <div class="row">
-    <div class="col-md-4 col-sm-12 p-3  my-5 text-center border border-2" >
-      <section class="gallery" >
-          <div class="img-container">
-            <img src="{{product?.images}}" class="img-fluid img-prev border border-2" id="preview" style="height: 400px;" alt=".....">
-              <ng-container *ngFor="let img of product?.images">
-                <div class="img-slide my-2 p-3 border border-2">
-                  <img [src]="img" class="img-fluid" alt="....." appProductDetails>
-                </div>
-              </ng-container>
-          </div>
-      </section>
-    </div>
-    <div class="col-md-5 col-sm-12 my-5  mx-2">
-      <div>
-        <p class="fs-3">{{product?.name}}</p>
-      </div>
-      <hr>
-      <div>
-        <p class="fs-3 text-info">{{product?.price|currency:'EGP':'symbol'}}</p>
-      </div>
-      <hr>
-      <div>
-        <p class="fs-4  text-dark">{{product?.description}}</p>
-      </div>
-    </div>
-
-    <div class="col-md-2 col-sm-12 my-5 text-center border border-2">
-      <form class="form text-center">
-        <div class="text-center">
-          <label class="mt-3 mx-2">Quantity</label>
-          <select [(ngModel)]="Quantity" [ngModelOptions]="{standalone: true}" class="form-control rounded-pill d-inline mx-auto w-75">
-            <ng-container *ngFor="let i of numbers">
-              <option class="text-center">{{i}}</option>
-            </ng-container>
-          </select>
-        </div>
-        <div class="my-2">
-          <ng-container [ngSwitch]="product?.unitInStock">
-            <ng-container *ngSwitchCase="0">
-              <p class="text-danger">Out Of Stock</p>
-            </ng-container>
-            <ng-container *ngSwitchCase="1">
-              <p class="text-danger">last One</p>
-            </ng-container>
-            <ng-container *ngSwitchCase="2">
-              <p class="text-danger">LastTwo</p>
-            </ng-container>
-            <ng-container *ngSwitchDefault><p class="text-success">in Stock</p></ng-container>
-          </ng-container>
-        </div>
-        <div>
-          <button (click)="addToCart(product)" class="btn rounded-pill btn-warning w-75 border border-warning my-2">Add To Cart</button>
-          <button class="btn rounded-pill btn-warning w-75 border border-warning">
-            Buy Now
-          </button>
-        </div>
-      </form>
-    </div>
-  </div>
-  <hr>
-
-
-  <div class="row">
-    <div class="col-md-4 col-sm-12 p-3" >
-      <h2>Important information</h2>
-      <hr>
-      <h2>Customer Reviews</h2>
-      <div class="p-1">
-        <div class="starRating d-flex flex-row">
-          <span class="mt-1"  *ngFor="let index of [1,2,3,4,5]"
-          [ngClass]="[productRating>=index ? 'fa fa-star checked' :'fa fa-star']" id=index ></span>
-          <h5 class="ms-1">{{productRating}} out of 5</h5>
-        </div>
-        <div>
-      </div>
-      <div class="main p-2" *ngFor="let rate of productRates | keyvalue">
-        <p class="me-1">{{rate.key}} star</p>
-        <div class="mt-1">
-      <div class="progress" role="progressbar" aria-label="Warning example"
-         aria-valuemin="1" aria-valuemax="5">
-        <div class="progress-bar bg-warning" [style.width.%]="(rate.value/reviewsCount)*100"></div>
-      </div>
-      </div>
-      <p class="ms-1">{{(rate.value/reviewsCount)*100}}%</p>
-      </div>
-      <button class="btn btn-secondary text-center ms-4" (click)="ProductRate(product)" >
-        Write a customer review</button>
-      </div>
-      </div>
-      <div class="col-md-4 col-sm-12 m-5 p-3" >
-        <h4>Top review from Egypt</h4>
-        <div class="d-flex flex-column m-4" *ngFor="let rate of customerReviews">
-          <div class="d-flex flex-row col-sm-12">
-            <img src="assets/images/profile.png" class="avatar img-flued" style="width: 50px;height:50px;">
-            <p class="m-2">{{rate.userName}}</p>
-          </div>
-            <div class="col-3 col-sm-12 starRating">
-              <span  *ngFor="let index of [1,2,3,4,5]"
-              [ngClass]="[rate.rate>=index ? 'fa fa-star checked' :'fa fa-star']" id=index ></span>
-            </div>
-            <div class="col-7 col-sm-12">
-              <h5>{{rate.review}}</h5>
-            </div>
-        </div>
-  </div> -->
-  <!-- content -->
-  <!-- content -->
   <section class="py-5">
     <div class="container">
       <div class="row gx-5">
         <aside class="col-lg-6">
           <div class="border rounded-4 mb-3 d-flex justify-content-center">
-              <img style="max-width: 100%; max-height: 80vh; margin: auto;" class="rounded-4 fit" class="img-fluid img-prev border border-2" id="preview"  [src]="product?.images" />
+            <ng-container *ngIf="product?.images !=null">
+              <img style="max-width: 100%; max-height: 80vh; margin: auto;" class="img-fluid rounded-4 fit  border border-2" id="preview"  [src]="firstImage" />
+            </ng-container>
           </div>
           <div class="d-flex justify-content-center mb-3">
             <ng-container *ngFor="let item of product?.images">
-              <img width="60" height="60" class="rounded-2 mx-3"  [src]="item" appProductDetails active/>
+              <img width="60" height="60" class="rounded-2 mx-3"  [src]="item" appProductDetails />
             </ng-container>
 
           </div>
@@ -169,14 +62,14 @@
             </ng-container>
             <ng-template #langd>
               <p >
-                {{product?.description}}
+                {{product?.arabicDescription}}
               </p>
             </ng-template>
             <hr />
 
             <div class="row mb-4">
               <div class="col-md-6 col-6 mb-3">
-                <label class="mb-2 d-block text-center">Quantity</label>
+                <label class="mb-2 fs-4 text-center">{{'Quantity'|translate}}</label>
 
                 <div class="input-group" style="width: 170px;">
                   <select [(ngModel)]="Quantity" [ngModelOptions]="{standalone: true}" class="form-control rounded-pill d-inline mx-auto w-75">
@@ -184,7 +77,7 @@
                       <option class="text-center">{{i}}</option>
                     </ng-container>
                   </select>
-                  <a (click)="addToCart(product)" class="btn btn-warning shadow-0 m-2 rounded-pill"> <i class="me-1 fa fa-shopping-basket"></i> Add to cart </a>
+                  <a (click)="addToCart(product)" class="btn btn-warning shadow-0 m-2 rounded-pill"> <i class="me-1 fa fa-shopping-basket"></i> {{'Add to cart'|translate}} </a>
                 </div>
               </div>
             </div>
@@ -204,19 +97,19 @@
             <div class="tab-content" id="ex1-content">
               <div class="tab-pane fade show active" id="ex1-pills-1" role="tabpanel" aria-labelledby="ex1-tab-1">
 
-                <h2>Important information</h2>
+                <h2>{{'Important information'|translate}}</h2>
                 <hr>
-                <h2>Customer Reviews</h2>
+                <h2>{{'Customer Reviews'|translate}}</h2>
                 <div class="p-1">
                   <div class="starRating d-flex flex-row">
                     <span class="mt-1"  *ngFor="let index of [1,2,3,4,5]"
                     [ngClass]="[productRating>=index ? 'fa fa-star checked' :'fa fa-star']" id=index ></span>
-                    <h5 class="ms-1">{{productRating}} out of 5</h5>
+                    <h5 class="ms-1">{{productRating}} {{'out of'|translate}} 5</h5>
                   </div>
                   <div>
                 </div>
                 <div class="main p-2" *ngFor="let rate of productRates | keyvalue">
-                  <p class="me-1">{{rate.key}} star</p>
+                  <p class="me-1">{{rate.key}} {{'star'|translate}}</p>
                   <div class="mt-1">
                 <div class="progress" role="progressbar" aria-label="Warning example"
                    aria-valuemin="1" aria-valuemax="5">
@@ -226,11 +119,11 @@
                 <p class="ms-1">{{(rate.value/reviewsCount)*100}}%</p>
                 </div>
                 <button class="btn btn-secondary text-center ms-4" (click)="ProductRate(product)" >
-                  Write a customer review</button>
+                  {{'Write a customer review'|translate}}</button>
                 </div>
                 </div>
-                <div class="col-md-4 col-sm-12 m-5 p-3" >
-                  <h4>Top review from Egypt</h4>
+                <div class="col-sm-12 m-5 p-3" >
+                  <h4>{{'Top review from Egypt'|translate}}</h4>
                   <div class="d-flex flex-column m-4" *ngFor="let rate of customerReviews">
                     <div class="d-flex flex-row col-sm-12">
                       <img src="assets/images/profile.png" class="avatar img-flued" style="width: 50px;height:50px;">
@@ -254,52 +147,37 @@
           <div class="px-0 border rounded-2 shadow-0">
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">Similar items</h5>
-                <div class="d-flex mb-3">
-                  <a href="#" class="me-3">
-                    <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/8.webp" style="min-width: 96px; height: 96px;" class="img-md img-thumbnail" />
-                  </a>
-                  <div class="info">
-                    <a href="#" class="nav-link mb-1">
-                      Rucksack Backpack Large <br />
-                      Line Mounts
+                <h5 class="card-title">{{'Similar items'|translate}}</h5>
+                <hr>
+                <ng-container *ngFor="let prod of products| paginate: { itemsPerPage: 5, currentPage: 1 }">
+                  <div class="d-flex mb-3">
+                    <a href="#" class="me-3">
+                      <img [src]="prod.images[0]" style="min-width: 96px; height: 96px;" class="img-md  img-thumbnail" />
                     </a>
-                    <strong class="text-dark"> $38.90</strong>
+                    <div class="info mx-3">
+                      <ng-container *ngIf="language=='en';else lang">
+                        <a href="#" class="nav-link mb-1">
+                          {{prod?.name}}
+                        </a>
+                      </ng-container>
+                      <ng-template #lang>
+                        <a href="#" class="nav-link mb-1">
+                          {{prod?.arabicName}}
+                        </a>
+                      </ng-template>
+                      <ng-container *ngIf="language=='en';else langs">
+                        <h4 class="title text-dark">
+                          {{prod?.price|currency:'EGP':'symbol'}}
+                        </h4>
+                      </ng-container>
+                      <ng-template #langs>
+                        <h4 class="title text-dark">
+                          {{prod?.price|currency:'ج.م':'symbol'}}
+                        </h4>
+                      </ng-template>
+                    </div>
                   </div>
-                </div>
-
-                <div class="d-flex mb-3">
-                  <a href="#" class="me-3">
-                    <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/9.webp" style="min-width: 96px; height: 96px;" class="img-md img-thumbnail" />
-                  </a>
-                  <div class="info">
-                    <a href="#" class="nav-link mb-1">
-                      Summer New Men's Denim <br />
-                      Jeans Shorts
-                    </a>
-                    <strong class="text-dark"> $29.50</strong>
-                  </div>
-                </div>
-
-                <div class="d-flex mb-3">
-                  <a href="#" class="me-3">
-                    <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/10.webp" style="min-width: 96px; height: 96px;" class="img-md img-thumbnail" />
-                  </a>
-                  <div class="info">
-                    <a href="#" class="nav-link mb-1"> T-shirts with multiple colors, for men and lady </a>
-                    <strong class="text-dark"> $120.00</strong>
-                  </div>
-                </div>
-
-                <div class="d-flex">
-                  <a href="#" class="me-3">
-                    <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/11.webp" style="min-width: 96px; height: 96px;" class="img-md img-thumbnail" />
-                  </a>
-                  <div class="info">
-                    <a href="#" class="nav-link mb-1"> Blazer Suit Dress Jacket for Men, Blue color </a>
-                    <strong class="text-dark"> $339.90</strong>
-                  </div>
-                </div>
+                </ng-container>
               </div>
             </div>
           </div>
