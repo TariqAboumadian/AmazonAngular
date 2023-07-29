@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { IUserLogin } from '../Models/iuser-login';
 import { environment } from 'src/Environments/environment.development';
 import { IUserRegister } from '../Models/iuser-register';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { ITokenResponse } from '../Models/iresponse-token';
 
 @Injectable({
@@ -11,8 +11,10 @@ import { ITokenResponse } from '../Models/iresponse-token';
 })
 export class UserService {
 
+  userLoggedBehSubject:BehaviorSubject<boolean>;
   private http={};
   constructor(private httpClient:HttpClient) {
+    this.userLoggedBehSubject=new BehaviorSubject<boolean>(this.isLogged);
     this.http={
       headers:new HttpHeaders(
         {
@@ -20,6 +22,10 @@ export class UserService {
         })
   }
    }
+   get isLogged():boolean {
+    return (sessionStorage.getItem('token'))?true:false;
+  }
+
 
    login(user: IUserLogin): Observable<ITokenResponse> {
     return this.httpClient.post<ITokenResponse>(
