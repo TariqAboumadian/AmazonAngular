@@ -41,7 +41,7 @@ import { ShippingaddressComponent } from './Components/shippingaddress/shippinga
     ProductRatingComponent,
     CartComponent,
     OrderComponent,
-    ShippingaddressComponent
+    ShippingaddressComponent,
   ],
   imports: [
     BrowserModule,
