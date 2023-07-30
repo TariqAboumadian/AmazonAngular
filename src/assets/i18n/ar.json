@@ -1,6 +1,7 @@
 {
   "dir":"rtl",
   "Login":"تسجيل دخول",
+  "Logout":"تسجيل خروج",
   "Sign-up":"انشاء حساب",
   "Order":"طلب",
   "Cart":"اضف للعربه",
@@ -49,5 +50,7 @@
   "Help":"المساعدة",
   "Shipping & Delivery":"سياسات وأسعار الشحن",
   "Returns & Replacements":"طلبات الإرجاع والاستبدال",
-  "Amazon App Download":"تحميل تطبيق أمازون"
+  "Amazon App Download":"تحميل تطبيق أمازون",
+  "Shopping Cart":"عربه التسوق",
+  "Proceed to Pay":"اتمام عمليه الشراء"
 }

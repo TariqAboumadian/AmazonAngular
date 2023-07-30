@@ -1,6 +1,7 @@
 {
   "dir":"ltr",
   "Login":"Login",
+  "Logout":"Logout",
   "Sign-up":"Sign-up",
   "Order":"Order",
   "Cart":"Cart",
@@ -49,5 +50,7 @@
   "Shipping & Delivery":"Shipping & Delivery",
   "Returns & Replacements":"Returns & Replacements",
   "Amazon App Download":"Amazon App Download",
-  "Language":"Language"
+  "Language":"Language",
+  "Shopping Cart":"Shopping Cart",
+  "Proceed to Pay":"Proceed to Pay"
 }
