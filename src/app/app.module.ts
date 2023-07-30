@@ -24,6 +24,7 @@ import { ProductRatingComponent } from './Components/product-rating/product-rati
 import { CartComponent } from './Components/cart/cart.component';
 import { OrderComponent } from './Components/order/order.component';
 import { ShippingaddressComponent } from './Components/shippingaddress/shippingaddress.component';
+import { ScroolpageDirective } from './Directives/scroolpage.directive';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,6 +43,7 @@ import { ShippingaddressComponent } from './Components/shippingaddress/shippinga
     CartComponent,
     OrderComponent,
     ShippingaddressComponent,
+    ScroolpageDirective,
   ],
   imports: [
     BrowserModule,

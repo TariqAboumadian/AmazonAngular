@@ -1,103 +1,101 @@
 <!-- Remove the container if you want to extend the Footer to full width. -->
 <div class="container-fluid  bg-dark">
   <div class="row BackToTop" >
-    <a href="#top">
      <!-- BackToTop -->
    <div class="text-center px-0 py-3 text-light ">
-    <span>Back to top</span>
+    <span appScroolpage id="clic">{{'Back to top'|translate}}</span>
  </div>
-  </a>
  <!-- BackToTop -->
   </div>
 
-  <footer class="text-white text-center py-0 text-lg-start">
+  <footer class="text-white py-0 ">
     <!-- Grid container -->
-    <div class="container  py-4">
+    <div class="container mx-auto   py-4">
       <!--Grid row-->
-      <div class="row mt-4">
+      <div class="row mt-4 w-75 mx-auto">
         <!--Grid column-->
         <div class="col-lg-3 col-md-12 mb-4  mb-md-0">
-          <h6 class="mb-2">Get To Know Us</h6>
+          <h6 class="mb-2">{{'Get To Know Us'|translate}}</h6>
           <p>
            <a class="text-white-50 link-light link-underline-opacity-0 link-underline-opacity-100-hover"
-            href="#">About Amazon </a>
+            href="#">{{'About Amazon'|translate}} </a>
           </p>
 
           <p>
             <a class="text-white-50 link-light  link-underline-opacity-0 link-underline-opacity-100-hover"
-            href="#"> Careers </a>
+            href="#"> {{'Careers'|translate}} </a>
           </p>
           <p>
           <a class="text-white-50 link-light  link-underline-opacity-0 link-underline-opacity-100-hover"
-            href="#">Amazon Science </a>
+            href="#">{{'Amazon Science'|translate}} </a>
         </p>
         </div>
         <!--Grid column-->
 
         <!--Grid column-->
         <div class="col-lg-3 col-md-12 mb-4 mb-md-0">
-          <h6 class="mb-2">Shop With Us</h6>
+          <h6 class="mb-2">{{'Shop With Us'|translate}}</h6>
           <p>
            <a class="text-white-50 link-light link-underline-opacity-0 link-underline-opacity-100-hover"
-            href="#">Your Account </a>
+            href="#">{{'Your Account'|translate}} </a>
           </p>
 
           <p>
             <a class="text-white-50 link-light  link-underline-opacity-0 link-underline-opacity-100-hover"
-            href="#"> Your Orders </a>
+            href="#"> {{'Your Orders'|translate}} </a>
           </p>
           <p>
           <a class="text-white-50 link-light  link-underline-opacity-0 link-underline-opacity-100-hover"
-            href="#">Your Adresses </a>
+            href="#">{{'Your Adresses'|translate}} </a>
           </p>
         <p>
           <a class="text-white-50 link-light  link-underline-opacity-0 link-underline-opacity-100-hover"
-            href="#">Your Lists </a>
+            href="#">{{'Your Lists'|translate}} </a>
         </p>
         </div>
         <!--Grid column-->
 
         <!--Grid column-->
           <div class="col-lg-3 col-md-12 mb-4 mb-md-0">
-            <h6 class="mb-2">Make Money with Us</h6>
+            <h6 class="mb-2">{{'Make Money with Us'|translate}}</h6>
             <p>
              <a class="text-white-50 link-light link-underline-opacity-0 link-underline-opacity-100-hover"
-              href="#">Protect and build your brand</a>
+              href="#">{{'Protect and build your brand'|translate}}</a>
             </p>
 
             <p>
               <a class="text-white-50 link-light  link-underline-opacity-0 link-underline-opacity-100-hover"
-              href="#">Advertise Your Products </a>
+              href="#">{{'Advertise Your Products'|translate}} </a>
             </p>
             <p>
             <a class="text-white-50 link-light  link-underline-opacity-0 link-underline-opacity-100-hover"
-              href="#">Sell on Amazon </a>
+              href="#">{{'Sell on Amazon'|translate}} </a>
             </p>
           <p>
             <a class="text-white-50 link-light  link-underline-opacity-0 link-underline-opacity-100-hover"
-              href="#"> Fulfillment by Amazon </a>
+              href="#"> {{'Fulfillment by Amazon'|translate}} </a>
           </p>
         </div>
         <!--Grid column-->
          <!--Grid column-->
          <div class="col-lg-3 col-md-12 mb-4 mb-md-0">
-          <h6 class="mb-2">Let Us Help You</h6>
+          <h6 class="mb-2">{{'Let Us Help You'|translate}}</h6>
           <p>
            <a class="text-white-50 link-light link-underline-opacity-0 link-underline-opacity-100-hover"
-            href="#">Help</a>
+            href="#">{{'Help'|translate}}</a>
           </p>
 
           <p>
             <a class="text-white-50 link-light  link-underline-opacity-0 link-underline-opacity-100-hover"
-            href="#">Shipping & Delivery</a>
+            href="#">{{'Shipping & Delivery'|translate}}</a>
           </p>
           <p>
           <a class="text-white-50 link-light  link-underline-opacity-0 link-underline-opacity-100-hover"
-            href="#">Returns & Replacements</a>
+            href="#">{{'Returns & Replacements'|translate}}</a>
           </p>
         <p>
           <a class="text-white-50 link-light  link-underline-opacity-0 link-underline-opacity-100-hover"
-            href="#"> Amazon App Download </a>
+            href="#"> {{'Amazon App Download'|translate}} </a>
         </p>
       </div>
       <!--Grid column-->
@@ -105,12 +103,15 @@
       <hr>
       <!--Grid row-->
       <div class="row mt-4 justify-content-center">
-        <div class="col-md-2 col-sm-12 text-sm-start d-flex align-items-center
-        justify-content-around">
+        <div class="col-md-6 col-sm-12 text-sm-start d-flex align-items-center
+        justify-content-center">
           <a href="/" class=" mb-2 mb-lg-0 text-white text-decoration-none">
             <img src="assets/images/logo.png" class="img-flued" width="90px">
           </a>
-          <button class="btn btn-info border-0 ms-5  mx-2">Language</button>
+          <select class="form-select mx-3 w-25" [(ngModel)]="Changlang">
+            <option value="en">English</option>
+            <option value="ar">العربيه</option>
+          </select>
         </div>
       </div>
     </div>

@@ -8,6 +8,7 @@ import {
 import { ActivatedRoute } from '@angular/router';
 import { SubscriptionLoggable } from 'rxjs/internal/testing/SubscriptionLoggable';
 import { IProduct } from 'src/app/Models/iproduct';
+import { IRating } from 'src/app/Models/irating';
 import { ISubCategory } from 'src/app/Models/isub-category';
 import { CartItemService } from 'src/app/Services/cart-item.service';
 import { CategoryService } from 'src/app/Services/category.service';
@@ -28,6 +29,15 @@ export class ProductsComponent implements OnInit {
   page: number = 1;
   itemsperpage: number = 3;
   lnaguage:string="en";
+
+  numbers: number[]=[];
+  product:IProduct|undefined;
+  customerReviews:IRating[]=[];
+  productRates:{[rate:number]:number}={}
+  productRating:number=0;
+  reviewsCount:number=0;
+
+
   constructor(
     private activeroute: ActivatedRoute,private productservices: ProductService,
     private subcategoryservice: CategoryService,private cartItemService:CartItemService
@@ -54,6 +64,8 @@ export class ProductsComponent implements OnInit {
     this.subcategoryservice.GetAllSubCategoryes().subscribe((data) => {
       this.subcategories = data;
     });
+
+
   }
 
   GetPricedProducts(min: any, max: any) {
@@ -83,8 +95,8 @@ export class ProductsComponent implements OnInit {
   addToCart(product?:IProduct){
     if(product)
     {
-      product.Qty=1;        
-      var result=this.cartItemService.addToCart(product);   
+      product.Qty=1;
+      var result=this.cartItemService.addToCart(product);
     }
   }
 }
