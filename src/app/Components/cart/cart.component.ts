@@ -19,11 +19,13 @@ export class CartComponent implements OnInit {
   isCheck:boolean=false;
   numOfItems:number=0;
   totalPrice:number=0;
+  language:string=localStorage.getItem('lang') || "en";
   constructor(private cartItemService:CartItemService,private cookiesService:CookieService,
     private orderService:OrderService,private router:Router){
     this.numbers = [...Array(10).keys()].map(i => i + 1);
   }
   ngOnInit(): void {
+    this. language=localStorage.getItem('lang') || "en";
     this.ShowItemCart();
     const len= this.cartItemService.getCartItems().length;
     if(len>0)
@@ -62,6 +64,13 @@ export class CartComponent implements OnInit {
     this.isCheck=false;
     this.numOfitemCart();
   }
- 
+
+  sortbyprice(){
+    return this.products=this.products?.sort((a,b)=>{
+      if(a.name<b.name){return -1;}
+      else if(a.name>b.name){return 1;}
+      else return 0;
+    });
+  }
 
 }
