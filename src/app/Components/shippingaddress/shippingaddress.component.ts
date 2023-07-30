@@ -11,6 +11,9 @@ import { OrderService } from 'src/app/Services/order.service';
 import { ShippingaddressService } from 'src/app/Services/shippingaddress.service';
 import { render } from 'creditcardpayments/creditCardPayments';
 import { CartItemService } from 'src/app/Services/cart-item.service';
+import { OrderItemService } from 'src/app/Services/order-item.service';
+import { IOrderItem } from 'src/app/Models/iorder-item';
+import { IProduct } from 'src/app/Models/iproduct';
 
 
 @Component({
@@ -29,9 +32,12 @@ export class ShippingaddressComponent implements OnInit {
   Order:IOrder={} as IOrder;
   shippingForm: FormGroup;
   totalPrice: number=0;
+ 
+
   constructor( private shippingaddressService:ShippingaddressService,
     private cookiesService:CookieService,private cartItemService:CartItemService,
-    private orderService:OrderService,private router:Router){
+    private orderService:OrderService,private router:Router,
+    private orderItemService:OrderItemService){
 
     this.shippingForm=new FormGroup({
       name:new FormControl('', [Validators.required,Validators.minLength(5)]),
@@ -40,7 +46,7 @@ export class ShippingaddressComponent implements OnInit {
       buildName:new FormControl('', [Validators.required,Validators.minLength(5)]),
       cityid:new FormControl('', [Validators.required]),
       countryid:new FormControl('', [Validators.required])
-    })   
+    })
     }
 
     ngOnInit(): void {
@@ -48,7 +54,7 @@ export class ShippingaddressComponent implements OnInit {
       this. getAllCitiesBycountryId();
      this.GetShippingAddress();
      this.numOfitemCart()
-  
+
      render({
       id:"#myPaypalButtons ",
       currency:"USD",
@@ -57,7 +63,7 @@ export class ShippingaddressComponent implements OnInit {
         alert("transaction successfully");
       }
     });
-  
+
     }
 
     get name(){
@@ -99,7 +105,7 @@ export class ShippingaddressComponent implements OnInit {
        });
        console.log(this.shippingaddress.userid)
     }
-   
+
   }
     getAllcountries()
     {
@@ -144,6 +150,8 @@ export class ShippingaddressComponent implements OnInit {
         console.log(data);
         });
     }
+
+
     createOrder(){
       var date = new Date();
       this.Order.orderDate = date;
@@ -151,12 +159,15 @@ export class ShippingaddressComponent implements OnInit {
       newDate.setDate(date.getDate()+4);
       this.Order.arrivalDate=newDate;
       const id=sessionStorage.getItem('userid');
+    this.Order.status=0;
+    this.Order.total=this.totalPrice;
       if(id!=null){
         this.Order.userId=id;
       }
       console.log(this.Order);
       this.orderService.CreateOrder(this.Order).subscribe(
          (data:any) => {
+
              this.navigateToOrder(data.id);
 
       })

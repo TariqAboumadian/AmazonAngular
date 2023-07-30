@@ -25,10 +25,10 @@ export class OrderService {
   GetAllOrdersByUserId(id:string):Observable<IOrder[]>{
     return this.httpclient.get<IOrder[]>(`${environment.BaseApiUrl}/Order/getOrdersByUserId?id=${id}`);
   }
-  
+
   GetOrderById(id:number):Observable<IOrder>{
     return this.httpclient.get<IOrder>(`${environment.BaseApiUrl}/Order/getOrderById?id=${id}`);
-  } 
+  }
 
   DeleteOrder(id:number):Observable<IOrder>{
     return this.httpclient.delete<IOrder>(`${environment.BaseApiUrl}/Order/DeleteOrder/${id}`,this.http);

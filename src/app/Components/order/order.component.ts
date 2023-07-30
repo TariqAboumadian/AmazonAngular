@@ -16,9 +16,10 @@ import { OrderService } from 'src/app/Services/order.service';
 export class OrderComponent implements OnInit {
   orderItem: IOrderItem = {} as IOrderItem;
   order: IOrder = {} as IOrder;
-  order1: IOrder = {} as IOrder;
   orders: IOrder[] = [];
   total: number = 0;
+  orderId:number=0;
+  imgName:string='';
   constructor(
     private cartItemService: CartItemService,
     private orderItemService: OrderItemService,
@@ -34,22 +35,25 @@ export class OrderComponent implements OnInit {
   ngOnInit(): void {
     this.setOrderIdByparam();
     this.getOrders();
-    this.orders;
-    console.log(this.total);
+  // this.addOrderItems();
+
   }
 
   setOrderIdByparam() {
-    this.orderItem.orderId = this.activatedRoute.snapshot.paramMap.get(
+    this.orderId = this.activatedRoute.snapshot.paramMap.get(
       'orderId'
     )
       ? Number(this.activatedRoute.snapshot.paramMap.get('orderId'))
       : 0;
   }
   convertProductToOrderItem(product: IProduct): IOrderItem {
+    this.orderItem.orderId=this.orderId;
     this.orderItem.productId = product.id;
     this.orderItem.productname = product.name;
     this.orderItem.arabicProductname = product.arabicName;
-    this.orderItem.imgUrl = product.images[0];
+    this.imgName= product.images[0];
+    console.log(product.images[0]);
+    this.orderItem.imgUrl = this.imgName;
     this.orderItem.count = product.Qty;
     this.orderItem.productPrice = product.price;
     this.orderItem.supTotalPrice=product.price*product.Qty;
@@ -62,42 +66,44 @@ export class OrderComponent implements OnInit {
 
     for (const item of items) {
         this.orderItemService.addOrderItem(this.convertProductToOrderItem(item)).
-        subscribe();
+        subscribe((data:any)=>{console.log(data);});
         }
     this.cartItemService.clearCart();
   }
   getOrders() {
     if (this.orderItem.orderId !== 0) {
       this.addOrderItems();
-      const id = sessionStorage.getItem('userid');
-      if (id != null) {
-        this.orderService.GetAllOrdersByUserId(id).subscribe((data: any) => {
-          this.orders = data;
-        });
-      }
+      this.getAllOrder();
     } else {
-      const id = sessionStorage.getItem('userid');
-      if (id != null) {
-        this.orderService.GetAllOrdersByUserId(id).subscribe((data: any) => {
-          this.orders = data;
-        });
-      }
-    }
+      this.getAllOrder();
 
   }
+}
   trackPackage(id: number) {
     this.router.navigate(['/tracking', id]);
   }
-  cancleOrder(id: number) {
-     this.orderService.GetOrderById(id).subscribe((data:IOrder) => {this.order=data});
-    if (this.order.status < 2) {
-      this.orderService.DeleteOrder(id).subscribe((data:IOrder) =>
-      {
-
+  cancelOrder(id: number) {
+     this.orderService.GetOrderById(id).subscribe((data:IOrder) =>
+     {
+      this.order=data;
+      if (this.order.status < 2) {
+        this.orderService.DeleteOrder(id).subscribe(()=>{
+          this.getAllOrder();
+        });
       }
-      );
-    }
+    });
+
 
   }
+  getAllOrder()
+  {
+
+      const id = sessionStorage.getItem('userid');
+      if (id != null) {
+        this.orderService.GetAllOrdersByUserId(id).subscribe((data: any) => {
+          this.orders = data;
+        });
+      }
+    }
 
 }

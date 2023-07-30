@@ -21,7 +21,7 @@ export class CartItemService {
       if(cartItems) {
         this.cartItems = JSON.parse(cartItems);
       }
-    } 
+    }
  }
 
  addToCart(product: IProduct) {
@@ -57,7 +57,7 @@ export class CartItemService {
    for (const item of products) {
      if(item.id==product.id)
      {
-       item.Qty+=1;
+       item.Qty+=product.Qty;
        this.flag=true;
        break;
      }

@@ -14,7 +14,6 @@ export class TrackingorderComponent implements OnInit {
   order: IOrder = {} as IOrder;
   shippingAddress: Igetshippingaddress = {} as Igetshippingaddress;
   id: number = 0;
-  //status:number=0;
   constructor(
     private orderService: OrderService,
     private activatedRoute: ActivatedRoute,
@@ -25,6 +24,7 @@ export class TrackingorderComponent implements OnInit {
     this.setOrderIdByparam();
     this.getOrderById();
     this.getShippingAddress();
+    
   }
   setOrderIdByparam() {
     this.id = this.activatedRoute.snapshot.paramMap.get('orderId')
@@ -33,9 +33,7 @@ export class TrackingorderComponent implements OnInit {
   }
   getOrderById() {
     this.orderService.GetOrderById(this.id).subscribe((data: IOrder) => {
-      this.order = data;
-      console.log(this.order);
-    });
+      this.order = data;    });
   }
   getShippingAddress() {
     const id = sessionStorage.getItem('userid');
@@ -47,8 +45,7 @@ export class TrackingorderComponent implements OnInit {
         });
     }
   }
-  cancleOrder(id: number) {
-
+  cancelOrder(id: number) {
     if (this.order.status <2) {
       this.orderService.DeleteOrder(id).subscribe((data:IOrder) =>
       {
