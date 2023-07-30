@@ -30,55 +30,21 @@ export class OrderComponent implements OnInit {
 
   ) {}
 
-
-
   ngOnInit(): void {
-    this.setOrderIdByparam();
-    this.getOrders();
-  // this.addOrderItems();
+    
+    this. getAllOrder();
 
   }
 
-  setOrderIdByparam() {
-    this.orderId = this.activatedRoute.snapshot.paramMap.get(
-      'orderId'
-    )
-      ? Number(this.activatedRoute.snapshot.paramMap.get('orderId'))
-      : 0;
-  }
-  convertProductToOrderItem(product: IProduct): IOrderItem {
-    this.orderItem.orderId=this.orderId;
-    this.orderItem.productId = product.id;
-    this.orderItem.productname = product.name;
-    this.orderItem.arabicProductname = product.arabicName;
-    this.imgName= product.images[0];
-    console.log(product.images[0]);
-    this.orderItem.imgUrl = this.imgName;
-    this.orderItem.count = product.Qty;
-    this.orderItem.productPrice = product.price;
-    this.orderItem.supTotalPrice=product.price*product.Qty;
-    return this.orderItem;
-  }
-
-  addOrderItems() {
-    const items = this.cartItemService.getCartItems();
-    console.log(items);
-
-    for (const item of items) {
-        this.orderItemService.addOrderItem(this.convertProductToOrderItem(item)).
-        subscribe((data:any)=>{console.log(data);});
-        }
-    this.cartItemService.clearCart();
-  }
-  getOrders() {
-    if (this.orderItem.orderId !== 0) {
-      this.addOrderItems();
-      this.getAllOrder();
-    } else {
-      this.getAllOrder();
-
-  }
-}
+  getAllOrder()
+  {
+      const id = sessionStorage.getItem('userid');
+      if (id != null) {
+        this.orderService.GetAllOrdersByUserId(id).subscribe((data: any) => {
+          this.orders = data;
+        });
+      }
+    }
   trackPackage(id: number) {
     this.router.navigate(['/tracking', id]);
   }
@@ -92,18 +58,6 @@ export class OrderComponent implements OnInit {
         });
       }
     });
-
-
   }
-  getAllOrder()
-  {
-
-      const id = sessionStorage.getItem('userid');
-      if (id != null) {
-        this.orderService.GetAllOrdersByUserId(id).subscribe((data: any) => {
-          this.orders = data;
-        });
-      }
-    }
 
 }

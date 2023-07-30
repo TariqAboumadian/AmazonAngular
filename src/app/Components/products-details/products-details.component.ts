@@ -63,8 +63,8 @@ addToCart(product?:IProduct){
   if(product)
   {
     product.Qty=this.Quantity;
-    var result=this.cartItemService.addToCart(product);
-    console.log(result);
+    this.cartItemService.addToCart(product);
+    console.log(product);
   }
 }
 

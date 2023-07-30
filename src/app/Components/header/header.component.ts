@@ -15,7 +15,7 @@ import { UserService } from 'src/app/Services/user.service';
 export class HeaderComponent implements OnInit{
 
   _productName: string="";
-  
+
   get prodname():string{
     return this._productName;
   }
@@ -58,6 +58,8 @@ export class HeaderComponent implements OnInit{
   Logout(){
     this.userService.LogOut();
     sessionStorage.removeItem('token');
+    sessionStorage.removeItem('userid');
+
     this.router.navigate(['/Login']);
   }
 }
