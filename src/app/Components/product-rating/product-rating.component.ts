@@ -15,9 +15,10 @@ export class ProductRatingComponent implements OnInit {
   productName?:string|null;
   productImg?:string|null;
   showButton:boolean=false;
-  countrate:number=1;
+  countrate?:number|null;
   userForm: FormGroup;
   productRate:IRating={} as IRating;
+  isValid:boolean=false;
 constructor(private fb: FormBuilder,private activatedRoute: ActivatedRoute,
   private productRatingService: ProductRatingService,private location:Location){
 this.userForm=this.fb.group({
@@ -52,15 +53,12 @@ get rate(){
     if(this.productId)
     {
     this.productRate.productId=this.productId
-    console.log(this.productRate);
     }
-
     this.productRatingService.AddRate(this.productRate).subscribe(data=>
       {
         console.log(data);
         this.location.back();
       })
-      
    }
 
 selectRate(event:any){
@@ -79,6 +77,7 @@ selectRate(event:any){
       elements[i].classList.remove("checked");
     }
   }
+  this.isValid=true;
 }
 clearRate(){
   const starDiv = document.querySelector('.starRating');
@@ -90,5 +89,6 @@ clearRate(){
     elements[i].classList.remove("checked");
   }
 }
+this.isValid=false;
 }
 }
