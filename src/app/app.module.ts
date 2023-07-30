@@ -25,6 +25,7 @@ import { CartComponent } from './Components/cart/cart.component';
 import { OrderComponent } from './Components/order/order.component';
 import { ShippingaddressComponent } from './Components/shippingaddress/shippingaddress.component';
 import { ScroolpageDirective } from './Directives/scroolpage.directive';
+import { TrackingorderComponent } from './Components/trackingorder/trackingorder.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,6 +45,7 @@ import { ScroolpageDirective } from './Directives/scroolpage.directive';
     OrderComponent,
     ShippingaddressComponent,
     ScroolpageDirective,
+    TrackingorderComponent,
   ],
   imports: [
     BrowserModule,

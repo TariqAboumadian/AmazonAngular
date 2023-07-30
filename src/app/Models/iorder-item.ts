@@ -5,6 +5,7 @@ export interface IOrderItem {
      productId :number;
      productname :string;
      productPrice:number;
+     supTotalPrice:number;
      arabicProductname :string;
      imgUrl :string;
 }
