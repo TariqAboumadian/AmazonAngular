@@ -16,7 +16,7 @@
     <div class="col-md-5 col-sm-12 m-3" (mouseenter)="showButton = true" (mouseleave)="showButton = false">
         <div class="d-flex flex-row justify-content-between">
           <p class="fs-5"><strong>Overall rating</strong></p>
-          <button class="btn btn-link" (click)="clearRate()" id="clear" *ngIf="showButton">clear</button>
+          <button type="button" class="btn btn-link" (click)="clearRate()" id="clear" *ngIf="showButton">clear</button>
         </div>
           <div class="starRating">
           <span id="1" class="fa fa-star" style="font-size:50px;" (click)="selectRate($event)"></span>
@@ -43,7 +43,7 @@
       </div>
       <hr>
       <div class="col-md-5 col-sm-12 m-3 d-flex  flex-row-reverse">
-        <button class="btn btn-warning " style="color: rgb(20, 20, 20);">submit</button>
+        <button type="submit" [disabled]="!isValid" class="btn btn-warning " style="color: rgb(20, 20, 20);">submit</button>
       </div>
     </form>
   </div>

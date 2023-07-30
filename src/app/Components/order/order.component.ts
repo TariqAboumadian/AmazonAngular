@@ -49,7 +49,10 @@ setOrderIdByparam()
     const items= this.cartItemService.getCartItems();
     for (const item of items) {
         this.orderItemService.addOrderItem(this.convertProductToOrderItem(item)).
-        subscribe();
+        subscribe(data=>{
+          console.log(data);
+          
+        });
         }
     this.cartItemService.clearCart();
   }
