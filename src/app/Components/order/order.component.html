@@ -4,7 +4,7 @@
     <div class="card p-2 bg-white border rounded my-2">
       <div class="card-header">
         <span>Arrival Date : {{order.arrivalDate|date:'short'}}</span>
-        <span class="mx-5">Total : </span>
+        <span class="mx-5">Total :{{order.total|currency}} </span>
       </div>
       <div class="d-flex justify-content-center row">
         <div class="col-md-8">
@@ -27,7 +27,7 @@
           (click)="trackPackage(order.id)">Tracking</button>
           <br>
           <button *ngIf="order.status<2" class="btn btn-warning col-md-4 btn-sm my-4"  type="button"
-            (click)="cancleOrder(order.id)">Cancel</button>
+            (click)="cancelOrder(order.id)">Cancel</button>
 
         </div>
       </div>

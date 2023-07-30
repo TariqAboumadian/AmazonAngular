@@ -24,10 +24,8 @@ export class OrderItemService {
   GetAllOrderItemsByOrderId(id:number):Observable<IOrderItem[]>{
     return this.httpclient.get<IOrderItem[]>(`${environment.BaseApiUrl}/OrderItem/AllItemsByOrderId=${id}`);
   }
-  
-  // GetOrderItemById(id:number):Observable<IOrderItem>{
-  //   return this.httpclient.get<IOrderItem>(`${environment.BaseApiUrl}/OrderItem/getItemById?id=${id}`);
-  // }
+
+
 
   DeleteOrderItem(id:number):Observable<IOrderItem>{
     return this.httpclient.delete<IOrderItem>(`${environment.BaseApiUrl}/OrderItem/DeleteItem/${id}`,this.http);
