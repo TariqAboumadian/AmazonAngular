@@ -13,7 +13,7 @@
             <option value="ar">العربيه</option>
           </select>
         </div>
-        <div class="col-md-5 col-sm-12 text-md-center my-sm-1">
+        <div class="col-md-4 col-sm-12 text-center my-sm-1">
           <div class="input-group mx-md-2 text-sm-start" dir="ltr">
             <!-- <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="true">All</button> -->
             <!-- <ul class="dropdown-menu" id="dropdown">
@@ -34,13 +34,13 @@
           </div>
         </div>
 
-      <div class="col-md-4 col-sm-12 text-sm-center my-sm-1">
-        <div class="text-md-center text-sm-center">
-          <button type="button" class="btn btn-outline-light mx-2" [hidden]="isLoggedin"  routerLink="/Login" >{{'Login'|translate}}</button>
-          <button type="button" class="btn btn-warning"  [hidden]="isLoggedin" routerLink="/register" >{{'Sign-up'|translate}}</button>
-          <button type="button" class="btn btn-outline-light mx-2"  [hidden]="!isLoggedin" (click)="Logout()" >{{'Logout'|translate}}</button>
-          <button type="button" routerLink="/Order" class="btn btn-outline-light mx-2" >{{'Order'|translate}}</button>
-          <button type="button" routerLink="/Cart" class="btn btn-outline-light mx-1" ><i class="fa-solid fa-cart-shopping fs-3"></i> {{'Cart'|translate}}</button>
+      <div class="col-md-5 col-sm-12 text-sm-center my-sm-1">
+        <div class="text-md-center text-sm-center d-flex justify-content-evenly">
+          <button type="button" class="btn btn-outline-light mx-2 px-3" [hidden]="isLoggedin"  routerLink="/Login" >{{'Login'|translate}}</button>
+          <button type="button" class="btn btn-warning px-3"  [hidden]="isLoggedin" routerLink="/register" >{{'Sign-up'|translate}}</button>
+          <button type="button" class="btn btn-outline-light mx-2 px-3"  [hidden]="!isLoggedin" (click)="Logout()" >{{'Logout'|translate}}</button>
+          <button type="button" routerLink="/Order" class="btn btn-outline-light mx-2 px-3">{{'Order'|translate}}</button>
+          <button type="button" routerLink="/Cart" class="btn btn-outline-light mx-1 px-3" ><i class="fa-solid fa-cart-shopping fs-3"></i> {{'Cart'|translate}}</button>
         </div>
       </div>
       </div>
