@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="row d-flex justify-content-center p-5">
+        <div class="row d-flex justify-content-center">
+            <div class="col-7">
+        <h3>Change your {{key}}</h3>
+    </div>
+    </div>
+     <div class="col-7 rounded border ms-2 border-1">
+        <div *ngIf="key=='name'|| key=='email'">
+         <p class="text-dark">If you want to change the name associated with your Amazon customer account, you may do so below. Be sure to click the<strong>Save Changes</strong> button when you are done.</p>
+         <div class="m-2">
+            <h6>new  {{key}}:</h6>
+         </div>
+        </div>
+            <container_element [ngSwitch]="key">  
+                <input type="text" [(ngModel)]="userProfile.userName" *ngSwitchCase="'name'">
+                <div *ngSwitchCase="'phone'">
+                    <h6 class="mt-2">old mobile phone number:</h6>
+                    <p class="m-3" >EG +20 {{userProfile.phone}} </p>
+                    <span><strong>mobile number </strong></span><input type="text" [(ngModel)]="userProfile.phone" *ngSwitchCase="'phone'">
+                </div>  
+                <input  type="text" [(ngModel)]="userProfile.emailAddress" *ngSwitchCase="'email'">
+                <input  type="text" *ngSwitchDefault>
+            </container_element>
+            <div class="m-4">
+            <button (click)="saveChanges()" class="btn btn-warning rounded">Save changes</button>
+            </div>
+         </div>
+        </div>
+     </div>
+
+ 

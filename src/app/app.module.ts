@@ -26,6 +26,9 @@ import { OrderComponent } from './Components/order/order.component';
 import { ShippingaddressComponent } from './Components/shippingaddress/shippingaddress.component';
 import { ScroolpageDirective } from './Directives/scroolpage.directive';
 import { TrackingorderComponent } from './Components/trackingorder/trackingorder.component';
+import { UserProfileComponent } from './Components/user-profile/user-profile.component';
+import { ChangeUserProfileComponent } from './Components/change-user-profile/change-user-profile.component';
+import { ChangePasswordComponent } from './Components/change-password/change-password.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,6 +49,9 @@ import { TrackingorderComponent } from './Components/trackingorder/trackingorder
     ShippingaddressComponent,
     ScroolpageDirective,
     TrackingorderComponent,
+    UserProfileComponent,
+    ChangeUserProfileComponent,
+    ChangePasswordComponent,
   ],
   imports: [
     BrowserModule,
