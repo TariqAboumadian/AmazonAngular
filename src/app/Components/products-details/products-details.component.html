@@ -77,7 +77,7 @@
                       <option class="text-center">{{i}}</option>
                     </ng-container>
                   </select>
-                  <a (click)="addToCart(product)" class="btn btn-warning shadow-0 m-2 rounded-pill"> <i class="me-1 fa fa-shopping-basket"></i> {{'Add to cart'|translate}} </a>
+                  <a  data-toggle="modal" data-target="#myModal" (click)="addToCart(product)" class="btn btn-warning shadow-0 m-2 rounded-pill"> <i class="me-1 fa fa-shopping-basket"></i> {{'Add to cart'|translate}} </a>
                 </div>
               </div>
             </div>
@@ -185,4 +185,13 @@
       </div>
     </div>
   </section>
+<div class="container  cont" style=" display:none;background-color:#81b66e;" #popup>
+  <div class="popup1" >
+    <img  src="/assets/images/Clear-Tick-icon.png">
+    <h2>{{product?.name}}</h2>
+    <p> is added to cart</p>
+    <button  class="btn btn-warning shadow-0 m-2 rounded-pill"
+     (click)="close()">Ok</button>
 
+  </div>
+</div>

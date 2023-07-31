@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,ViewChild, ElementRef} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IProduct } from 'src/app/Models/iproduct';
 import { IRating } from 'src/app/Models/irating';
@@ -13,6 +13,9 @@ import { ProductService } from 'src/app/Services/product.service';
 })
 export class ProductsDetailsComponent implements OnInit {
   images:string[]=[];
+  @ViewChild('popup', { static: false }) myElementRef?: ElementRef;
+
+  //@ViewChild('popup') myElementRef: ElementRef|undefined;
   prodid: number=0;
   catid:number=1;
   Quantity:number=1;
@@ -27,7 +30,7 @@ export class ProductsDetailsComponent implements OnInit {
   language:string=localStorage.getItem("lang") || "en";
   constructor(private productservice:ProductService,private route:Router,
     private activerouter:ActivatedRoute,private cartItemService:CartItemService,
-    private productRatingService: ProductRatingService){
+    private productRatingService: ProductRatingService,){
     }
   ngOnInit(): void {
     this.prodid=this.activerouter.snapshot.paramMap.get('prodid')?Number(this.activerouter.snapshot.paramMap.get('prodid')):0;
@@ -64,6 +67,7 @@ addToCart(product?:IProduct){
   {
     product.Qty=this.Quantity;
     this.cartItemService.addToCart(product);
+    this.show();
     console.log(product);
   }
 }
@@ -74,5 +78,20 @@ ProductRate(product?:IProduct){
     this.route.navigate(['ProductRating',{id:this.prodid,name:product.name,imgUrl:product.images[0]}])
   }
 }
+show() {
+  if(this.myElementRef)
+  {
+    const myElement = this.myElementRef?.nativeElement;
+    myElement.style.display="flex";
+  }
+}
+  close()
+  {
+    const myElement = this.myElementRef?.nativeElement;
+    myElement.style.display="none";
+  }
+
 
 }
+
+

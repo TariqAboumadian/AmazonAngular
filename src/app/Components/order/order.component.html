@@ -27,9 +27,20 @@
           (click)="trackPackage(order.id)">Tracking</button>
           <br>
           <button *ngIf="order.status<2" class="btn btn-warning col-md-4 btn-sm my-4"  type="button"
-            (click)="cancelOrder(order.id)">Cancel</button>
-
+            (click)=" show(order.id)">Cancel</button>
         </div>
       </div>
     </div>
   </div>
+
+    <div class="popup1" #popup >
+
+      <h2>Are you sure you want</h2>
+      <h2> to cancel this order</h2>
+      <button  class="btn btn-warning shadow-0 m-2 rounded-pill"
+       (click)="cancelOrder(orderIdDelete)">Yes</button>
+       <button  class="btn btn-warning shadow-0 m-2 rounded-pill"
+       (click)="close()">NO</button>
+    </div>
+
+

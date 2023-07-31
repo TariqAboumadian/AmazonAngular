@@ -66,12 +66,24 @@
         <h4>Order info</h4>
         <br>
         <br>
-        <button *ngIf="order.status<2" (click)="cancelOrder(order.id)"
+        <button *ngIf="order.status<2" (click)="show()"
           style="border: none; margin: 0px;padding:0px;background-color: white;color:rgb(13, 191, 117)  ;text-align: left;">
           <h5>Cancel order</h5>
         </button>
 
       </div>
     </div>
+  </div>
+</div>
+<div class="container  cont" style=" display:none;background-color:#81b66e;" #popup>
+  <div class="popup1" >
+ 
+    <h2>Are you sure you want</h2>
+    <h2> to cancel this order</h2>
+    <button  class="btn btn-warning shadow-0 m-2 rounded-pill"
+     (click)="cancelOrder(order.id)">Yes</button>
+     <button  class="btn btn-warning shadow-0 m-2 rounded-pill"
+     (click)="close()">NO</button>
+
   </div>
 </div>
