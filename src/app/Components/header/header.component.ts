@@ -4,8 +4,10 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { ICategory } from 'src/app/Models/icategory';
 import { ISubCategory } from 'src/app/Models/isub-category';
+import { IUserProfile } from 'src/app/Models/iuser-profile';
 import { CategoryService } from 'src/app/Services/category.service';
 import { ProductService } from 'src/app/Services/product.service';
+import { UserProfileService } from 'src/app/Services/user-profile.service';
 import { UserService } from 'src/app/Services/user.service';
 @Component({
   selector: 'app-header',
@@ -15,7 +17,8 @@ import { UserService } from 'src/app/Services/user.service';
 export class HeaderComponent implements OnInit{
 
   _productName: string="";
-
+  userId?:string;
+  user:IUserProfile={} as IUserProfile; 
   get prodname():string{
     return this._productName;
   }
@@ -28,7 +31,7 @@ export class HeaderComponent implements OnInit{
   isLoggedin:boolean=false;
   constructor(
     private categoryservice: CategoryService,
-    private router: Router,private userService:UserService)
+    private router: Router,private userService:UserService,private userProfileService:UserProfileService)
   {
     this.categoryId=0;
   }
@@ -40,6 +43,11 @@ export class HeaderComponent implements OnInit{
       console.log(this.CategoryList);
     });
     this._lang=localStorage.getItem('lang')||'en';
+
+    this.userId=sessionStorage.getItem('userid')||'';
+    this.userProfileService.getUserById(this.userId).subscribe(data=>{
+      this.user=data;
+    });
   }
   onSearchButtonClick(searchInputValue: string): void {
     this.router.navigate(['/products'], { queryParams: { sentCatid:this.categoryId,term: searchInputValue } });

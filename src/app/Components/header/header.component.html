@@ -37,6 +37,7 @@
 
       <div class="col-md-5 col-sm-12 text-sm-start">
         <div class="text-md-center text-sm-start">
+          <button type="button" class="btn btn-outline-light mx-2" [hidden]="!isLoggedin"  routerLink="/profile" >{{user.userName}}</button>
           <button type="button" class="btn btn-outline-light mx-2" [hidden]="isLoggedin"  routerLink="/Login" >{{'Login'|translate}}</button>
           <button type="button" class="btn btn-warning"  [hidden]="isLoggedin" routerLink="/register" >{{'Sign-up'|translate}}</button>
           <button type="button" class="btn btn-outline-light mx-2"  [hidden]="!isLoggedin" (click)="Logout()" >{{'Logout'|translate}}</button>
