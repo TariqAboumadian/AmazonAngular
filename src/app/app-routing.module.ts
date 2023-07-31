@@ -13,13 +13,10 @@ import { ProductRatingComponent } from './Components/product-rating/product-rati
 import { ShippingaddressComponent } from './Components/shippingaddress/shippingaddress.component';
 import { userAuthGuard } from './Guards/user-auth.guard';
 import { TrackingorderComponent } from './Components/trackingorder/trackingorder.component';
-<<<<<<< HEAD
 import { SubCategoriesComponent } from './Components/sub-categories/sub-categories.component';
-=======
 import { UserProfileComponent } from './Components/user-profile/user-profile.component';
 import { ChangeUserProfileComponent } from './Components/change-user-profile/change-user-profile.component';
 import { ChangePasswordComponent } from './Components/change-password/change-password.component';
->>>>>>> fbeb808de17479a5615cce639033d5543714c26a
 
 const routes: Routes = [
   {path:'',component:ParentComponentComponent,children:[
@@ -39,7 +36,7 @@ const routes: Routes = [
     {path:'profile',component:UserProfileComponent,title:" user profile",canActivate:[userAuthGuard]},
     {path:'changeUserProfile',component:ChangeUserProfileComponent,title:"change user profile",canActivate:[userAuthGuard]},
     {path:'changePassword',component:ChangePasswordComponent,title:"change user password",canActivate:[userAuthGuard]},
-    
+
   ]},
   {path:'register' , component:RegistrationComponent,title:"Registeration"},
   {path:'Login' , component:LoginComponent,title:"Login"}
