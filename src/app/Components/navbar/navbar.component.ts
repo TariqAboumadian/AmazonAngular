@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ICategory } from 'src/app/Models/icategory';
 import { ISubCategory } from 'src/app/Models/isub-category';
 import { CategoryService } from 'src/app/Services/category.service';
@@ -15,12 +16,17 @@ export class NavbarComponent implements OnInit {
   language:string="en";
   itemsperpage:number=10;
   page:number=1;
-  constructor(private categoryservice: CategoryService,private productservices:ProductService){}
+  constructor(private categoryservice: CategoryService,private productservices:ProductService,private router: Router){}
 
   ngOnInit(): void {
+    
     this.categoryservice.GetAllCategories().subscribe(data=>{
       this.CategoryList=data;
     });
+
     this.language=localStorage.getItem("lang") || "en";
+  }
+  getsubcategory(id:number){
+    this.router.navigate([`/Subcategories/${id}`]);
   }
 }

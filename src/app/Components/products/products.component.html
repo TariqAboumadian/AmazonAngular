@@ -28,8 +28,6 @@
 			</div>
 		</div>
 	</article>
-
-
 	<article class="filter-group">
 		<header class="card-header">
 			<a  data-toggle="collapse" data-target="#collapse_3" aria-expanded="true" class="">
@@ -69,33 +67,6 @@
 	</aside>
 <main class="col-md-9">
  <div class="row">
-  <!-- <ng-container *ngFor="let product of products | paginate: { itemsPerPage: itemsperpage, currentPage: page }">
-	<div class="col-md-4 text-center p-2">
-		<figure class="card card-product-grid">
-			<div class="img-wrap">
-				<img [src]="product.images[0]" class="img-fluid w-100" style="height: 250px;" routerLink="/ProductsDetails/{{product.id}}">
-			</div>
-			<figcaption class="info-wrap">
-				<div class="fix-height" style="height: 150px;">
-          <ng-container *ngIf="lnaguage== 'en';else checklang">
-            <h5 class="title">{{product.name}}</h5>
-            <h5 class="title">{{product.price|currency:'EGP':'code'}}</h5>
-          </ng-container>
-					<div class="price-wrap mt-2">
-            <ng-template #checklang>
-              <h5 class="card-title">{{product.arabicName}}</h5>
-              <h5 class="card-title">{{product.price|currency:'ج.م':'symbol'}}</h5>
-            </ng-template>
-					</div>
-				</div>
-				<button (click)="addToCart(product)" class="btn btn-block my-2 btn-warning">{{'Add to cart'|translate}} </button>
-			</figcaption>
-		</figure>
-	</div>
-</ng-container>
-</div>
-<div class="text-center my-4">
-  <pagination-controls *ngIf="products.length>0" (pageChange)="page = $event"></pagination-controls> -->
 <ng-container *ngFor="let product of products | paginate: { itemsPerPage: itemsperpage, currentPage: page }">
   <div class="container">
     <div class="d-flex justify-content-center row">

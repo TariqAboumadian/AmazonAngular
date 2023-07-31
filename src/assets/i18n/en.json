@@ -52,5 +52,21 @@
   "Amazon App Download":"Amazon App Download",
   "Language":"Language",
   "Shopping Cart":"Shopping Cart",
-  "Proceed to Pay":"Proceed to Pay"
+  "Proceed to Pay":"Proceed to Pay",
+  "Arrival Date":"Arrival Date",
+  "Total":"Total",
+  "Tracking":"Tracking",
+  "Cancel":"Cancel",
+  "Arriving in":"Arriving in",
+  "Tracking Order No -":"Tracking Order No -",
+  "Status":"Status",
+  "Shipped Via":"Shipped Via",
+  "Amazon Team":"Amazon Team",
+  "Ordered Today":"Ordered Today",
+  "Shipped":"Shipped",
+  "out For Delivery":"out For Delivery",
+  "Arrived":"Arrived",
+  "Shipping Address":"Shipping Address",
+  "Order info":"Order info",
+  "Cancel order":"Cancel order"
 }

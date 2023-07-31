@@ -6,8 +6,8 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav  mb-lg-0" >
         <li id="catInNav" class="nav-item" *ngFor="let item of CategoryList| paginate: { itemsPerPage: 7, currentPage: page }">
-          <a class="nav-link" routerLinkActive="active" *ngIf="language == 'en'else check">{{item.name}}</a>
-          <ng-template #check><a class="nav-link" routerLinkActive="active">{{item.arabicName}}</a></ng-template>
+          <a class="nav-link" (click)="getsubcategory(item.id)" routerLinkActive="active" *ngIf="language == 'en'else check">{{item.name}}</a>
+          <ng-template #check><a (click)="getsubcategory(item.id)" class="nav-link" routerLinkActive="active">{{item.arabicName}}</a></ng-template>
         </li>
       </ul>
     </div>

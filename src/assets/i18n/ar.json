@@ -52,5 +52,21 @@
   "Returns & Replacements":"طلبات الإرجاع والاستبدال",
   "Amazon App Download":"تحميل تطبيق أمازون",
   "Shopping Cart":"عربه التسوق",
-  "Proceed to Pay":"اتمام عمليه الشراء"
+  "Proceed to Pay":"اتمام عمليه الشراء",
+  "Arrival Date":"تاريخ الوصول",
+  "Total":"الاجمالى",
+  "Tracking":"تتبع الطلب",
+  "Cancel":"الغاء",
+  "Arriving in":"يصل يوم",
+  "Tracking Order No -":"تتبع الطلب رقم -",
+  "Status":"الحاله",
+  "Shipped Via":"الشحن عن طريق",
+  "Amazon Team":"فريق امازن",
+  "Ordered Today":"تم الطلب اليوم",
+  "Shipped":"تم الشحن",
+  "out For Delivery":"خرج للتوصيل",
+  "Arrived":"تم الوصول",
+  "Shipping Address":"عنوان التوصيل",
+  "Order info":"معلومات عن الطلب",
+  "Cancel order":"الغاء الطلب"
 }

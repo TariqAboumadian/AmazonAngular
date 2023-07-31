@@ -13,6 +13,7 @@ import { ProductRatingComponent } from './Components/product-rating/product-rati
 import { ShippingaddressComponent } from './Components/shippingaddress/shippingaddress.component';
 import { userAuthGuard } from './Guards/user-auth.guard';
 import { TrackingorderComponent } from './Components/trackingorder/trackingorder.component';
+import { SubCategoriesComponent } from './Components/sub-categories/sub-categories.component';
 
 const routes: Routes = [
   {path:'',component:ParentComponentComponent,children:[
@@ -24,6 +25,7 @@ const routes: Routes = [
     {path:'Cart',component:CartComponent,title:" Cart"},
     {path:'tracking',component:TrackingorderComponent,title:" Tracking Package"},
     {path:'tracking/:orderId',component:TrackingorderComponent,title:" Tracking Package"},
+    {path:'Subcategories/:catid',component:SubCategoriesComponent,title:"Get Subcategories"},
     {path:'Order',component:OrderComponent,title:" Order",canActivate:[userAuthGuard]},
     {path:'Order/:orderId',component:OrderComponent,title:" Order",canActivate:[userAuthGuard]},
     {path:'ProductRating',component:ProductRatingComponent,title:" Rate",canActivate:[userAuthGuard]},
