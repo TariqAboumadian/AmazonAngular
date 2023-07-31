@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { IOrder } from 'src/app/Models/iorder';
@@ -14,6 +14,8 @@ import { OrderService } from 'src/app/Services/order.service';
   styleUrls: ['./order.component.css'],
 })
 export class OrderComponent implements OnInit {
+  @ViewChild('popup', { static: false }) myElementRef?: ElementRef;
+  orderIdDelete:number = 0;
   orderItem: IOrderItem = {} as IOrderItem;
   order: IOrder = {} as IOrder;
   orders: IOrder[] = [];
@@ -31,7 +33,7 @@ export class OrderComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    
+
     this. getAllOrder();
 
   }
@@ -56,8 +58,22 @@ export class OrderComponent implements OnInit {
         this.orderService.DeleteOrder(id).subscribe(()=>{
           this.getAllOrder();
         });
+        this.close();
       }
     });
   }
+  show(id:number) {
+    this.orderIdDelete=id;
+    if(this.myElementRef)
+    {
+      const myElement = this.myElementRef?.nativeElement;
+      myElement.style.display="block";
+    }
+  }
+    close()
+    {
+      const myElement = this.myElementRef?.nativeElement;
+      myElement.style.display="none";
+    }
 
 }
