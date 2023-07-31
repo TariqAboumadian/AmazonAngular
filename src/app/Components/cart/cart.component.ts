@@ -11,7 +11,7 @@ import { OrderService } from 'src/app/Services/order.service';
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })
-export class CartComponent implements OnInit {
+export class CartComponent implements OnInit,OnChanges {
   products:IProduct[]|undefined;
   Order:IOrder={} as IOrder;
   numbers:number[]=[];
@@ -24,7 +24,11 @@ export class CartComponent implements OnInit {
     private orderService:OrderService,private router:Router){
     this.numbers = [...Array(10).keys()].map(i => i + 1);
   }
+  ngOnChanges(changes: SimpleChanges): void {
+
+  }
   ngOnInit(): void {
+    console.log(this.cartItemService.getCartItems());
     this. language=localStorage.getItem('lang') || "en";
     this.ShowItemCart();
     const len= this.cartItemService.getCartItems().length;

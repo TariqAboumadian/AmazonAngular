@@ -67,9 +67,19 @@
         <br>
         <button class="btn btn-warning" *ngIf="order.status<2" (click)="cancelOrder(order.id)">
           <h5>{{'Cancel order'|translate}}</h5>
-        </button>
-
       </div>
     </div>
+  </div>
+</div>
+<div class="container  cont" style=" display:none;background-color:#81b66e;" #popup>
+  <div class="popup1" >
+
+    <h2>Are you sure you want</h2>
+    <h2> to cancel this order</h2>
+    <button  class="btn btn-warning shadow-0 m-2 rounded-pill"
+     (click)="cancelOrder(order.id)">Yes</button>
+     <button  class="btn btn-warning shadow-0 m-2 rounded-pill"
+     (click)="close()">NO</button>
+
   </div>
 </div>

@@ -32,7 +32,9 @@ export class ShippingaddressComponent implements OnInit {
   Order:IOrder={} as IOrder;
   shippingForm: FormGroup;
   totalPrice: number=0;
- 
+  orderId:number=0;
+  imgName:string='';
+  orderItem: IOrderItem = {} as IOrderItem;
 
   constructor( private shippingaddressService:ShippingaddressService,
     private cookiesService:CookieService,private cartItemService:CartItemService,
@@ -150,7 +152,30 @@ export class ShippingaddressComponent implements OnInit {
         console.log(data);
         });
     }
+    convertProductToOrderItem(product: IProduct): IOrderItem {
+      this.orderItem.orderId=this.orderId;
+      this.orderItem.productId = product.id;
+      this.orderItem.productname = product.name;
+      this.orderItem.arabicProductname = product.arabicName;
+      this.imgName= product.images[0];
+      console.log(product.images[0]);
+      this.orderItem.imgUrl = this.imgName;
+      this.orderItem.count = product.Qty;
+      this.orderItem.productPrice = product.price;
+      this.orderItem.supTotalPrice=product.price*product.Qty;
+      return this.orderItem;
+    }
 
+    addOrderItems() {
+      const items = this.cartItemService.getCartItems();
+      console.log(items);
+
+      for (const item of items) {
+          this.orderItemService.addOrderItem(this.convertProductToOrderItem(item)).
+          subscribe((data:any)=>{console.log(data);});
+          }
+      this.cartItemService.clearCart();
+    }
 
     createOrder(){
       var date = new Date();
@@ -166,8 +191,9 @@ export class ShippingaddressComponent implements OnInit {
       }
       console.log(this.Order);
       this.orderService.CreateOrder(this.Order).subscribe(
-         (data:any) => {
-
+         (data:IOrder) => {
+          this.orderId=data.id;
+          this.addOrderItems();
              this.navigateToOrder(data.id);
 
       })

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { IOrder } from 'src/app/Models/iorder';
@@ -14,6 +14,8 @@ import { OrderService } from 'src/app/Services/order.service';
   styleUrls: ['./order.component.css'],
 })
 export class OrderComponent implements OnInit {
+  @ViewChild('popup', { static: false }) myElementRef?: ElementRef;
+  orderIdDelete:number = 0;
   orderItem: IOrderItem = {} as IOrderItem;
   order: IOrder = {} as IOrder;
   orders: IOrder[] = [];
@@ -31,55 +33,21 @@ export class OrderComponent implements OnInit {
 
   ) {}
 
-
-
   ngOnInit(): void {
-    this.setOrderIdByparam();
-    this.getOrders();
-  // this.addOrderItems();
+
+    this. getAllOrder();
 
   }
 
-  setOrderIdByparam() {
-    this.orderId = this.activatedRoute.snapshot.paramMap.get(
-      'orderId'
-    )
-      ? Number(this.activatedRoute.snapshot.paramMap.get('orderId'))
-      : 0;
-  }
-  convertProductToOrderItem(product: IProduct): IOrderItem {
-    this.orderItem.orderId=this.orderId;
-    this.orderItem.productId = product.id;
-    this.orderItem.productname = product.name;
-    this.orderItem.arabicProductname = product.arabicName;
-    this.imgName= product.images[0];
-    console.log(product.images[0]);
-    this.orderItem.imgUrl = this.imgName;
-    this.orderItem.count = product.Qty;
-    this.orderItem.productPrice = product.price;
-    this.orderItem.supTotalPrice=product.price*product.Qty;
-    return this.orderItem;
-  }
-
-  addOrderItems() {
-    const items = this.cartItemService.getCartItems();
-    console.log(items);
-
-    for (const item of items) {
-        this.orderItemService.addOrderItem(this.convertProductToOrderItem(item)).
-        subscribe((data:any)=>{console.log(data);});
-        }
-    this.cartItemService.clearCart();
-  }
-  getOrders() {
-    if (this.orderItem.orderId !== 0) {
-      this.addOrderItems();
-      this.getAllOrder();
-    } else {
-      this.getAllOrder();
-
-  }
-}
+  getAllOrder()
+  {
+      const id = sessionStorage.getItem('userid');
+      if (id != null) {
+        this.orderService.GetAllOrdersByUserId(id).subscribe((data: any) => {
+          this.orders = data;
+        });
+      }
+    }
   trackPackage(id: number) {
     this.router.navigate(['/tracking', id]);
   }
@@ -91,20 +59,22 @@ export class OrderComponent implements OnInit {
         this.orderService.DeleteOrder(id).subscribe(()=>{
           this.getAllOrder();
         });
+        this.close();
       }
     });
-
-
   }
-  getAllOrder()
-  {
-
-      const id = sessionStorage.getItem('userid');
-      if (id != null) {
-        this.orderService.GetAllOrdersByUserId(id).subscribe((data: any) => {
-          this.orders = data;
-        });
-      }
+  show(id:number) {
+    this.orderIdDelete=id;
+    if(this.myElementRef)
+    {
+      const myElement = this.myElementRef?.nativeElement;
+      myElement.style.display="block";
+    }
+  }
+    close()
+    {
+      const myElement = this.myElementRef?.nativeElement;
+      myElement.style.display="none";
     }
 
 }

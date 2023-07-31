@@ -57,7 +57,7 @@ export class CartItemService {
    for (const item of products) {
      if(item.id==product.id)
      {
-       item.Qty+=product.Qty;
+       item.Qty+=Number(product.Qty);
        this.flag=true;
        break;
      }
