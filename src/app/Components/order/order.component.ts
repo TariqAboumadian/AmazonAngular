@@ -1,6 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
 import { IOrder } from 'src/app/Models/iorder';
 import { IOrderItem } from 'src/app/Models/iorder-item';
 import { IProduct } from 'src/app/Models/iproduct';
@@ -22,13 +21,12 @@ export class OrderComponent implements OnInit {
   total: number = 0;
   orderId:number=0;
   imgName:string='';
-  language:string=localStorage.getItem('lang') || "en";
+  language:string=sessionStorage.getItem('lang') || "en";
   constructor(
     private cartItemService: CartItemService,
     private orderItemService: OrderItemService,
     private orderService: OrderService,
     private activatedRoute: ActivatedRoute,
-    private cookieservice: CookieService,
     private router: Router,
 
   ) {}

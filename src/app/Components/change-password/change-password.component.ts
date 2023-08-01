@@ -27,7 +27,7 @@ export class ChangePasswordComponent implements OnInit {
     })
   }
   ngOnInit(): void {
-   this.userId = sessionStorage.getItem('userid')||'';
+   this.userId = localStorage.getItem('userid')||'';
   }
   get oldPassword(){
     return this.form.get('oldPassword');

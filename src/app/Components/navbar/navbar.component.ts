@@ -24,7 +24,7 @@ export class NavbarComponent implements OnInit {
       this.CategoryList=data;
     });
 
-    this.language=localStorage.getItem("lang") || "en";
+    this.language=sessionStorage.getItem("lang") || "en";
   }
   getsubcategory(id:number){
     this.router.navigate([`/Subcategories/${id}`]);

@@ -14,7 +14,7 @@ export class ProductService {
       headers:new HttpHeaders(
         {
             'content-type': 'application/json',
-            'accept-language':localStorage.getItem('lang')||'en'
+            'accept-language':sessionStorage.getItem('lang')||'en'
         })
   }
 }

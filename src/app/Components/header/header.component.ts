@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { CookieService } from 'ngx-cookie-service';
 import { ICategory } from 'src/app/Models/icategory';
 import { ISubCategory } from 'src/app/Models/isub-category';
 import { IUserProfile } from 'src/app/Models/iuser-profile';
@@ -35,7 +34,6 @@ export class HeaderComponent implements OnInit{
   constructor(
     private categoryservice: CategoryService,
     private router: Router,private userService:UserService,
-    private cookiesService:CookieService,
     private cartItemService:CartItemService
     ,private userProfileService:UserProfileService)
   {
@@ -51,7 +49,7 @@ export class HeaderComponent implements OnInit{
 
     });
 
-    this._lang=localStorage.getItem('lang')||'en';
+    this._lang=sessionStorage.getItem('lang')||'en';
 
     this.userId=sessionStorage.getItem('userid')||'';
     this.userProfileService.getUserById(this.userId).subscribe(data=>{
@@ -68,7 +66,7 @@ export class HeaderComponent implements OnInit{
   }
   set Changlang(value:string){
     this._lang=value;
-    localStorage.setItem('lang',value);
+    sessionStorage.setItem('lang',value);
     window.location.reload();
   }
 

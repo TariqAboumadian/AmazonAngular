@@ -3,7 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { IRating } from 'src/app/Models/irating';
+import { IUserProfile } from 'src/app/Models/iuser-profile';
 import { ProductRatingService } from 'src/app/Services/product-rating.service';
+import { UserProfileService } from 'src/app/Services/user-profile.service';
 @Component({
   selector: 'app-product-rating',
   templateUrl: './product-rating.component.html',
@@ -19,8 +21,10 @@ export class ProductRatingComponent implements OnInit {
   userForm: FormGroup;
   productRate:IRating={} as IRating;
   isValid:boolean=false;
+  userId?:string;
+  user:IUserProfile={} as IUserProfile;
 constructor(private fb: FormBuilder,private activatedRoute: ActivatedRoute,
-  private productRatingService: ProductRatingService,private location:Location){
+  private productRatingService: ProductRatingService,private location:Location,private userProfileService:UserProfileService){
 this.userForm=this.fb.group({
   review:[''],
  userName:[''],
@@ -42,7 +46,10 @@ get rate(){
       this.productId=Number(paramMap.get('id'));
       this.productName=paramMap.get('name');
     this.productImg= paramMap.get('imgUrl');
-    console.log(this.productId);
+    this.userId=sessionStorage.getItem('userid')||'';
+    this.userProfileService.getUserById(this.userId).subscribe(data=>{
+      this.user=data;
+    });
    })
   }
   addRate(){

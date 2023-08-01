@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
 import { BehaviorSubject } from 'rxjs';
 import { IUserLogin } from 'src/app/Models/iuser-login';
 import { UserService } from 'src/app/Services/user.service';
@@ -18,7 +17,6 @@ export class LoginComponent {
    isCheck:boolean=false;
    userLoggedBehSubject:BehaviorSubject<boolean>;
    constructor(private userService:UserService,private router:Router,
-               private cookiesService:CookieService,
                private fb:FormBuilder){
                 this.userLoggedBehSubject=new BehaviorSubject<boolean>(this.isLogged);
                  this.form = this.fb.group({
@@ -41,8 +39,8 @@ export class LoginComponent {
        (data) => {
         sessionStorage.setItem('token', data.token)
         sessionStorage.setItem('userid', data.userId)
-         if (!this.cookiesService.check(data.userId)) {
-           this.cookiesService.set(data.userId,'');
+         if (!localStorage.getItem('data.userId')===null) {
+           localStorage.setItem(data.userId,'');
          }    
          this.router.navigate(['/Home']);
        },

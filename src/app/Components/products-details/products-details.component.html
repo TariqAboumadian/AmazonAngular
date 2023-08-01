@@ -151,17 +151,17 @@
                 <hr>
                 <ng-container *ngFor="let prod of products| paginate: { itemsPerPage: 5, currentPage: 1 }">
                   <div class="d-flex mb-3">
-                    <a href="#" class="me-3">
+                    <a  routerLink="/ProductsDetails/{{prod.id}}" class="me-3">
                       <img [src]="prod.images[0]" style="min-width: 96px; height: 96px;" class="img-md  img-thumbnail" />
                     </a>
                     <div class="info mx-3">
                       <ng-container *ngIf="language=='en';else lang">
-                        <a href="#" class="nav-link mb-1">
+                        <a  routerLink="/ProductsDetails/{{prod.id}}" class="nav-link mb-1">
                           {{prod?.name}}
                         </a>
                       </ng-container>
                       <ng-template #lang>
-                        <a href="#" class="nav-link mb-1">
+                        <a routerLink="/ProductsDetails/{{prod.id}}" class="nav-link mb-1">
                           {{prod?.arabicName}}
                         </a>
                       </ng-template>

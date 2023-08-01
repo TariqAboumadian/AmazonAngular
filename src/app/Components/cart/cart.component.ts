@@ -1,6 +1,5 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
 import { IOrder } from 'src/app/Models/iorder';
 import { IProduct } from 'src/app/Models/iproduct';
 import { CartItemService } from 'src/app/Services/cart-item.service';
@@ -19,8 +18,8 @@ export class CartComponent implements OnInit,OnChanges {
   isCheck:boolean=false;
   numOfItems:number=0;
   totalPrice:number=0;
-  language:string=localStorage.getItem('lang') || "en";
-  constructor(private cartItemService:CartItemService,private cookiesService:CookieService,
+  language:string=sessionStorage.getItem('lang') || "en";
+  constructor(private cartItemService:CartItemService,
     private orderService:OrderService,private router:Router){
     this.numbers = [...Array(10).keys()].map(i => i + 1);
   }
@@ -29,7 +28,7 @@ export class CartComponent implements OnInit,OnChanges {
   }
   ngOnInit(): void {
     console.log(this.cartItemService.getCartItems());
-    this. language=localStorage.getItem('lang') || "en";
+    this. language=sessionStorage.getItem('lang') || "en";
     this.ShowItemCart();
     const len= this.cartItemService.getCartItems().length;
     if(len>0)
@@ -41,7 +40,7 @@ export class CartComponent implements OnInit,OnChanges {
 
   ShowItemCart(){
     this.products= this.cartItemService.getCartItems();
-    this.cookiesService.set('counter', JSON.stringify(this.cartItemService.getCartItems().length));
+    localStorage.setItem('counter', JSON.stringify(this.cartItemService.getCartItems().length));
     for (var i=0;i<this.products.length;i++) {
       this.selectedOption[i]=this.products[i].Qty;
     }

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
 import { Icity } from 'src/app/Models/icity';
 import { Icountry } from 'src/app/Models/icountry';
 import { Igetshippingaddress } from 'src/app/Models/igetshippingaddress';
@@ -38,7 +37,7 @@ export class ShippingaddressComponent implements OnInit {
   orderItem: IOrderItem = {} as IOrderItem;
 
   constructor( private shippingaddressService:ShippingaddressService,
-    private cookiesService:CookieService,private cartItemService:CartItemService,
+    private cartItemService:CartItemService,
     private orderService:OrderService,private router:Router,
     private orderItemService:OrderItemService){
 

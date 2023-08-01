@@ -29,6 +29,6 @@ export class SubCategoriesComponent {
         });
       });
       //this.catid=this.activerouter.snapshot.paramMap.get('catid')?Number(this.activerouter.snapshot.paramMap.get('catid')):0;
-      this.language=localStorage.getItem('lang') || "en";
+      this.language=sessionStorage.getItem('lang') || "en";
     }
 }
