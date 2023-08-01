@@ -51,12 +51,12 @@ export class OrderComponent implements OnInit {
   trackPackage(id: number) {
     this.router.navigate(['/tracking', id]);
   }
-  cancelOrder(id: number) {
-     this.orderService.GetOrderById(id).subscribe((data:IOrder) =>
+  cancelOrder() {
+     this.orderService.GetOrderById( this.orderIdDelete).subscribe((data:IOrder) =>
      {
       this.order=data;
       if (this.order.status < 2) {
-        this.orderService.DeleteOrder(id).subscribe(()=>{
+        this.orderService.DeleteOrder(this.orderIdDelete).subscribe(()=>{
           this.getAllOrder();
         });
         this.close();

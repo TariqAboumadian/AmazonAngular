@@ -123,12 +123,12 @@
       </ng-container> -->
       <ng-container [ngSwitch]="isCheck">
         <ng-container *ngSwitchCase="true">
-          <button class="btn btn-warning" (click)="createOrder()">Proceed to order</button>
+          <button *ngIf="isCheckLen" class="btn btn-warning" (click)="createOrder()">Proceed to order</button>
         </ng-container>
         <ng-container *ngSwitchCase="false">
-          <button class="btn btn-warning"> use this address</button>
+          <button  class="btn btn-warning"> use this address</button>
         </ng-container>
-       
+
     </ng-container>
       </div>
   <div class="card-body">

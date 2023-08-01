@@ -65,7 +65,7 @@
         <h4>{{'Order info'|translate}}</h4>
         <br>
         <br>
-        <button class="btn btn-warning" *ngIf="order.status<2" (click)="cancelOrder(order.id)">
+        <button class="btn btn-warning col-md-5" *ngIf="order.status<2" (click)="show()">
           <h5>{{'Cancel order'|translate}}</h5></button>
       </div>
     </div>

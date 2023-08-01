@@ -17,7 +17,7 @@ export class TrackingorderComponent implements OnInit {
   order: IOrder = {} as IOrder;
   shippingAddress: Igetshippingaddress = {} as Igetshippingaddress;
   id: number = 0;
- 
+
   constructor(
     private orderService: OrderService,
     private activatedRoute: ActivatedRoute,
@@ -67,7 +67,7 @@ export class TrackingorderComponent implements OnInit {
     if(this.myElementRef)
     {
       const myElement = this.myElementRef?.nativeElement;
-      myElement.style.display="flex";
+      myElement.style.display="block";
     }
   }
     close()

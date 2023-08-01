@@ -30,11 +30,12 @@
             </div>
           </div>
         </div>
-        <div class=" col-md-4 mt-4 "><button class="btn col-md-4 btn-warning btn-sm" type="button"
+        <div class=" col-md-4 mt-4 "><button  *ngIf="order.status<3" class="btn col-md-4 btn-warning btn-sm" type="button"
           (click)="trackPackage(order.id)">{{'Tracking'|translate}}</button>
           <br>
+          <h3  style="color: green;font-weight: bold;" *ngIf="order.status>=3" >Delivered</h3>
           <button *ngIf="order.status<2" class="btn btn-warning col-md-4 btn-sm my-4"  type="button"
-            (click)="cancelOrder(order.id)">{{'Cancel'|translate}}</button>
+            (click)="show(order.id)">{{'Cancel'|translate}}</button>
         </div>
       </div>
     </div>
@@ -45,7 +46,7 @@
       <h2>Are you sure you want</h2>
       <h2> to cancel this order</h2>
       <button  class="btn btn-warning shadow-0 m-2 rounded-pill"
-       (click)="cancelOrder(orderIdDelete)">Yes</button>
+       (click)="cancelOrder()">Yes</button>
        <button  class="btn btn-warning shadow-0 m-2 rounded-pill"
        (click)="close()">NO</button>
     </div>

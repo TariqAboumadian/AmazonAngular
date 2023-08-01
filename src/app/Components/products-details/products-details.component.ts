@@ -82,7 +82,7 @@ show() {
   if(this.myElementRef)
   {
     const myElement = this.myElementRef?.nativeElement;
-    myElement.style.display="flex";
+    myElement.style.display="block";
   }
 }
   close()

@@ -29,6 +29,7 @@ export class ShippingaddressComponent implements OnInit {
   _countryId:number=0;
   userid:string='';
   isCheck:boolean=false;
+  isCheckLen:boolean=false;
   Order:IOrder={} as IOrder;
   shippingForm: FormGroup;
   totalPrice: number=0;
@@ -55,7 +56,8 @@ export class ShippingaddressComponent implements OnInit {
       this.getAllcountries();
       this. getAllCitiesBycountryId();
      this.GetShippingAddress();
-     this.numOfitemCart()
+     this.numOfitemCart();
+     this.checklenth();
 
      render({
       id:"#myPaypalButtons ",
@@ -165,10 +167,19 @@ export class ShippingaddressComponent implements OnInit {
       this.orderItem.supTotalPrice=product.price*product.Qty;
       return this.orderItem;
     }
+    checklenth()
+    {
+      const items = this.cartItemService.getCartItems();
+      if(items.length>0)
+      {
+       this.isCheckLen=true;
+      }
+
+    }
 
     addOrderItems() {
       const items = this.cartItemService.getCartItems();
-      console.log(items);
+
 
       for (const item of items) {
           this.orderItemService.addOrderItem(this.convertProductToOrderItem(item)).
