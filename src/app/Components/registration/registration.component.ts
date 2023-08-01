@@ -22,12 +22,12 @@ export class RegistrationComponent {
       EmailAddress:['',[Validators.required]],
       Password: ['', [Validators.required,Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$')]],
       ConfirmPassword: ['', [Validators.required,Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$')]]
-    }, 
-    { 
+    },
+    {
       validator: ConfirmedValidator('Password', 'ConfirmPassword')
     })
   }
- 
+
 
   get userName(){
     return this.form.get('userName');
@@ -50,18 +50,18 @@ export class RegistrationComponent {
     this.user.Phone=this.user.EmailAddress;
     this.user.EmailAddress=undefined;
     }
-    console.log(this.user);
-    
+   // console.log(this.user);
+
     this.userService.Register(this.user).subscribe(
       (data)=>{
       this.router.navigate(['/Login'])
-      
+
   },
   (error)=>{
-    this.contentErrorMessage=error.error[0].description;
+    this.contentErrorMessage="Invalid Registration,Try again";
     console.log(this.contentErrorMessage);
     this.showErrorMessage=true
-    
+
   }
   );
    }
