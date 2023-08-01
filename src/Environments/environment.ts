@@ -1,4 +1,4 @@
 export const environment = {
-  production:false,
-  BaseApiUrl:'http://localhost:26983/api'
+  production:true,
+  BaseApiUrl:'http://tariqslama12-001-site1.atempurl.com'
 };
