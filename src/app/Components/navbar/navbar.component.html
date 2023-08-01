@@ -4,10 +4,10 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav  mb-lg-0" >
+      <ul class="navbar-nav  mb-lg-0" style="cursor: pointer;">
         <li id="catInNav" class="nav-item" *ngFor="let item of CategoryList| paginate: { itemsPerPage: 7, currentPage: page }">
-          <a class="nav-link" (click)="getsubcategory(item.id)" routerLinkActive="active" *ngIf="language == 'en'else check">{{item.name}}</a>
-          <ng-template #check><a (click)="getsubcategory(item.id)" class="nav-link" routerLinkActive="active">{{item.arabicName}}</a></ng-template>
+          <a class="nav-link" (click)="getsubcategory(item.id)"  *ngIf="language == 'en'else check">{{item.name}}</a>
+          <ng-template #check><a (click)="getsubcategory(item.id)" class="nav-link" >{{item.arabicName}}</a></ng-template>
         </li>
       </ul>
     </div>
