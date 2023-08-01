@@ -30,6 +30,7 @@ import { SubCategoriesComponent } from './Components/sub-categories/sub-categori
 import { UserProfileComponent } from './Components/user-profile/user-profile.component';
 import { ChangeUserProfileComponent } from './Components/change-user-profile/change-user-profile.component';
 import { ChangePasswordComponent } from './Components/change-password/change-password.component';
+import { NotfoundComponent } from './Components/notfound/notfound.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +54,8 @@ import { ChangePasswordComponent } from './Components/change-password/change-pas
     SubCategoriesComponent,
     UserProfileComponent,
     ChangeUserProfileComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    NotfoundComponent
   ],
   imports: [
     BrowserModule,
