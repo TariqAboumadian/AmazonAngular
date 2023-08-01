@@ -2,9 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { CookieService } from 'ngx-cookie-service';
 import { ICategory } from 'src/app/Models/icategory';
 import { ISubCategory } from 'src/app/Models/isub-category';
 import { IUserProfile } from 'src/app/Models/iuser-profile';
+import { CartItemService } from 'src/app/Services/cart-item.service';
 import { CategoryService } from 'src/app/Services/category.service';
 import { ProductService } from 'src/app/Services/product.service';
 import { UserProfileService } from 'src/app/Services/user-profile.service';
@@ -18,7 +20,8 @@ export class HeaderComponent implements OnInit{
 
   _productName: string="";
   userId?:string;
-  user:IUserProfile={} as IUserProfile; 
+  numberItemsInCart:number=0;
+  user:IUserProfile={} as IUserProfile;
   get prodname():string{
     return this._productName;
   }
@@ -31,17 +34,23 @@ export class HeaderComponent implements OnInit{
   isLoggedin:boolean=false;
   constructor(
     private categoryservice: CategoryService,
-    private router: Router,private userService:UserService,private userProfileService:UserProfileService)
+    private router: Router,private userService:UserService,
+    private cookiesService:CookieService,
+    private cartItemService:CartItemService
+    ,private userProfileService:UserProfileService)
   {
     this.categoryId=0;
   }
 
   ngOnInit(): void {
     this.isLoggedin= this.userService.isLoggedIn;
+    this.numberItemsInCart= this.cartItemService.getCartItems().length;
     this.categoryservice.GetAllCategories().subscribe(data=>{
       this.CategoryList=data;
       console.log(this.CategoryList);
+
     });
+
     this._lang=localStorage.getItem('lang')||'en';
 
     this.userId=sessionStorage.getItem('userid')||'';
@@ -70,4 +79,8 @@ export class HeaderComponent implements OnInit{
 
     this.router.navigate(['/Login']);
   }
+  goToProfile(){
+    this.router.navigate(['/profile']);
+  }
+
 }

@@ -17,9 +17,10 @@ import { SubCategoriesComponent } from './Components/sub-categories/sub-categori
 import { UserProfileComponent } from './Components/user-profile/user-profile.component';
 import { ChangeUserProfileComponent } from './Components/change-user-profile/change-user-profile.component';
 import { ChangePasswordComponent } from './Components/change-password/change-password.component';
+import { NotfoundComponent } from './Components/notfound/notfound.component';
 
 const routes: Routes = [
-  {path:'',component:ParentComponentComponent,children:[
+    {path:'',component:ParentComponentComponent,children:[
     {path:'',redirectTo:"Home",pathMatch:'full'},
     {path:'Home',component:BodyComponent,title:"Home"},
     {path:'Products/:catid',component:ProductsComponent,title:"Get Products"},
@@ -35,11 +36,13 @@ const routes: Routes = [
     {path:'shipping',component:ShippingaddressComponent,title:" Shipping Address",canActivate:[userAuthGuard]},
     {path:'profile',component:UserProfileComponent,title:" user profile",canActivate:[userAuthGuard]},
     {path:'changeUserProfile',component:ChangeUserProfileComponent,title:"change user profile",canActivate:[userAuthGuard]},
-    {path:'changePassword',component:ChangePasswordComponent,title:"change user password",canActivate:[userAuthGuard]},
+    {path:'changePassword',component:ChangePasswordComponent,title:"change user password",canActivate:[userAuthGuard]}
 
   ]},
   {path:'register' , component:RegistrationComponent,title:"Registeration"},
-  {path:'Login' , component:LoginComponent,title:"Login"}
+  {path:'Login' , component:LoginComponent,title:"Login"},
+  {path:'Login' , component:LoginComponent,title:"Login"},
+  {path:'**',component:NotfoundComponent,title:"Not found"},
 ];
 
 @NgModule({

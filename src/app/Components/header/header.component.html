@@ -38,9 +38,11 @@
         <div class="text-md-center text-sm-center d-flex justify-content-evenly">
           <button type="button" class="btn btn-outline-light mx-2 px-3" [hidden]="isLoggedin"  routerLink="/Login" >{{'Login'|translate}}</button>
           <button type="button" class="btn btn-warning px-3"  [hidden]="isLoggedin" routerLink="/register" >{{'Sign-up'|translate}}</button>
+          <span class="mx-2"><strong>Welcome<br>{{user.userName}}</strong></span>
+          <button type="button" class="btn btn-outline-light mx-2 px-3"  [hidden]="!isLoggedin" (click)="goToProfile()" >my profile</button>
           <button type="button" class="btn btn-outline-light mx-2 px-3"  [hidden]="!isLoggedin" (click)="Logout()" >{{'Logout'|translate}}</button>
           <button type="button" routerLink="/Order" class="btn btn-outline-light mx-2 px-3">{{'Order'|translate}}</button>
-          <button type="button" routerLink="/Cart" class="btn btn-outline-light mx-1 px-3" ><i class="fa-solid fa-cart-shopping fs-3"></i> {{'Cart'|translate}}</button>
+          <button type="button" routerLink="/Cart" class="btn btn-outline-light mx-1 px-3" ><i class="fa-solid fa-cart-shopping fs-3"></i>{{'Cart'|translate}}</button>
         </div>
       </div>
       </div>
