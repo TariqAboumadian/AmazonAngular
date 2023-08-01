@@ -39,6 +39,20 @@
   padding: 0 30px 30px;
   color:whitesmoke;
 }
+.popup1ar{
+  width:400px;
+  background:#061b2f;
+  border-radius:10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-150%,-20%);
+  text-align: center;
+  padding: 0 30px 30px;
+  color:whitesmoke;
+}
+
+
 .cont{
   display:flex;
 }
@@ -49,13 +63,40 @@
   border-radius:50%;
   box-shadow:  3px 5px rgba(0,0,0,0.3) ;
 }
+
+.popup1ar img
+{
+  width: 100px;
+  margin-top: -50px;
+  border-radius:50%;
+  box-shadow:  3px 5px rgba(0,0,0,0.3) ;
+}
+
 .popup1 h2
 {
   font-size: 30px;
   font-weight: 500;
   margin: 30px 0 10px;
 }
+
+.popup1ar h2
+{
+  font-size: 30px;
+  font-weight: 500;
+  margin: 30px 0 10px;
+}
+
 .popup1 button
+{
+  width: 20%;
+  margin-top: 50px;
+  padding: 10px 0;
+  outline: none ;
+  cursor: pointer;
+}
+
+
+.popup1ar button
 {
   width: 20%;
   margin-top: 50px;

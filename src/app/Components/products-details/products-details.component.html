@@ -185,13 +185,26 @@
       </div>
     </div>
   </section>
-<div class="container  cont" style=" display:none;background-color:#81b66e;" #popup>
-  <div class="popup1" >
-    <img  src="/assets/images/Clear-Tick-icon.png">
-    <h2>{{product?.name}}</h2>
-    <p> is added to cart</p>
-    <button  class="btn btn-warning shadow-0 m-2 rounded-pill"
-     (click)="close()">Ok</button>
+  <ng-container *ngIf="language=='en';else ar">
+    <div class="container  cont" style=" display:none;background-color:#81b66e;" #popup>
+      <div class="popup1" >
+        <img  src="/assets/images/Clear-Tick-icon.png">
+        <h2>{{product?.name}}</h2>
+        <p> is added to cart</p>
+        <button  class="btn btn-warning shadow-0 m-2 rounded-pill"
+         (click)="close()">Ok</button>
+         </div>
+         </div>
+  </ng-container>
+  <ng-template #ar>
+    <div class="container  cont" style=" display:none;background-color:#81b66e;" #popup>
+      <div class="popup1ar" >
+        <img  src="/assets/images/Clear-Tick-icon.png">
+        <h2>{{product?.name}}</h2>
+        <p> is added to cart</p>
+        <button  class="btn btn-warning shadow-0 m-2 rounded-pill"
+         (click)="close()">Ok</button>
+         </div>
+         </div>
+  </ng-template>
 
-  </div>
-</div>
