@@ -35,6 +35,8 @@ export class ShippingaddressComponent implements OnInit {
   totalPrice: number=0;
   orderId:number=0;
   imgName:string='';
+  paidCompleted:boolean=false;
+  checkPaid:boolean=false;
   orderItem: IOrderItem = {} as IOrderItem;
 
   constructor( private shippingaddressService:ShippingaddressService,
@@ -62,12 +64,14 @@ export class ShippingaddressComponent implements OnInit {
      render({
       id:"#myPaypalButtons ",
       currency:"USD",
-      value:"100.00",
+      value:this.totalPrice.toString(),
       onApprove:(details)=>{
+        //this.paidCompleted=true;
+        //this.createOrder();
         alert("transaction successfully");
       }
     });
-
+    this.checkPaid=this.paidCompleted;
     }
 
     get name(){
