@@ -1,4 +1,11 @@
 
+<div *ngIf="orders!=null" class="d-flex justify-content-center align-items-center text-center" style="min-height: 400px;">
+  <div class="col-8">
+  <h4 class="text-dark">You have not made any orders yet.<br> You can easily order any product from our website.<br>
+    </h4>
+    <button class="col-md-3 btn btn-warning" routerLink="/Home">go Home</button>
+    </div>
+</div>
 <div class="container">
   <div *ngFor="let order of orders">
     <div class="card p-2 bg-white border rounded my-2">
