@@ -49,7 +49,7 @@ export class HeaderComponent implements OnInit{
 
     });
 
-    this._lang=sessionStorage.getItem('lang')||'en';
+    this._lang=localStorage.getItem('lang')||'en';
 
     this.userId=sessionStorage.getItem('userid')||'';
     this.userProfileService.getUserById(this.userId).subscribe(data=>{
@@ -66,7 +66,7 @@ export class HeaderComponent implements OnInit{
   }
   set Changlang(value:string){
     this._lang=value;
-    sessionStorage.setItem('lang',value);
+    localStorage.setItem('lang',value);
     window.location.reload();
   }
 

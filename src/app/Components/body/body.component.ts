@@ -20,7 +20,7 @@ language:string="en";
 page:number=1;
 itemsperpage:number=4;
   ngOnInit(): void {
-    this.language=sessionStorage.getItem('lang') || "en";
+    this.language=localStorage.getItem('lang') || "en";
     this.categoryservice.GetAllCategories().subscribe(data=>{
       this.CategoryList=data;
       //console.log(this.CategoryList);

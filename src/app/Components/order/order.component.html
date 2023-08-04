@@ -1,5 +1,5 @@
 
-<div *ngIf="orders!=null" class="d-flex justify-content-center align-items-center text-center" style="min-height: 400px;">
+<div *ngIf="orders==null" class="d-flex justify-content-center align-items-center text-center" style="min-height: 400px;">
   <div class="col-8">
   <h4 class="text-dark">You have not made any orders yet.<br> You can easily order any product from our website.<br>
     </h4>
@@ -28,7 +28,7 @@
                     <p class="title"> {{orderitem.productPrice|currency:'EGP':'symbol'}}</p>
                   </ng-container>
                   <ng-template #checkl>
-                    <p class="title">{{orderitem.productname}}</p>
+                    <p class="title">{{orderitem.arabicProductname}}</p>
                     <p class="title"> {{orderitem.count}}</p>
                     <p class="title"> {{orderitem.productPrice|currency:'ج.م':'symbol'}}</p>
                   </ng-template>

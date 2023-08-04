@@ -33,7 +33,7 @@ export class ProductsSearchComponent {
   }
 
   ngOnInit(): void {
-    this.language=sessionStorage.getItem("lang") || "en";
+    this.language=localStorage.getItem("lang") || "en";
     this.activeroute.queryParams.subscribe((params) => {
       this.catid = params['sentCatid'];
       this.searchTerm = params['term'];

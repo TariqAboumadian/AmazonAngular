@@ -19,12 +19,12 @@ export class NavbarComponent implements OnInit {
   constructor(private categoryservice: CategoryService,private productservices:ProductService,private router: Router){}
 
   ngOnInit(): void {
-    
+
     this.categoryservice.GetAllCategories().subscribe(data=>{
       this.CategoryList=data;
     });
 
-    this.language=sessionStorage.getItem("lang") || "en";
+    this.language=localStorage.getItem("lang") || "en";
   }
   getsubcategory(id:number){
     this.router.navigate([`/Subcategories/${id}`]);

@@ -28,7 +28,7 @@ export class CartComponent implements OnInit,OnChanges {
   }
   ngOnInit(): void {
     console.log(this.cartItemService.getCartItems());
-    this. language=sessionStorage.getItem('lang') || "en";
+    this. language=localStorage.getItem('lang') || "en";
     this.ShowItemCart();
     const len= this.cartItemService.getCartItems().length;
     if(len>0)

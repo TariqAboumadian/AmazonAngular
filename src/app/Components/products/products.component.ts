@@ -48,7 +48,7 @@ export class ProductsComponent implements OnInit {
     this.catid = this.activeroute.snapshot.paramMap.get('catid')
       ? Number(this.activeroute.snapshot.paramMap.get('catid'))
       : 0;
-      this.lnaguage=sessionStorage.getItem('lang') || 'en';
+      this.lnaguage=localStorage.getItem('lang') || 'en';
     this.productservices
       .GetProductByCategoryId(this.catid)
       .subscribe((data) => {

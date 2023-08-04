@@ -27,7 +27,7 @@ export class ProductsDetailsComponent implements OnInit {
   reviewsCount:number=0;
   products:IProduct[]=[];
   firstImage:string="";
-  language:string=sessionStorage.getItem("lang") || "en";
+  language:string=localStorage.getItem("lang") || "en";
   constructor(private productservice:ProductService,private route:Router,
     private activerouter:ActivatedRoute,private cartItemService:CartItemService,
     private productRatingService: ProductRatingService,){
@@ -43,7 +43,7 @@ export class ProductsDetailsComponent implements OnInit {
       });
       this.numbers = [...Array(10).keys()].map(i => i + 1);
     })
-    
+
     console.log(this.catid)
     this.productRatingService.GetRatingByProductId(this.prodid).subscribe(data=>{
       this.customerReviews=data;

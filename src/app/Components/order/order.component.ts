@@ -21,7 +21,7 @@ export class OrderComponent implements OnInit {
   total: number = 0;
   orderId:number=0;
   imgName:string='';
-  language:string=sessionStorage.getItem('lang') || "en";
+  language:string=localStorage.getItem('lang') || "en";
   constructor(
     private cartItemService: CartItemService,
     private orderItemService: OrderItemService,
